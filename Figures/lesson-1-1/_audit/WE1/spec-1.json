@@ -1,0 +1,78 @@
+{
+  "type": "option_strip",
+  "cell_width": 200,
+  "cell_height": 80,
+  "color": "blue",
+  "options": [
+    {
+      "label": "A",
+      "spec": {
+        "type": "hearts_string",
+        "total": 5,
+        "shaded": [
+          0,
+          1
+        ],
+        "color": "blue"
+      }
+    },
+    {
+      "label": "B",
+      "spec": {
+        "type": "hearts_string",
+        "total": 12,
+        "shaded": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "color": "blue"
+      }
+    },
+    {
+      "label": "C",
+      "spec": {
+        "type": "hearts_string",
+        "total": 4,
+        "shaded": [
+          1,
+          2
+        ],
+        "color": "blue"
+      }
+    },
+    {
+      "label": "D",
+      "spec": {
+        "type": "hearts_string",
+        "total": 5,
+        "shaded": [
+          0,
+          3,
+          4
+        ],
+        "color": "blue"
+      }
+    },
+    {
+      "label": "E",
+      "spec": {
+        "type": "hearts_string",
+        "total": 7,
+        "shaded": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "color": "blue"
+      }
+    }
+  ]
+}

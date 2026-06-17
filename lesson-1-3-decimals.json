@@ -1,0 +1,1980 @@
+{
+  "unit": "Unit 1: Fractions, Decimals & Percentages",
+  "lesson_number": "1.3",
+  "title": "Decimals: Place Value, Operations, Conversion",
+  "slug": "lesson-1-3-decimals",
+  "technique": "Decimal place value (tenths, hundredths, thousandths); decimal comparison; decimal ↔ fraction conversion; basic decimal arithmetic.",
+  "key_insight": "Decimals and fractions describe the same numbers. When comparing, convert to the same form. 0.01 = 1/100 — write it out.",
+  "skills": [
+    "dec-place-value",
+    "dec-comparison",
+    "dec-frac-conversion",
+    "dec-arithmetic-multi"
+  ],
+  "estimated_minutes": 40,
+  "difficulty_range": "3pt-5pt",
+  "narrative_thread": "Anna as default; Tom as the dispute voice for comparison items; Priya as overflow.",
+  "prior_lesson_hook": "L1.2's closing line: 'Next lesson — fractions written a different way: decimals.'",
+  "blocks": [
+    {
+      "block_type": "challenge_first",
+      "title": "Challenge First",
+      "note": "2 cold problems. The player auto-reveals after 2 wrong attempts. No hints.",
+      "questions": [
+        {
+          "id": "CF1",
+          "type": "fill_in_blank",
+          "source": "original",
+          "calibration_note": "Calibrated against MK 2015 Q01 (L1.1, 3pt) — 'Which figure has one half of its area shaded?' Same MK 3pt diagnostic band: foundational equivalence + one comparison move, no chained arithmetic. The anchor tests one-half equivalence across visual surfaces; this item tests THE lesson's key insight directly: 'decimals and fractions describe the same numbers; convert to the same form to compare.' Student must put 0.7 and 3/4 into a common form (decimals or fractions out of 100) before answering, then type the greater value directly. Two cognitive moves (convert one, compare both); single FIB answer. Tests dec-frac-conversion + dec-frac-equivalence + dec-comparison — full MC-A core. No figure: per the CF cognitive-work rule (cf-author.md, 2026-06-12), the diagnostic forces decimal thinking; a visual representation would let the student count or eyeball without converting. Accept-list covers the fraction form '3/4' (canonical) plus the decimal equivalent '0.75', the leading-dot variant '.75', and the unsimplified '75/100' — all forms the numeric normalizer in student-player.html treats as equal.",
+          "question_text": "Anna is making fruit punch with Tom. Anna poured 0.7 L of orange juice into the pitcher. Tom added 3/4 L of mango juice.\n\nWhich amount is greater?\n\n{blank}",
+          "config": {
+            "answers": [
+              "3/4"
+            ],
+            "accept": [
+              "3/4",
+              "0.75",
+              ".75",
+              "75/100",
+              "0.750"
+            ]
+          },
+          "explanation": "Put both numbers in the same form so they can be compared side by side. 3/4 = 75/100 = 0.75. And 0.7 = 70/100 = 0.70. Once both are written the same way, 0.75 is more than 0.70 — so 3/4 (= 0.75) is greater than 0.7. The trailing zero in 0.70 doesn't add any value; it just shows the same number written with one more decimal place.",
+          "difficulty": 3,
+          "skills": [
+            "dec-comparison",
+            "dec-frac-conversion",
+            "dec-frac-equivalence"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "original-calibrated-2015-q01"
+          ],
+          "on_correct": "Right — 3/4 = 0.75, which is more than 0.7. Putting both in the same form (both as decimals, or both as fractions out of 100) makes the comparison clear.",
+          "on_wrong": "The greater number is 3/4 (also written as 0.75). 3/4 = 75/100 = 0.75, and 0.7 = 70/100 = 0.70. Once both are written the same way, 0.75 > 0.70, so 3/4 wins. When you compare a decimal and a fraction, convert one to match the other first."
+        },
+        {
+          "id": "CF2",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2002,
+            "question": "Q07",
+            "difficulty": "3pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2002 Q07. What CHANGED: only the wrapper narrative — the canonical 'Which of the numbers below is the greatest?' is re-cast as a Anna + Tom scratch-paper scenario, with Anna stacking five calculations and Tom unsure which one ends up largest. What was PRESERVED: all five arithmetic expressions verbatim (10 × 0.001 × 100; 0.01 ÷ 100; 100 ÷ 0.01; 10,000 × 100 ÷ 10; 0.1 × 0.01 × 10,000), the 5-option ranking-and-pick structure, the correct answer (option D = 10,000 × 100 ÷ 10 = 100,000), the difficulty (3pt), and the examiner-vetted distractor logic (each option targets a documented L1.3 misconception per distractor-plan.md). Mode B chosen by default per pyq context-tweak workflow; no structural reason exists for Mode A here (the math, not the surface, IS the question).",
+          "question_text": "Anna wrote five calculations in her notebook to test how multiplying and dividing by 10 stretch and shrink decimals. Tom isn't sure which one ends up the largest. Which calculation gives the greatest value?",
+          "config": {
+            "options": [
+              "10 × 0.001 × 100",
+              "0.01 ÷ 100",
+              "100 ÷ 0.01",
+              "10,000 × 100 ÷ 10",
+              "0.1 × 0.01 × 10,000"
+            ],
+            "answer": 3
+          },
+          "explanation": "Work each one out before ranking. 10 × 0.001 × 100 = 1. 0.01 ÷ 100 = 0.0001. 100 ÷ 0.01 = 10,000 (dividing by one hundredth is the same as multiplying by 100). 10,000 × 100 ÷ 10 = 100,000. 0.1 × 0.01 × 10,000 = 10. The greatest is 10,000 × 100 ÷ 10 = 100,000. Notice that '100 ÷ 0.01' looks huge because of the small divisor, but it only reaches 10,000 — one place short. And expressions full of small decimals (like 10 × 0.001 × 100) often collapse to 1 once the place shifts cancel out.",
+          "difficulty": 3,
+          "skills": [
+            "dec-arithmetic-multi",
+            "dec-multiplication",
+            "dec-division"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "pyq-2002-q07"
+          ],
+          "on_correct": "Yes — 10,000 × 100 ÷ 10 = 100,000. None of the others get past 10,000. Multiplying first by 100 and only dividing by 10 keeps the value climbing.",
+          "on_wrong": "The answer is 10,000 × 100 ÷ 10 = 100,000. Evaluate each one before ranking — '100 ÷ 0.01' feels huge but only reaches 10,000, and expressions packed with small decimals (0.001, 0.01) usually shrink down to a small whole number. Multiplying by 100 then dividing by only 10 is what makes option D climb past the others."
+        }
+      ]
+    },
+    {
+      "block_type": "interactive_lesson",
+      "title": "Decimals are fractions in different clothes",
+      "design_principles": [
+        "Every step requires student input",
+        "Connection statements anchor + bridge across steps",
+        "Teacher voice, not AI",
+        "CPA progression: concrete → pictorial → abstract"
+      ],
+      "estimated_minutes": 8,
+      "steps": [
+        {
+          "step": 1,
+          "type": "predict",
+          "section": "Hook",
+          "section_title": "A half, written differently",
+          "cpa_beat": "C",
+          "figure": "Figures/lesson-1-3/il-step-1.svg",
+          "figure_description": "An empty measuring cup with a curved handle on the right side and a decimal scale marked along the left wall (ticks at 0.0, 0.25, 0.5, 0.75, 1.0 L). The cup is ready to be filled.",
+          "text": "Anna is measuring milk for a pancake recipe. She needs 1/2 a litre. Her measuring cup is marked in decimals — which mark should she pour to?",
+          "action": {
+            "prompt": "Which decimal equals 1/2 a litre?",
+            "max_attempts": 1,
+            "proceed_regardless": true,
+            "type": "mcq",
+            "config": {
+              "options": [
+                "0.5",
+                "0.2",
+                "0.05",
+                "1.2",
+                "0.12"
+              ],
+              "answer": 0
+            },
+            "on_correct": "Nice — 1/2 and 0.5 are the same amount. The next step will show why on a grid.",
+            "on_wrong": "That's a fair guess. The next step will picture 1/2 as a decimal — no worries here."
+          },
+          "figure_spec": {
+            "type": "measuring_cup_half",
+            "scale_min": 0.0,
+            "scale_max": 1.0,
+            "fluid_level": 0,
+            "show_fluid": false,
+            "color": "purple"
+          }
+        },
+        {
+          "step": 2,
+          "type": "explain",
+          "section": "Picture",
+          "section_title": "A half on a 10-by-10 grid",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-3/il-step-2.svg",
+          "figure_description": "A 10-by-10 grid of 100 equal small squares. The left 5 columns are filled blue; the right 5 columns are unshaded. A thin vertical line separates the shaded half from the unshaded half.",
+          "text": "Here's the same half, but on a grid. The grid is split into 100 equal squares, and 5 whole columns are shaded. Count what's in front of you.",
+          "questions": [
+            {
+              "prompt": "How many small squares are shaded? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "50"
+                ]
+              },
+              "on_correct": "Yes — 5 columns of 10 squares each = 50 shaded.",
+              "on_wrong": "Count by columns: 5 shaded columns × 10 squares per column = 50 squares."
+            },
+            {
+              "prompt": "50 shaded out of 100 in all. Write the shaded part as a fraction of the whole grid: {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "50",
+                  "100"
+                ]
+              },
+              "on_correct": "Right — 50/100 of the grid is shaded.",
+              "on_wrong": "50 shaded out of 100 total = 50/100."
+            },
+            {
+              "prompt": "The grid has 10 columns and 5 of them are fully shaded. As a fraction of the columns: {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "5",
+                  "10"
+                ]
+              },
+              "on_correct": "Yes — 5/10 of the columns. So 1/2 = 5/10 = 50/100 — same shaded area, three ways of counting it.",
+              "on_wrong": "5 shaded columns out of 10 total = 5/10. And 5/10 is the same as 50/100."
+            },
+            {
+              "prompt": "Now write that same shaded amount as a decimal: {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.5"
+                ],
+                "accept": [
+                  "0.5",
+                  "0.50",
+                  ".5"
+                ]
+              },
+              "on_correct": "Right — 0.5. The 5 sits in the tenths place. So 1/2 = 5/10 = 50/100 = 0.5 — same shaded amount, four ways to write it.",
+              "on_wrong": "5 columns out of 10 = 5/10 = 0.5. The 5 sits in the tenths place."
+            }
+          ],
+          "figure_spec": {
+            "type": "grid_10x10_shaded",
+            "shaded_cells": 50,
+            "shade_pattern": "left_columns",
+            "shaded_columns": 5,
+            "show_column_divider": true,
+            "color": "blue"
+          }
+        },
+        {
+          "step": 3,
+          "type": "applet",
+          "section": "Practice",
+          "section_title": "Match decimal to fraction",
+          "cpa_beat": "A",
+          "applet_type": "decimal-fraction-converter",
+          "figure": "Figures/lesson-1-3/il-step-3.svg",
+          "figure_description": "Two columns of cards. The left column shows three decimals (0.25, 0.7, 0.125) stacked vertically. The right column shows three fractions (1/4, 7/10, 1/8) stacked vertically in a different order. Faint dashed lines suggest pairing without giving the matches away.",
+          "text": "We've seen 1/2 can also be written as 0.5 — same amount, different notation. Now try three more.",
+          "instruction": "Match each decimal to the fraction that names the same amount.",
+          "config": {
+            "rounds": [
+              {
+                "decimal": "0.25",
+                "fraction": "1/4"
+              },
+              {
+                "decimal": "0.7",
+                "fraction": "7/10"
+              },
+              {
+                "decimal": "0.125",
+                "fraction": "1/8"
+              }
+            ]
+          },
+          "on_correct": "Right — each decimal names the same amount as its fraction partner.",
+          "on_wrong": "Read the decimal as a fraction first: 0.25 = 25/100 = 1/4; 0.7 = 7/10; 0.125 = 125/1000 = 1/8.",
+          "discovery_message": "Every decimal is a fraction in different clothes. 0.25 is 25 hundredths, which simplifies to 1/4. 0.7 is 7 tenths. 0.125 is 125 thousandths, which simplifies to 1/8.",
+          "figure_spec": {
+            "type": "decimal_fraction_pairs_static",
+            "decimals": [
+              "0.25",
+              "0.7",
+              "0.125"
+            ],
+            "fractions": [
+              "1/4",
+              "7/10",
+              "1/8"
+            ],
+            "color": "green"
+          }
+        },
+        {
+          "step": 4,
+          "type": "reveal",
+          "section": "Closure",
+          "section_title": "Same number, three notations",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-3/il-step-4.svg",
+          "figure_description": "A single horizontal bar with the left half shaded purple. Three labels point at the shaded region from above, side by side: '1/2', '5/10', and '0.5'. A small caption reads 'one number'.",
+          "text": "Each pair was the same number, just written two ways. One more — your turn.",
+          "questions": [
+            {
+              "prompt": "Write 3/10 as a decimal: {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.3"
+                ]
+              },
+              "on_correct": "Right — 3 tenths = 0.3. A 3 in the tenths place.",
+              "on_wrong": "3/10 means 3 in the tenths place, so 0.3."
+            },
+            {
+              "prompt": "And going the other way — write 0.9 as a fraction with 10 on the bottom: {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "9",
+                  "10"
+                ]
+              },
+              "on_correct": "Yes — 0.9 = 9 in the tenths place = 9/10. Decimal to fraction works the same way: the place tells you the bottom number.",
+              "on_wrong": "0.9 is 9 in the tenths place, so the fraction is 9/10."
+            }
+          ],
+          "figure_spec": {
+            "type": "notation_triple",
+            "shaded_fraction": "1/2",
+            "labels": [
+              "1/2",
+              "5/10",
+              "0.5"
+            ],
+            "caption": "one number",
+            "color": "purple"
+          }
+        },
+        {
+          "step": 5,
+          "type": "explain",
+          "section": "Place value",
+          "section_title": "Inside a decimal: tenths, hundredths, thousandths",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-3/il-step-5.svg",
+          "figure_description": "Three labelled columns sit to the right of a decimal point. From left to right the columns are headed 'tenths (1/10)', 'hundredths (1/100)', 'thousandths (1/1000)'. The number 0.347 is written across the top with each digit centred above its column: '3' over tenths, '4' over hundredths, '7' over thousandths. The decimal point sits to the left of the 3.",
+          "text": "Just now we saw 0.9 = 9/10. Take a closer look — each digit in a decimal sits in its own column. The column tells you the fraction.",
+          "questions": [
+            {
+              "prompt": "In 0.347, the digit 3 sits in the tenths column. What fraction does the 3 stand for? {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "3",
+                  "10"
+                ]
+              },
+              "on_correct": "Right — 3 in the tenths place = 3/10.",
+              "on_wrong": "The tenths column names 1/10. So 3 sitting there = 3/10."
+            },
+            {
+              "prompt": "The 4 sits in the hundredths column. What fraction does the 4 stand for? {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "4",
+                  "100"
+                ]
+              },
+              "on_correct": "Yes — 4 in the hundredths place = 4/100. Each step right shrinks the place by a factor of 10.",
+              "on_wrong": "The hundredths column names 1/100. So 4 sitting there = 4/100."
+            },
+            {
+              "prompt": "And the 7 in the thousandths column? {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "7",
+                  "1000"
+                ]
+              },
+              "on_correct": "Right — 7 thousandths = 7/1000. So 0.347 is 3/10 + 4/100 + 7/1000, all packed into one number.",
+              "on_wrong": "The thousandths column names 1/1000. So 7 sitting there = 7/1000."
+            }
+          ],
+          "figure_spec": {
+            "type": "place_value_columns",
+            "decimal": "0.347",
+            "places": [
+              "ones",
+              "tenths",
+              "hundredths",
+              "thousandths"
+            ],
+            "place_fractions": [
+              "1",
+              "1/10",
+              "1/100",
+              "1/1000"
+            ],
+            "digits": [
+              0,
+              3,
+              4,
+              7
+            ],
+            "show_decimal_point": true,
+            "color": "blue"
+          }
+        },
+        {
+          "step": 6,
+          "type": "applet",
+          "section": "Build",
+          "section_title": "Build a decimal column by column",
+          "cpa_beat": "P",
+          "applet_type": "decimal-place-value-builder",
+          "figure": "Figures/lesson-1-3/il-step-6.svg",
+          "figure_description": "An empty place-value frame with three columns to the right of a decimal point, labelled tenths, hundredths, thousandths. A small caption above reads 'Place each digit in the right column.' No digits are filled in yet.",
+          "text": "Each digit's column tells you the fraction it stands for. Try building three decimals — drop each digit into the column where it belongs.",
+          "instruction": "Place each digit in the correct column to build the target decimal.",
+          "config": {
+            "rounds": [
+              {
+                "target": "3/10",
+                "target_label": "Build the decimal equal to:",
+                "places": [
+                  "tenths"
+                ],
+                "digits": [
+                  3
+                ]
+              },
+              {
+                "target": "47/100",
+                "target_label": "Build the decimal equal to:",
+                "places": [
+                  "tenths",
+                  "hundredths"
+                ],
+                "digits": [
+                  4,
+                  7
+                ]
+              },
+              {
+                "target": "625/1000",
+                "target_label": "Build the decimal equal to:",
+                "places": [
+                  "tenths",
+                  "hundredths",
+                  "thousandths"
+                ],
+                "digits": [
+                  6,
+                  2,
+                  5
+                ]
+              }
+            ]
+          },
+          "on_correct": "Right — each digit lands in the column that names its fraction.",
+          "on_wrong": "Read the target left to right: the first digit after the decimal is tenths, the next is hundredths, the next is thousandths.",
+          "discovery_message": "A decimal is built column by column. 0.625 = 6 tenths + 2 hundredths + 5 thousandths = 6/10 + 2/100 + 5/1000. The column names the fraction; the digit says how many of that fraction.",
+          "figure_spec": {
+            "type": "place_value_columns",
+            "decimal": "",
+            "places": [
+              "ones",
+              "tenths",
+              "hundredths",
+              "thousandths"
+            ],
+            "place_fractions": [
+              "1",
+              "1/10",
+              "1/100",
+              "1/1000"
+            ],
+            "digits": [
+              0
+            ],
+            "show_decimal_point": true,
+            "color": "green"
+          }
+        },
+        {
+          "step": 7,
+          "type": "apply",
+          "section": "Compare",
+          "section_title": "Which decimal is largest?",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-3/il-step-7.svg",
+          "figure_description": "A place-value table with three rows, one per decimal. Each row shows a decimal lined up by its decimal point, with digits sitting in their tenths/hundredths/thousandths columns. Row 1: 0.4 (4 in tenths, blanks elsewhere). Row 2: 0.39 (3 in tenths, 9 in hundredths). Row 3: 0.405 (4 in tenths, 0 in hundredths, 5 in thousandths). Column headers above: tenths, hundredths, thousandths.",
+          "text": "Compare decimals column by column, left to right. The first digit that's bigger tells you which decimal is bigger.",
+          "questions": [
+            {
+              "prompt": "Look at the tenths column. Which decimal has the smallest tenths digit?",
+              "type": "mcq",
+              "config": {
+                "options": [
+                  "0.4",
+                  "0.39",
+                  "0.405",
+                  "All three are equal in the tenths column"
+                ],
+                "answer": 1
+              },
+              "on_correct": "Right — 0.39 has 3 in the tenths place; the other two have 4. So 0.39 is the smallest of the three.",
+              "on_wrong": "Read the tenths column: 0.4 has 4, 0.39 has 3, 0.405 has 4. 3 < 4, so 0.39 has the smallest tenths digit."
+            },
+            {
+              "prompt": "Now 0.4 and 0.405 both have 4 tenths. Look at the hundredths column. What's there?",
+              "type": "mcq",
+              "config": {
+                "options": [
+                  "Both 0 — they tie at hundredths",
+                  "0.4 has 4, 0.405 has 0",
+                  "0.4 is blank, so it doesn't count",
+                  "0.405 has 4 in hundredths"
+                ],
+                "answer": 0
+              },
+              "on_correct": "Right — 0.4 = 0.400 (a blank place means 0). 0.405 also has 0 in hundredths. They tie here.",
+              "on_wrong": "0.4 = 0.400 because trailing zeros don't change the value. So 0.4 has 0 in the hundredths column, and 0.405 also has 0. Both are 0 — they tie."
+            },
+            {
+              "prompt": "Tied at hundredths. Move one more column right — thousandths. Which is larger now?",
+              "type": "mcq",
+              "config": {
+                "options": [
+                  "0.4",
+                  "0.405",
+                  "Still equal"
+                ],
+                "answer": 1
+              },
+              "on_correct": "Right — 0.405 has 5 in the thousandths column; 0.4 has 0 there (the blank is a 0). 5 > 0, so 0.405 > 0.4.",
+              "on_wrong": "0.4 = 0.400, so 0 in thousandths. 0.405 has 5 in thousandths. 5 > 0, so 0.405 is larger."
+            },
+            {
+              "prompt": "Order the three from largest to smallest. The largest is {blank}, then {blank}, then {blank}.",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.405",
+                  "0.4",
+                  "0.39"
+                ]
+              },
+              "on_correct": "Right — 0.405 > 0.4 > 0.39. Compare column by column, left to right; the first column that differs decides the order.",
+              "on_wrong": "Largest first: 0.405 (4 tenths, 0 hundredths, 5 thousandths), then 0.4 (4 tenths, 0 hundredths), then 0.39 (3 tenths). Tenths column decides 0.39 is smallest; thousandths separates the other two."
+            }
+          ],
+          "figure_spec": {
+            "type": "place_value_columns_table",
+            "rows": [
+              {
+                "decimal": "0.4",
+                "digits": {
+                  "ones": 0,
+                  "tenths": 4,
+                  "hundredths": null,
+                  "thousandths": null
+                }
+              },
+              {
+                "decimal": "0.39",
+                "digits": {
+                  "ones": 0,
+                  "tenths": 3,
+                  "hundredths": 9,
+                  "thousandths": null
+                }
+              },
+              {
+                "decimal": "0.405",
+                "digits": {
+                  "ones": 0,
+                  "tenths": 4,
+                  "hundredths": 0,
+                  "thousandths": 5
+                }
+              }
+            ],
+            "places": [
+              "ones",
+              "tenths",
+              "hundredths",
+              "thousandths"
+            ],
+            "show_decimal_point": true,
+            "show_label": true,
+            "color": "green"
+          }
+        },
+        {
+          "step": 8,
+          "type": "predict",
+          "section": "Shift",
+          "section_title": "What does multiplying by 10 do to a decimal?",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-3/il-step-8.svg",
+          "figure_description": "A place-value frame showing the number 0.3 lined up on the left side. Columns are labelled (left to right): ones, decimal point, tenths, hundredths. The digit 3 sits in the tenths column; the ones column is empty. To the right, an arrow labelled '× 10' points to a second empty frame with the same column headers. No digits are filled in the second frame.",
+          "text": "Just now we compared decimals by lining up columns. What happens to those columns when we multiply by 10?",
+          "action": {
+            "prompt": "Anna has 0.3 L of juice and pours that amount ten times. What is 0.3 × 10?",
+            "max_attempts": 1,
+            "proceed_regardless": true,
+            "type": "mcq",
+            "config": {
+              "options": [
+                "3",
+                "0.03",
+                "0.3",
+                "30",
+                "0.30"
+              ],
+              "answer": 0
+            },
+            "on_correct": "Nice — 0.3 ten times over is 3 whole litres. The next step will show why the 3 jumps from the tenths column into the ones column.",
+            "on_wrong": "That's a fair guess. The next step will show what multiplying by 10 does to the columns — no worries here."
+          },
+          "figure_spec": {
+            "type": "decimal_chain_arrow",
+            "start_decimal": "0.3",
+            "operation": "× 10",
+            "result_decimal": "",
+            "show_result": false,
+            "places": [
+              "ones",
+              "tenths",
+              "hundredths"
+            ],
+            "color": "purple"
+          }
+        },
+        {
+          "step": 9,
+          "type": "explain",
+          "section": "Rule",
+          "section_title": "Every digit jumps one column left",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-3/il-step-9.svg",
+          "figure_description": "A place-value frame showing 0.347 lined up under the column headers ones, tenths, hundredths, thousandths. Curved arrows labelled '× 10' point one column to the left across all the digits. Below, the result of the shift is written: 3.47.",
+          "text": "Let's see exactly what happens. Multiplying by 10 makes every part of the decimal ten times bigger — so each digit hops one column to the left, into a place worth ten times more.",
+          "questions": [
+            {
+              "prompt": "In 0.347, the 3 sits in the tenths column. When we multiply by 10, the 3 jumps into which column?",
+              "type": "mcq",
+              "config": {
+                "options": [
+                  "ones",
+                  "tenths (it stays put)",
+                  "hundredths",
+                  "thousandths"
+                ],
+                "answer": 0
+              },
+              "on_correct": "Right — the tenths place is worth 1/10, and the ones place is worth 10 times that. So a digit in tenths becomes 10 times bigger by jumping into ones.",
+              "on_wrong": "Each column to the left is worth 10 times more. So multiplying by 10 sends the 3 from tenths into ones."
+            },
+            {
+              "prompt": "The 4 was in the hundredths column. After × 10, where does the 4 land? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "tenths"
+                ],
+                "accept": [
+                  "tenths",
+                  "the tenths place",
+                  "tenths column"
+                ]
+              },
+              "on_correct": "Yes — every digit shifts one column left. 4 hundredths becomes 4 tenths.",
+              "on_wrong": "Every digit hops one column left. 4 hundredths × 10 = 4 tenths."
+            },
+            {
+              "prompt": "So 0.347 × 10 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "3.47"
+                ],
+                "accept": [
+                  "3.47",
+                  "3.470"
+                ]
+              },
+              "on_correct": "Right — 3.47. Every digit moved one column left. Same way to say it: the decimal point moved one place to the right.",
+              "on_wrong": "Shift every digit one column left: 3 lands in ones, 4 in tenths, 7 in hundredths. So 0.347 × 10 = 3.47."
+            },
+            {
+              "prompt": "What would × 100 do — how many columns does each digit jump?",
+              "type": "mcq",
+              "config": {
+                "options": [
+                  "1 column left",
+                  "2 columns left",
+                  "3 columns left",
+                  "It depends on the decimal"
+                ],
+                "answer": 1
+              },
+              "on_correct": "Yes — × 100 is × 10 twice, so every digit jumps 2 columns left. And ÷ 10 is the reverse: each digit slides one column right.",
+              "on_wrong": "× 100 = × 10 × 10, so the shift happens twice. Every digit jumps 2 columns to the left."
+            }
+          ],
+          "figure_spec": {
+            "type": "decimal_chain_arrow",
+            "start_decimal": "0.347",
+            "operation": "× 10",
+            "result_decimal": "3.47",
+            "show_result": true,
+            "places": [
+              "ones",
+              "tenths",
+              "hundredths",
+              "thousandths"
+            ],
+            "color": "blue"
+          }
+        },
+        {
+          "step": 10,
+          "type": "applet",
+          "section": "Practice",
+          "section_title": "Shift the decimal point",
+          "cpa_beat": "A",
+          "applet_type": "decimal-shift-visualizer",
+          "figure": "Figures/lesson-1-3/il-step-10.svg",
+          "figure_description": "A place-value frame with column headers thousands, hundreds, tens, ones, tenths, hundredths. A small caption above reads 'Pick × 10, × 100, ÷ 10, or ÷ 100 and watch the digits shift.' No digits are filled in yet.",
+          "text": "You've got the rule — multiplying by 10 shifts every digit one column left, dividing by 10 shifts them one column right. Try three on your own.",
+          "instruction": "Shift the decimal point to find each result.",
+          "config": {
+            "rounds": [
+              {
+                "start": "5.7",
+                "op": "× 10",
+                "expected": "57"
+              },
+              {
+                "start": "0.04",
+                "op": "× 100",
+                "expected": "4"
+              },
+              {
+                "start": "1230",
+                "op": "÷ 100",
+                "expected": "12.3"
+              }
+            ]
+          },
+          "on_correct": "Right — every digit shifts as many columns as the multiplier has zeroes. Left for ×, right for ÷.",
+          "on_wrong": "Count the zeroes in the multiplier — that's how many columns each digit shifts. × moves left, ÷ moves right.",
+          "discovery_message": "Multiplying or dividing by a power of 10 doesn't change the digits — only their columns. × 10 shifts one column left, × 100 shifts two columns left, ÷ 10 shifts one column right, ÷ 100 shifts two columns right.",
+          "figure_spec": {
+            "type": "place_value_columns",
+            "decimal": "",
+            "places": [
+              "thousands",
+              "hundreds",
+              "tens",
+              "ones",
+              "tenths",
+              "hundredths"
+            ],
+            "place_fractions": [
+              "1000",
+              "100",
+              "10",
+              "1",
+              "1/10",
+              "1/100"
+            ],
+            "digits": [],
+            "show_decimal_point": true,
+            "color": "green"
+          }
+        },
+        {
+          "step": 11,
+          "type": "apply",
+          "section": "Chain",
+          "section_title": "Rank the chains",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-3/il-step-11.svg",
+          "figure_description": "Three expression cards stacked vertically. Card A: '0.2 × 100'. Card B: '50 ÷ 10'. Card C: '0.6 × 10 × 10'. The expressions are shown unevaluated — no result is displayed next to any of them.",
+          "text": "Each move shifts the columns. Now use the rule to evaluate three chains and put them in order.",
+          "questions": [
+            {
+              "prompt": "Evaluate Card A first: 0.2 × 100 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "20"
+                ],
+                "accept": [
+                  "20",
+                  "20.0",
+                  "20.00"
+                ]
+              },
+              "on_correct": "Right — × 100 shifts each digit two columns left. The 2 jumps from tenths into tens, so 0.2 × 100 = 20.",
+              "on_wrong": "× 100 shifts each digit 2 columns left. The 2 in tenths jumps into tens, giving 20."
+            },
+            {
+              "prompt": "Card B: 50 ÷ 10 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "5"
+                ],
+                "accept": [
+                  "5",
+                  "5.0"
+                ]
+              },
+              "on_correct": "Yes — ÷ 10 shifts each digit one column right. 5 tens becomes 5 ones; the 0 in ones becomes 0 tenths.",
+              "on_wrong": "÷ 10 shifts each digit one column to the right. The 5 in tens drops into ones, so 50 ÷ 10 = 5."
+            },
+            {
+              "prompt": "Card C: 0.6 × 10 × 10 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "60"
+                ],
+                "accept": [
+                  "60",
+                  "60.0"
+                ]
+              },
+              "on_correct": "Right — × 10 twice = × 100. The 6 in tenths jumps 2 columns left into tens, so 0.6 × 10 × 10 = 60.",
+              "on_wrong": "× 10 done twice is the same as × 100 — shift the 6 two columns left, from tenths into tens. So 0.6 × 10 × 10 = 60."
+            },
+            {
+              "prompt": "Now rank the three results from largest to smallest. Use capital letters: largest is Card {blank}, then Card {blank}, then Card {blank}.",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "C",
+                  "A",
+                  "B"
+                ]
+              },
+              "on_correct": "Yes — C (60) > A (20) > B (5). When the chains finish, you compare them like any other whole numbers.",
+              "on_wrong": "C = 60, A = 20, B = 5. Largest first: C, then A, then B. (Use capital letters: C, A, B.)"
+            }
+          ],
+          "figure_spec": {
+            "type": "expression_chain_cards",
+            "cards": [
+              {
+                "label": "A",
+                "expression": "0.2 × 100"
+              },
+              {
+                "label": "B",
+                "expression": "50 ÷ 10"
+              },
+              {
+                "label": "C",
+                "expression": "0.6 × 10 × 10"
+              }
+            ],
+            "show_results": false,
+            "color": "green"
+          }
+        },
+        {
+          "step": 12,
+          "type": "explain",
+          "section": "Parallel",
+          "section_title": "Multiplying two decimals the fraction way",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-3/il-step-12.svg",
+          "figure_description": "A small inline equivalence statement: the decimal expression '0.5 × 0.2' on the left, an equivalence symbol '≡' in the middle, and the fraction expression '5/10 × 2/10' (with stacked fractions) on the right. A small caption reads 'two ways, same number'.",
+          "text": "Last step: × 10 or ÷ 10 shifts the decimal point. Now let's multiply 0.5 × 0.2 — neither is a power of 10. Each decimal is also a fraction, so we can multiply either way and the answers must match.",
+          "questions": [
+            {
+              "prompt": "Write 0.5 as a fraction with denominator 10. 0.5 = {blank}/10",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "5"
+                ]
+              },
+              "on_correct": "Right — 5 in the tenths place means 5/10.",
+              "on_wrong": "0.5 has a 5 in the tenths column, so 0.5 = 5/10."
+            },
+            {
+              "prompt": "And 0.2 = {blank}/10",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "2"
+                ]
+              },
+              "on_correct": "Yes — 2 tenths = 2/10.",
+              "on_wrong": "0.2 has a 2 in the tenths column, so 0.2 = 2/10."
+            },
+            {
+              "prompt": "Now multiply the fractions: 5/10 × 2/10 = {blank}/100",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "10"
+                ]
+              },
+              "on_correct": "Right — tops × tops (5 × 2 = 10), bottoms × bottoms (10 × 10 = 100). So 5/10 × 2/10 = 10/100.",
+              "on_wrong": "From last lesson: tops × tops, bottoms × bottoms. 5 × 2 = 10 on top, 10 × 10 = 100 on the bottom. So 5/10 × 2/10 = 10/100."
+            },
+            {
+              "prompt": "10/100 written as a decimal is {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.1"
+                ],
+                "accept": [
+                  "0.1",
+                  "0.10",
+                  ".1"
+                ]
+              },
+              "on_correct": "Yes — 10/100 = 1/10 = 0.1. So 0.5 × 0.2 = 0.1, whichever form you compute it in.",
+              "on_wrong": "10/100 simplifies to 1/10, which is 0.1 in the tenths column. So 0.5 × 0.2 = 0.1."
+            }
+          ],
+          "figure_spec": {
+            "type": "decimal_fraction_equivalence_inline",
+            "left_expression": "0.5 × 0.2",
+            "right_expression": "5/10 × 2/10",
+            "symbol": "≡",
+            "caption": "two ways, same number",
+            "color": "blue"
+          }
+        },
+        {
+          "step": 13,
+          "type": "apply",
+          "section": "Practice",
+          "section_title": "Now division — same trick",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-3/il-step-13.svg",
+          "figure_description": "A single expression card showing '0.6 ÷ 0.2 = ?'. No result is shown.",
+          "text": "Multiplication done. Now division — same fraction trick. 0.6 ÷ 0.2, neither a power of 10, so switch to fractions first.",
+          "questions": [
+            {
+              "prompt": "First, switch each decimal to a fraction. 0.6 = {blank}/10",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "6"
+                ]
+              },
+              "on_correct": "Right — 0.6 has 6 in the tenths place, so 0.6 = 6/10.",
+              "on_wrong": "The digit in the tenths place becomes the top number. 0.6 = 6/10."
+            },
+            {
+              "prompt": "And 0.2 = {blank}/10",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "2"
+                ]
+              },
+              "on_correct": "Yes — 0.2 = 2/10.",
+              "on_wrong": "2 in the tenths place, so 0.2 = 2/10."
+            },
+            {
+              "prompt": "Divide: 6/10 ÷ 2/10. Both have the same denominator (10), so this simplifies to 6 ÷ 2 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "3"
+                ],
+                "accept": [
+                  "3",
+                  "3.0"
+                ]
+              },
+              "on_correct": "Right — when two fractions have the same denominator, dividing them is just dividing the tops. 6 ÷ 2 = 3. So 0.6 ÷ 0.2 = 3.",
+              "on_wrong": "6/10 ÷ 2/10 → the /10s cancel, leaving 6 ÷ 2 = 3."
+            }
+          ],
+          "figure_spec": {
+            "type": "expression_chain_cards",
+            "cards": [
+              {
+                "label": "",
+                "expression": "0.6 ÷ 0.2"
+              }
+            ],
+            "show_results": false,
+            "color": "green"
+          }
+        },
+        {
+          "step": 14,
+          "type": "apply",
+          "section": "Closure",
+          "section_title": "Four quick checks",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-3/il-step-14.svg",
+          "figure_description": "A 2-column reference table — columns: Operation, Rule. Row 1: Read a decimal's value / Each column to the right is 10× smaller. Row 2: Decimal ↔ fraction / Digits after the point go over 10, 100, 1000. Row 3: Multiply or divide by 10 / Shift the decimal point: ÷ left, × right. Row 4: Multiply or divide decimals / Switch to fractions, then × or ÷.",
+          "text": "Four moves from this lesson. Four quick checks to lock them in — use the card above as your reference.",
+          "questions": [
+            {
+              "prompt": "In 5.83, the digit 3 stands for {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.03"
+                ],
+                "accept": [
+                  "0.03",
+                  ".03",
+                  "3/100"
+                ]
+              },
+              "on_correct": "Right — 3 is in the hundredths place, so it stands for 3/100 = 0.03.",
+              "on_wrong": "The 3 is two places after the decimal point — that's the hundredths column. So it's 3/100 = 0.03."
+            },
+            {
+              "prompt": "Which of these is equal to 0.25?",
+              "type": "mcq",
+              "config": {
+                "options": [
+                  "25/100",
+                  "1/4",
+                  "Both of these",
+                  "Neither"
+                ],
+                "answer": 2
+              },
+              "on_correct": "Yes — 0.25 = 25/100, and 25/100 simplifies to 1/4. Same number, different clothes.",
+              "on_wrong": "0.25 reads as 25 hundredths = 25/100. Divide top and bottom by 25: 25/100 = 1/4. Both forms are correct."
+            },
+            {
+              "prompt": "5.67 ÷ 100 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.0567"
+                ],
+                "accept": [
+                  "0.0567",
+                  ".0567"
+                ]
+              },
+              "on_correct": "Right — ÷ 100 shifts the decimal point two places left. 5.67 → 0.0567.",
+              "on_wrong": "÷ 100 shifts the decimal point two places to the left. 5.67 → 0.567 → 0.0567."
+            },
+            {
+              "prompt": "0.4 × 0.7 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.28"
+                ],
+                "accept": [
+                  "0.28",
+                  "0.280",
+                  ".28",
+                  "28/100",
+                  "7/25"
+                ]
+              },
+              "on_correct": "Right — 4/10 × 7/10 = 28/100 = 0.28.",
+              "on_wrong": "Switch to fractions: 0.4 = 4/10 and 0.7 = 7/10. Then 4/10 × 7/10 = 28/100 = 0.28."
+            }
+          ],
+          "curiosity_question": {
+            "type": "fill_in_blank",
+            "lead_in": "One more on your own — this one combines all three moves.",
+            "prompt": "What is one half of one hundredth? {blank}",
+            "config": {
+              "answers": [
+                "0.005"
+              ],
+              "accept": [
+                "0.005",
+                ".005",
+                "1/200",
+                "5/1000"
+              ]
+            },
+            "reveal_message": "Same number, any notation, behaves the same under any operation. ('Of' means ×, so 1/2 × 1/100 = 1/200 = 5/1000 = 0.005.) Next up — two Math Kangaroo questions that use exactly this idea."
+          },
+          "figure_spec": {
+            "type": "summary_table",
+            "color": "purple",
+            "rows": [
+              {
+                "op": "Read a decimal's value",
+                "rule": "Each column to the right is 10× smaller"
+              },
+              {
+                "op": "Decimal ↔ fraction",
+                "rule": "Digits after the point go over 10, 100, 1000"
+              },
+              {
+                "op": "Multiply or divide by 10",
+                "rule": "Shift the decimal point: ÷ left, × right"
+              },
+              {
+                "op": "Multiply or divide decimals",
+                "rule": "Switch to fractions, then × or ÷"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "block_type": "key_insight",
+      "title": "The Big Ideas — Revision Cards",
+      "intro": "Two cards covering the lesson's mega-concepts. Flip through to revise before the practice round.",
+      "cheat_sheet_url": "../Figures/lesson-1-3/MK_G56_L13_revision_cheatsheet.html",
+      "cheat_sheet_pdf_url": "../Figures/lesson-1-3/MK_G56_L13_revision_cheatsheet.pdf",
+      "cards": [
+        {
+          "id": "decimals-are-fractions",
+          "icon": "🔁",
+          "title": "Decimals are fractions in different clothes",
+          "concept": "A decimal is a fraction with denominator 10, 100, 1000, … The digit after the point lives in the tenths column. Two digits after the point — hundredths. Three digits — thousandths. So writing a decimal as a fraction is just reading the column it sits in.",
+          "example_math": "0.25 = \\dfrac{25}{100} = \\dfrac{1}{4}",
+          "example_text": "0.25 = 25/100 = 1/4 — same number, three notations. (And 0.5 = 5/10 = 1/2; 0.125 = 125/1000 = 1/8.)"
+        },
+        {
+          "id": "place-value-shift",
+          "icon": "↔",
+          "title": "× 10 and ÷ 10 shift the decimal point",
+          "concept": "Multiplying by 10 shifts every digit one column to the LEFT — equivalent to moving the decimal point one place to the right. Dividing by 10 shifts every digit one column to the RIGHT — decimal point moves one place to the left. × 100 is two shifts; × 1000 is three. To multiply or divide TWO decimals, switch to fractions first, then × or ÷ as usual.",
+          "example_math": "3.47 \\times 10 = 34.7, \\quad 3.47 \\div 10 = 0.347, \\quad 0.5 \\times 0.2 = \\dfrac{5}{10} \\times \\dfrac{2}{10} = \\dfrac{10}{100} = 0.1",
+          "example_text": "3.47 × 10 = 34.7 (right one place). 3.47 ÷ 10 = 0.347 (left one place). For 0.5 × 0.2 — switch to 5/10 × 2/10 = 10/100 = 0.1."
+        }
+      ]
+    },
+    {
+      "block_type": "worked_examples",
+      "title": "Worked Examples",
+      "examples": [
+        {
+          "id": "WE1",
+          "source": "original",
+          "calibration_anchor": {
+            "year": 2006,
+            "question": "Q8",
+            "difficulty": "3pt",
+            "note": "Original calibrated against MK 2006 Q8 ('One half of one hundredth is:'). Cross-lesson collision avoided (Q8 is L1.2 MC1); originals-calibration-audit verified 3pt band: same arithmetic shape (a/b of c/d → decimal), fresh surface (Anna pigment recipe), unambiguous answer."
+          },
+          "adaptation_note": "Original, calibrated to MK 2006 Q8 difficulty. Surface: Anna mixing paint pigment for a school art project. Shifts the answer from 0.005 (Q8) to 25 mL — same operation pattern (a/b × c/d), with one extra L→mL conversion step appropriate for a worked-example walkthrough.",
+          "narration_mode": "scaffolded",
+          "question_text": "Anna is mixing her own paint for a school art project. The recipe needs 1/4 of 1/10 of a litre of pigment. How many millilitres of pigment does she need? (1 litre = 1000 mL)",
+          "options": [
+            "(A) 0.025 mL",
+            "(B) 2.5 mL",
+            "(C) 25 mL",
+            "(D) 250 mL",
+            "(E) 40 mL"
+          ],
+          "answer_text": "(C) 25 mL",
+          "answer_index": 2,
+          "difficulty": 3,
+          "skills": [
+            "dec-frac-conversion",
+            "dec-multiplication",
+            "dec-arithmetic-multi"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "original-l13-we1",
+            "calibrated-2006-q8"
+          ],
+          "steps": [
+            {
+              "step": 1,
+              "note": "Convert 1/4 to a decimal.",
+              "segments": [
+                {
+                  "narration": "Switch each fraction to a decimal so we can multiply them. 1/4 is a familiar one: a quarter of a whole.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "Write 1/4 as a decimal: 1/4 = {blank}",
+                    "config": {
+                      "answers": [
+                        "0.25"
+                      ],
+                      "accept": [
+                        "0.25",
+                        ".25",
+                        "25/100"
+                      ]
+                    },
+                    "hint": "A quarter of a whole. Think of money: 1/4 of a dollar = 25 cents = $0.25.",
+                    "explanation": "1/4 = 0.25. (Or 25/100.)"
+                  },
+                  "figure_ref": "Figures/lesson-1-3/we1-step1.svg",
+                  "figure_spec": {
+                    "type": "fraction_of_fraction_bar",
+                    "stage": 1,
+                    "color": "blue"
+                  },
+                  "figure_description": "The 1-litre bar divided into 10 equal tenths."
+                }
+              ]
+            },
+            {
+              "step": 2,
+              "note": "Find 1/4 of 1/10 using decimals.",
+              "segments": [
+                {
+                  "narration": "1/10 is the easy one: 1/10 = 0.1. Now multiply: 0.25 × 0.1. From the lesson, multiplying two decimals using fractions: 25/100 × 1/10 = 25/1000 = 0.025.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "0.25 × 0.1 = {blank}",
+                    "config": {
+                      "answers": [
+                        "0.025"
+                      ],
+                      "accept": [
+                        "0.025",
+                        ".025",
+                        "25/1000",
+                        "1/40"
+                      ]
+                    },
+                    "hint": "Switch to fractions: 25/100 × 1/10 = 25/1000. As a decimal — 25 thousandths.",
+                    "explanation": "0.25 × 0.1 = 0.025. (Or: 1/4 × 1/10 = 1/40 = 0.025.) So Anna needs 0.025 of a litre."
+                  },
+                  "figure_ref": "Figures/lesson-1-3/we1-step2.svg",
+                  "figure_spec": {
+                    "type": "fraction_of_fraction_bar",
+                    "stage": 2,
+                    "color": "blue"
+                  },
+                  "figure_description": "The 1-litre bar with one tenth highlighted."
+                }
+              ]
+            },
+            {
+              "step": 3,
+              "note": "Convert litres to millilitres.",
+              "segments": [
+                {
+                  "narration": "0.025 of a litre — but the question asks for millilitres. 1 litre = 1000 mL, so multiplying by 1000 shifts the decimal point three places to the right.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "0.025 × 1000 = {blank}",
+                    "config": {
+                      "answers": [
+                        "25"
+                      ],
+                      "accept": [
+                        "25",
+                        "25.0",
+                        "25.00"
+                      ]
+                    },
+                    "hint": "× 1000 shifts the decimal three places right: 0.025 → 0.25 → 2.5 → 25.",
+                    "explanation": "0.025 × 1000 = 25. So Anna needs 25 mL of pigment."
+                  },
+                  "figure_ref": "Figures/lesson-1-3/we1-step3.svg",
+                  "figure_spec": {
+                    "type": "fraction_of_fraction_bar",
+                    "stage": 3,
+                    "color": "blue"
+                  },
+                  "figure_description": "The highlighted tenth divided into 4 equal parts, with one of those parts highlighted."
+                }
+              ]
+            },
+            {
+              "step": 4,
+              "note": "Pick the answer.",
+              "segments": [
+                {
+                  "narration": "Anna needs 25 mL. Pick that option.",
+                  "checkpoint": {
+                    "type": "mcq",
+                    "prompt": "How many millilitres of pigment does Anna need?",
+                    "config": {
+                      "options": [
+                        "(A) 0.025 mL",
+                        "(B) 2.5 mL",
+                        "(C) 25 mL",
+                        "(D) 250 mL",
+                        "(E) 40 mL"
+                      ],
+                      "answer": 2,
+                      "shuffle": false
+                    },
+                    "hint": "We computed 0.025 L = 25 mL in Step 3.",
+                    "explanation": "0.025 L × 1000 mL/L = 25 mL. Option C."
+                  },
+                  "figure_ref": "Figures/lesson-1-3/we1-step4.svg",
+                  "figure_spec": {
+                    "type": "fraction_of_fraction_bar",
+                    "stage": 4,
+                    "color": "blue"
+                  },
+                  "figure_description": "The bar model with the final small piece highlighted and its decimal value labelled."
+                }
+              ]
+            }
+          ],
+          "on_correct": "Nice — 1/4 × 1/10 = 0.25 × 0.1 = 0.025 L, and ×1000 gets us to 25 mL. The decimal trick handled both the multiply step and the unit conversion.",
+          "on_wrong": "The answer is 25 mL. Two moves: (1) 0.25 × 0.1 = 0.025 L (fraction-way: 25/100 × 1/10 = 25/1000), (2) × 1000 to go L→mL shifts the decimal three places: 0.025 → 25 mL.",
+          "figure": "Figures/lesson-1-3/we1-stem.svg",
+          "figure_spec": {
+            "type": "fraction_of_fraction_bar",
+            "stage": 0,
+            "color": "blue"
+          },
+          "figure_description": "A horizontal bar representing 1 litre of pigment, shown whole before any division."
+        },
+        {
+          "id": "WE2",
+          "source": "pyq",
+          "pyq": {
+            "year": 2006,
+            "question": "Q24",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2006 Q24. Surface: Tom's teacher gives him 5 sets of three numbers and asks which set has the midpoint property. Numbers and options preserved verbatim per Cross-cutting §7 (the test is structural — which set's numbers form a midpoint relationship). Answer (C) 1/10, 9/80, 1/8 preserved. Decimal conversion is the workhorse skill — fits L1.3 MC-A (decimal-fraction equivalence).",
+          "narration_mode": "scaffolded",
+          "question_text": "Tom's teacher gives him 5 sets of three numbers. The teacher says: 'In exactly one set, one of the three numbers is the midpoint of the segment between the other two on a number line.' Which set is it?",
+          "options": [
+            "(A) 1/3, 1/4, 1/5",
+            "(B) 12, 21, 32",
+            "(C) 1/10, 9/80, 1/8",
+            "(D) 0.3, 0.7, 1.3",
+            "(E) 24, 48, 64"
+          ],
+          "answer_text": "(C) 1/10, 9/80, 1/8",
+          "answer_index": 2,
+          "difficulty": 5,
+          "skills": [
+            "dec-frac-conversion",
+            "dec-frac-equivalence",
+            "dec-comparison",
+            "dec-arithmetic-multi"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "pyq-2006-q24",
+            "mode-b-reskin"
+          ],
+          "steps": [
+            {
+              "step": 1,
+              "note": "Define midpoint and quick-eliminate option (D).",
+              "segments": [
+                {
+                  "narration": "Midpoint of two numbers a and b means the number halfway between them: (a + b) / 2. Quick check on option (D), since its numbers are already decimals: the midpoint of 0.3 and 1.3.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "Midpoint of 0.3 and 1.3 = (0.3 + 1.3) / 2 = {blank}",
+                    "config": {
+                      "answers": [
+                        "0.8"
+                      ],
+                      "accept": [
+                        "0.8",
+                        "0.80",
+                        ".8",
+                        "4/5"
+                      ]
+                    },
+                    "hint": "Add the two: 0.3 + 1.3 = 1.6. Then divide by 2.",
+                    "explanation": "(0.3 + 1.3) / 2 = 1.6 / 2 = 0.8. But 0.8 isn't one of (D)'s three numbers, so (D) fails — none of {0.3, 0.7, 1.3} is the midpoint of the other two."
+                  }
+                }
+              ]
+            },
+            {
+              "step": 2,
+              "note": "Convert 1/8 to a decimal to test (C).",
+              "segments": [
+                {
+                  "narration": "Now test (C): 1/10, 9/80, 1/8. The fractions hide which is in the middle. Switch each to a decimal to see. 1/10 = 0.1 is easy. 1/8 needs long division: 1 ÷ 8.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "1/8 = {blank} (as a decimal)",
+                    "config": {
+                      "answers": [
+                        "0.125"
+                      ],
+                      "accept": [
+                        "0.125",
+                        ".125",
+                        "125/1000"
+                      ]
+                    },
+                    "hint": "1 ÷ 8: how many 8s in 10? Zero, carry. How many 8s in 100? Twelve (96), remainder 4. Carry to 40, how many 8s? Five.",
+                    "explanation": "1/8 = 0.125. (You can also remember: 1/4 = 0.25, and 1/8 is half of that, so 0.125.)"
+                  }
+                }
+              ]
+            },
+            {
+              "step": 3,
+              "note": "Find the midpoint of 0.1 and 0.125.",
+              "segments": [
+                {
+                  "narration": "So in (C): 1/10 = 0.1, 1/8 = 0.125. If one of the three numbers is the midpoint, it should be the midpoint of these two. Compute it.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "Midpoint of 0.1 and 0.125 = (0.1 + 0.125) / 2 = {blank}",
+                    "config": {
+                      "answers": [
+                        "0.1125"
+                      ],
+                      "accept": [
+                        "0.1125",
+                        ".1125",
+                        "9/80"
+                      ]
+                    },
+                    "hint": "0.1 + 0.125 = 0.225. Halve it: 0.225 / 2.",
+                    "explanation": "(0.1 + 0.125) / 2 = 0.225 / 2 = 0.1125. Now check: does 0.1125 equal the third number, 9/80?"
+                  }
+                }
+              ]
+            },
+            {
+              "step": 4,
+              "note": "Verify 9/80 = 0.1125 and pick the answer.",
+              "segments": [
+                {
+                  "narration": "Convert 9/80 to a decimal: 9 ÷ 80. 9/80 = 9/80, and 9/80 × 125/125 = 1125/10000 = 0.1125. Match! So 9/80 is the midpoint of 1/10 and 1/8. (C) is the set with the midpoint property.",
+                  "checkpoint": {
+                    "type": "mcq",
+                    "prompt": "Which set has one number as the midpoint of the other two?",
+                    "config": {
+                      "options": [
+                        "(A) 1/3, 1/4, 1/5",
+                        "(B) 12, 21, 32",
+                        "(C) 1/10, 9/80, 1/8",
+                        "(D) 0.3, 0.7, 1.3",
+                        "(E) 24, 48, 64"
+                      ],
+                      "answer": 2,
+                      "shuffle": false
+                    },
+                    "hint": "From Step 3: midpoint of 1/10 and 1/8 = 0.1125 = 9/80. The third number in (C) is the midpoint of the other two.",
+                    "explanation": "Set (C): 1/10 = 0.1, 1/8 = 0.125. Midpoint = 0.1125 = 9/80. So in (C), 9/80 is exactly the midpoint of 1/10 and 1/8. None of (A), (B), (D), (E) has this property."
+                  }
+                }
+              ]
+            }
+          ],
+          "on_correct": "Nice — converting the fractions to decimals exposed which set has the midpoint relationship. 1/10 = 0.1, 1/8 = 0.125, and their midpoint 0.1125 is 9/80.",
+          "on_wrong": "The answer is (C). Trick: convert each set's numbers to decimals to compare. In (C), 1/10 = 0.1 and 1/8 = 0.125; their midpoint is 0.1125, which is exactly 9/80. The other sets don't have this property (e.g., (D)'s midpoint of 0.3 and 1.3 is 0.8 — not in the set)."
+        }
+      ]
+    },
+    {
+      "block_type": "practice_lab",
+      "title": "Practice Lab",
+      "description": "Five practice items. Pause at the end of each — explanations and hints unlock once you've tried.",
+      "questions": [
+        {
+          "id": "P1",
+          "type": "mcq",
+          "source": "original",
+          "calibration_anchor": {
+            "year": 2015,
+            "question": "Q06",
+            "difficulty": "3pt",
+            "note": "MK 2015 Q06 (L1.1) 'Which improper fraction is smaller than 2?' Calibration band: pure comparison task, 3pt. L1.3 re-cast as decimal comparison testing trailing-zero and leading-zero traps."
+          },
+          "adaptation_note": "Original at 3pt. Surface: comparing five decimals to find the smallest. Tests the trailing-zero trap (0.7 = 0.700) and the leading-zero distinction (0.07 ≠ 0.7). MC-A: decimal place value + comparison.",
+          "question_text": "Which of these decimals is the smallest?",
+          "config": {
+            "options": [
+              "(A) 0.7",
+              "(B) 0.07",
+              "(C) 0.700",
+              "(D) 0.17",
+              "(E) 0.077"
+            ],
+            "answer": 1,
+            "shuffle": false
+          },
+          "explanation": "Line them up by place value: 0.7 and 0.700 are equal (trailing zeros don't add value). 0.17 has 1 in the tenths place — larger than anything with 0 in the tenths. So the smallest must come from 0.07 vs 0.077. Both have 0 tenths, 7 hundredths — equal so far. At thousandths, 0.07 = 0.070 has a 0, while 0.077 has a 7. So 0.07 < 0.077. Smallest = 0.07.",
+          "difficulty": 3,
+          "skills": [
+            "dec-place-value",
+            "dec-comparison"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "original-l13-p1",
+            "calibrated-2015-q06"
+          ],
+          "hints": [
+            "Pad each decimal with zeros so they all have the same number of digits after the decimal point: 0.700, 0.070, 0.700, 0.170, 0.077.",
+            "Compare column by column starting from tenths. Anything with 1 or 7 tenths is bigger than anything with 0 tenths.",
+            "Between 0.070 and 0.077, both have 0 tenths and 7 hundredths — break the tie at thousandths."
+          ],
+          "on_correct": "Right — 0.07 (= 0.070) is the smallest. 0.7 and 0.700 are the same number; the trailing zero doesn't change the value.",
+          "on_wrong": "Smallest is 0.07. Tip: pad them all to three decimal places — 0.700, 0.070, 0.700, 0.170, 0.077 — then compare like whole numbers (700, 70, 700, 170, 77). 70 is the smallest."
+        },
+        {
+          "id": "P2",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 1999,
+            "question": "Q13",
+            "difficulty": "4pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 1999 Q13. Surface re-wrapped from generic 'stick and fence' to Anna sketching her garden — keeps the proportion-with-decimals shape while threading the L1.3 Anna/Tom narrative. Numbers (1 m, 2 cm, 4.5 cm), options ((A)–(E)), and the answer (225 cm) preserved per Cross-cutting §7. Found by pyq-scanner rescan 2026-06-14; classifier had under-tagged this as 'geometry/scale' rather than decimals.",
+          "question_text": "Anna is drawing a scaled-down picture of her garden in her notebook. In the picture, a 1 m long board appears 2 cm long. The picture also shows a fence that is 4.5 cm tall. What is the actual height of the fence in cm?",
+          "config": {
+            "options": [
+              "(A) 450",
+              "(B) 225",
+              "(C) 45",
+              "(D) 22.5",
+              "(E) 4.5"
+            ],
+            "answer": 1,
+            "shuffle": false
+          },
+          "explanation": "Find the scale first. 1 m in reality = 100 cm. In the picture, that same 1 m board is only 2 cm long. So every 2 cm in the picture stands for 100 cm in reality — a scale factor of 100 / 2 = 50. The fence is 4.5 cm in the picture, so its real height is 4.5 × 50 = 225 cm.",
+          "difficulty": 4,
+          "skills": [
+            "dec-multiplication",
+            "dec-in-context",
+            "scale-proportion"
+          ],
+          "tags": [
+            "foundations",
+            "mk-4pt",
+            "pyq-1999-q13",
+            "mode-b-reskin"
+          ],
+          "hints": [
+            "First convert: 1 m = 100 cm. So 100 cm in reality = 2 cm in the picture.",
+            "Find the scale factor: every 2 cm in the picture stands for 100 cm in reality. Scale = 100 ÷ 2 = 50.",
+            "Multiply the picture height by the scale: 4.5 × 50."
+          ],
+          "on_correct": "Nice — once you set the scale (50× shrink in the picture), it's just 4.5 × 50 = 225 cm.",
+          "on_wrong": "Answer is 225 cm. Setup: 1 m = 100 cm real, shown as 2 cm in the picture, so scale = 50. Then 4.5 cm picture × 50 = 225 cm real. Common traps: forgetting to convert m → cm first (giving 4.5 × something off by 100), or shifting the decimal wrong (4.5 × 50 = 225, not 22.5 or 2250).",
+          "figure": "Figures/lesson-1-3/p2.svg",
+          "figure_spec": {
+            "type": "scale_drawing",
+            "color": "blue",
+            "reference": {
+              "name": "board",
+              "picture": "2 cm",
+              "real": "1 m"
+            },
+            "target": {
+              "name": "fence",
+              "picture": "4.5 cm"
+            }
+          },
+          "figure_description": "A scale key: a board labelled 1 metre real shown as 2 centimetres in the picture, and a fence labelled 4.5 centimetres in the picture with its real height unknown."
+        },
+        {
+          "id": "P3",
+          "type": "mcq",
+          "source": "original",
+          "calibration_anchor": {
+            "year": 2005,
+            "question": "Q10",
+            "difficulty": "3pt",
+            "note": "MK 2005 Q10 'half of a third of a quarter of 24 hours' (= 1 hour). Calibration band: chained reduction, 3pt at L1.1/L1.2 lineage. L1.3 re-skin uses decimals + ÷; bumps to 4pt for the divide step + place-value mix."
+          },
+          "adaptation_note": "Original at 4pt. Cross-lesson re-skin (brief §9 Path 1): operation shift from fraction-of-quantity chain to decimal × and ÷ mix. Direct primer for CF2 (MK 2002 Q7 chain ranking). MC-B: dec-multiplication, dec-division.",
+          "question_text": "What is 0.5 × 24 × 0.1 ÷ 0.25?",
+          "config": {
+            "options": [
+              "(A) 48",
+              "(B) 4.8",
+              "(C) 0.48",
+              "(D) 12",
+              "(E) 1.2"
+            ],
+            "answer": 1,
+            "shuffle": false
+          },
+          "explanation": "Left to right. 0.5 × 24 = 12 (half of 24). 12 × 0.1 = 1.2 (shift the decimal one place left). 1.2 ÷ 0.25: divide by 1/4 = multiply by 4, so 1.2 × 4 = 4.8. Final answer: 4.8.",
+          "difficulty": 4,
+          "skills": [
+            "dec-multiplication",
+            "dec-division",
+            "dec-arithmetic-multi"
+          ],
+          "tags": [
+            "foundations",
+            "mk-4pt",
+            "original-l13-p3",
+            "calibrated-2005-q10"
+          ],
+          "hints": [
+            "Do it step by step, left to right. 0.5 × 24 first.",
+            "Then × 0.1 — multiplying by 0.1 shifts the decimal one place left.",
+            "Last step: ÷ 0.25. Dividing by 1/4 is the same as multiplying by 4."
+          ],
+          "on_correct": "Right — 12, then 1.2, then 4.8. The ÷ 0.25 step is the same as × 4.",
+          "on_wrong": "Answer is 4.8. Chain it: 0.5 × 24 = 12, × 0.1 = 1.2, ÷ 0.25 = 1.2 × 4 = 4.8. Common trap: forgetting that ÷ 0.25 = × 4 (it grows the number, not shrinks it)."
+        },
+        {
+          "id": "P4",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2005,
+            "question": "Q24",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2005 Q24. Surface re-wrapped from a generic 'wooden cube' to 'Tom's wooden block' for narrative consistency with L1.3's Anna/Tom thread. Numbers (3 ft side, 0.25 gallon, 27 unit cubes), options ((A)–(E)), and the answer (0.5 gallon) preserved per Cross-cutting §7.",
+          "question_text": "Tom has a wooden block shaped like a cube with 3 ft sides. He paints the entire outside of the block using 0.25 gallon of paint. He then cuts the block into 27 smaller unit cubes (1 ft sides). How much paint does he need to paint the unpainted faces of all the unit cubes?",
+          "config": {
+            "options": [
+              "(A) 1.25 gallon",
+              "(B) 1 gallon",
+              "(C) 0.75 gallon",
+              "(D) 0.5 gallon",
+              "(E) 0.25 gallon"
+            ],
+            "answer": 3,
+            "shuffle": false
+          },
+          "explanation": "Original cube surface area: 6 faces × 9 sq ft = 54 sq ft. That's what 0.25 gallon covered, so 1 gallon covers 54 / 0.25 = 216 sq ft. After cutting into 27 unit cubes, total face area = 27 × 6 = 162 sq ft. Of those, 54 sq ft were already painted (outside of original cube). Unpainted = 162 − 54 = 108 sq ft. Paint needed = 108 / 216 = 0.5 gallon.",
+          "difficulty": 5,
+          "skills": [
+            "dec-multiplication",
+            "dec-division",
+            "dec-in-context"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "pyq-2005-q24",
+            "mode-b-reskin"
+          ],
+          "hints": [
+            "Original cube surface = 6 × (3×3) = 54 sq ft. That's what 0.25 gallon covered.",
+            "After cutting: 27 unit cubes × 6 faces each = 162 sq ft total face area. The outer 54 sq ft was already painted.",
+            "Unpainted area = 162 − 54 = 108 sq ft. Paint needed scales linearly with area — 108 is exactly twice 54."
+          ],
+          "on_correct": "Got it — 108 sq ft of newly-exposed faces is exactly 2× the original 54 sq ft, so 2 × 0.25 = 0.5 gallon.",
+          "on_wrong": "Answer is 0.5 gallon. Outside-of-cube area = 54 sq ft used 0.25 gallon. After cutting, new exposed faces = 108 sq ft (162 total − 54 already painted). Since 108 = 2 × 54, paint needed = 2 × 0.25 = 0.5 gallon.",
+          "figure": "Figures/lesson-1-3/p4.svg",
+          "figure_spec": {
+            "type": "labeled_cube",
+            "color": "blue",
+            "edge_label": "3 ft",
+            "subdivisions": 3
+          },
+          "figure_description": "A cube with 3-foot edges, its faces divided into a 3 by 3 grid showing it will be cut into 27 unit cubes."
+        },
+        {
+          "id": "P5",
+          "type": "mcq",
+          "source": "original",
+          "calibration_anchor": {
+            "year": 2008,
+            "question": "Q17",
+            "difficulty": "4pt",
+            "note": "MK 2008 Q17 (4pt, fresh) division-with-leftover mechanics. Calibration band: division-with-real-context, 4pt. L1.3 re-skin uses decimal division (1.6 ÷ 0.2 = 8) — clean integer answer, no remainder; algebra-lite variant rejected for L3.x scope (user lock 2026-06-12)."
+          },
+          "adaptation_note": "Original at 4pt. Lara cookie recipe surface, decimal division (1.6 ÷ 0.2 = 8). MC-B: dec-division, dec-in-context.",
+          "question_text": "Lara's cookie recipe uses 0.2 L of milk per cookie. She has 1.6 L of milk. How many cookies can she make?",
+          "config": {
+            "options": [
+              "(A) 0.32",
+              "(B) 0.8",
+              "(C) 8",
+              "(D) 32",
+              "(E) 80"
+            ],
+            "answer": 2,
+            "shuffle": false
+          },
+          "explanation": "Number of cookies = total milk ÷ milk per cookie = 1.6 ÷ 0.2. Switch to fractions: 16/10 ÷ 2/10 = (16/10) × (10/2) = 16/2 = 8. Or directly: 1.6 ÷ 0.2 = 16 ÷ 2 = 8 (multiply top and bottom of the division by 10 to clear the decimals).",
+          "difficulty": 4,
+          "skills": [
+            "dec-division",
+            "dec-in-context"
+          ],
+          "tags": [
+            "foundations",
+            "mk-4pt",
+            "original-l13-p5",
+            "calibrated-2008-q17"
+          ],
+          "hints": [
+            "Set up the division: 1.6 ÷ 0.2.",
+            "Clear the decimals — multiply both numbers by 10 to get 16 ÷ 2.",
+            "16 ÷ 2 = 8."
+          ],
+          "on_correct": "Right — 1.6 ÷ 0.2 = 16 ÷ 2 = 8 cookies. Multiplying both sides by 10 turned the decimal division into integer division.",
+          "on_wrong": "Answer is 8 cookies. 1.6 ÷ 0.2: multiply both by 10 → 16 ÷ 2 = 8. Trap: multiplying instead of dividing (0.32 = 1.6 × 0.2) or stopping after one decimal shift (0.8 = 1.6 × 0.5).",
+          "figure": "Figures/lesson-1-3/p5.svg",
+          "figure_spec": {
+            "type": "jug_with_scoop",
+            "color": "blue",
+            "fill_label": "1.6 L",
+            "fill_caption": "milk",
+            "unit_label": "0.2 L",
+            "unit_caption": "per cookie"
+          },
+          "figure_description": "A jug filled with 1.6 litres of milk beside a small 0.2-litre measure used per cookie."
+        }
+      ]
+    },
+    {
+      "block_type": "mastery_check",
+      "title": "Mastery Check",
+      "description": "Four checks before you move on. Each one is a step up from Practice — the kind of problem you'd see on a real Math Kangaroo paper.",
+      "pass_threshold": 3,
+      "questions": [
+        {
+          "id": "MC1",
+          "type": "mcq",
+          "source": "original",
+          "calibration_anchor": {
+            "year": 2010,
+            "question": "Q17",
+            "difficulty": "4pt",
+            "note": "MK 2010 Q17 (L1.1) 'What fraction of the square is the shaded region?' (4pt). Calibration band: fraction-of-figure read + conversion. L1.3 re-skin: read the shaded fraction (7/20), then convert to a decimal. Synthesis bump over P1 — P1 is pure decimal comparison; MC1 adds the conversion step."
+          },
+          "adaptation_note": "Original at 4pt. Tests MC-A conversion: read a fraction from a figure description, then identify its decimal equivalent. 7/20 isn't a memorised conversion — the student must do the arithmetic (35/100 = 0.35).",
+          "question_text": "A rectangle is divided into 20 equal parts. 7 of them are shaded. Which of these decimals equals the shaded fraction, 7/20?",
+          "config": {
+            "options": [
+              "(A) 0.27",
+              "(B) 0.35",
+              "(C) 0.7",
+              "(D) 0.14",
+              "(E) 0.20"
+            ],
+            "answer": 1,
+            "shuffle": false
+          },
+          "explanation": "To convert 7/20 to a decimal, scale to denominator 100: multiply top and bottom by 5. 7/20 = 35/100 = 0.35.",
+          "difficulty": 4,
+          "skills": [
+            "dec-frac-conversion",
+            "dec-place-value"
+          ],
+          "tags": [
+            "foundations",
+            "mk-4pt",
+            "original-l13-mc1",
+            "calibrated-2010-q17"
+          ],
+          "hints": [
+            "Goal: write 7/20 with denominator 100 (then it's a decimal in hundredths).",
+            "Multiply top and bottom by 5: 7/20 × 5/5 = 35/100.",
+            "35/100 reads as 35 hundredths — that's 0.35."
+          ],
+          "on_correct": "Right — 7/20 = 35/100 = 0.35. Scaling to denominator 100 makes the conversion clean.",
+          "on_wrong": "Answer is 0.35. Trick: scale 7/20 to /100 by multiplying both by 5: 35/100 = 0.35. The traps: 0.27 (adding numerator + denominator), 0.7 (treating 7/20 like 7/10), 0.20 (picking the denominator).",
+          "figure": "Figures/lesson-1-3/mc1.svg",
+          "figure_spec": {
+            "type": "rectangle_n_parts_shaded",
+            "color": "blue",
+            "parts": 20,
+            "shaded": 7,
+            "rows": 2
+          },
+          "figure_description": "A rectangle divided into 20 equal parts with 7 of them shaded."
+        },
+        {
+          "id": "MC2",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2005,
+            "question": "Q14",
+            "difficulty": "4pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2005 Q14. Surface lightly wrapped in Tom's family context (his grandparents are dividing the peanuts) for narrative consistency. All numbers preserved verbatim per Cross-cutting §7: 5 kg, 4 kg × 2, 2 kg × 4, 1.5 kg × 2, 0 × 1; total 24 kg over 10 people; answer 7. Found by pyq-scanner rescan 2026-06-14 (classifier had tagged this 'distribution/logic').",
+          "question_text": "Tom's grandparents are dividing 24 kg of peanuts among the 10 members of the family. Tom's grandfather suggests: 1 person gets 5 kg, 2 people get 4 kg each, 4 people get 2 kg each, 2 people get 1.5 kg each, and 1 person gets nothing. Tom's grandmother suggests dividing the peanuts equally among everyone. Under the grandmother's plan, how many people would get more peanuts than they would under the grandfather's plan?",
+          "config": {
+            "options": [
+              "(A) 3",
+              "(B) 4",
+              "(C) 5",
+              "(D) 6",
+              "(E) 7"
+            ],
+            "answer": 4,
+            "shuffle": false
+          },
+          "explanation": "Total peanuts: 1×5 + 2×4 + 4×2 + 2×1.5 + 1×0 = 5 + 8 + 8 + 3 + 0 = 24 kg. Equal split: 24 / 10 = 2.4 kg per person. Now compare each person's grandfather-share to 2.4: 5 > 2.4 (1 person gets less under grandma); 4 > 2.4 (2 people get less); 2 < 2.4 (4 people get more); 1.5 < 2.4 (2 people get more); 0 < 2.4 (1 person gets more). People who get more under the grandmother: 4 + 2 + 1 = 7.",
+          "difficulty": 4,
+          "skills": [
+            "dec-division",
+            "dec-comparison",
+            "dec-arithmetic-multi"
+          ],
+          "tags": [
+            "foundations",
+            "mk-4pt",
+            "pyq-2005-q14",
+            "mode-b-reskin"
+          ],
+          "hints": [
+            "Step 1: total peanuts under the grandfather's plan = 1×5 + 2×4 + 4×2 + 2×1.5 + 1×0.",
+            "Step 2: equal split = total ÷ 10 (the number of people). Note this gives a decimal answer.",
+            "Step 3: compare each grandfather-share to the equal split. Anyone whose grandfather-share is less than the split is better off under the grandmother."
+          ],
+          "on_correct": "Right — total 24 kg, equal split 2.4 kg. Anyone getting less than 2.4 under the grandfather (i.e., 2, 1.5, or 0) is better off under the grandmother: 4 + 2 + 1 = 7 people.",
+          "on_wrong": "Answer is 7. Total 24 kg, equal split 24/10 = 2.4 kg. Compare each share to 2.4: the 4 people getting 2 kg, the 2 people getting 1.5 kg, and the 1 person getting 0 are all under 2.4 — so 7 people gain from the grandmother's plan. The 1+2 = 3 people who get 5 or 4 lose; total loses + gains = 10 (all family members).",
+          "figure": "Figures/lesson-1-3/mc2.svg",
+          "figure_spec": {
+            "type": "distribution_bars",
+            "color": "blue",
+            "unit": " kg",
+            "bars": [
+              {
+                "label": "1 person",
+                "value": 5
+              },
+              {
+                "label": "2 people",
+                "value": 4
+              },
+              {
+                "label": "4 people",
+                "value": 2
+              },
+              {
+                "label": "2 people",
+                "value": 1.5
+              },
+              {
+                "label": "1 person",
+                "value": 0
+              }
+            ]
+          },
+          "figure_description": "A bar chart of the grandfather's split: one person 5 kg, two people 4 kg, four people 2 kg, two people 1.5 kg, one person 0 kg."
+        },
+        {
+          "id": "MC3",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2001,
+            "question": "Q28",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2001 Q28. Surface wrapped in Tom's school context (planting trees to balance student oxygen use). Numbers preserved verbatim per Cross-cutting §7: 1.7 kg/hour per tree, 0.7 kg/hour per student, 34 students; answer 14.",
+          "question_text": "Tom's school is planting trees to balance their students' oxygen use. A 100-year-old oak generates 1.7 kg of oxygen per hour. Each student consumes 0.7 kg of oxygen per hour by breathing. How many such oaks does the school need so the trees match the oxygen used by 34 students in 1 hour?",
+          "config": {
+            "options": [
+              "(A) 10",
+              "(B) 12",
+              "(C) 14",
+              "(D) 15",
+              "(E) 21"
+            ],
+            "answer": 2,
+            "shuffle": false
+          },
+          "explanation": "Total oxygen the 34 students use in 1 hour: 34 × 0.7 = 23.8 kg. Each oak makes 1.7 kg per hour. So number of oaks = 23.8 ÷ 1.7 = 14.",
+          "difficulty": 5,
+          "skills": [
+            "dec-multiplication",
+            "dec-division",
+            "dec-in-context",
+            "dec-arithmetic-multi"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "pyq-2001-q28",
+            "mode-b-reskin"
+          ],
+          "hints": [
+            "First, find total oxygen needed: 34 students × 0.7 kg/hour each.",
+            "Then find how many trees deliver that much: total ÷ 1.7 kg per tree.",
+            "For 23.8 ÷ 1.7: multiply both by 10 to clear the decimal → 238 ÷ 17."
+          ],
+          "on_correct": "Right — 34 × 0.7 = 23.8 kg total, then 23.8 ÷ 1.7 = 14 oaks. Both steps use the place-value-shift trick (× 10, then ÷ 10 to simplify the division).",
+          "on_wrong": "Answer is 14. Steps: 34 × 0.7 = 23.8 kg (the oxygen students use). Then 23.8 ÷ 1.7. Clear decimals by multiplying both by 10: 238 ÷ 17 = 14. Trap: dividing 34 directly by some shortcut (34 / 1.7 = 20 ignores the 0.7-per-student step), or multiplying both decimals instead of dividing."
+        },
+        {
+          "id": "MC4",
+          "type": "mcq",
+          "source": "original",
+          "calibration_anchor": {
+            "year": 2006,
+            "question": "Q28",
+            "difficulty": "5pt",
+            "note": "MK 2006 Q28 (5pt, fresh) class-grades chain with fractions. Calibration band: multi-step conversion + reverse-arithmetic. L1.3 re-skin uses decimals for the grade fractions; tests dec→frac conversion + reverse-find-the-whole. Synthesis bump over MC1 (MC1 = conversion only; MC4 = conversion + algebraic-style reverse arithmetic)."
+          },
+          "adaptation_note": "Original at 5pt. Synthesis item: combines MC-A (decimal→fraction conversion to recognise 0.125 = 1/8 and 0.25 = 1/4) with MC-B (reverse arithmetic: if 0.375 of N = 27, find N). Tests whether students can run the chain backwards.",
+          "question_text": "In Lara's class, 0.125 of the students got an A on a recent test, and 0.25 got a B. The rest got a C or below. If 27 students got either an A or a B, how many students are in the class?",
+          "config": {
+            "options": [
+              "(A) 54",
+              "(B) 72",
+              "(C) 81",
+              "(D) 90",
+              "(E) 100"
+            ],
+            "answer": 1,
+            "shuffle": false
+          },
+          "explanation": "Fraction of class with A or B: 0.125 + 0.25 = 0.375. So 0.375 × N = 27, where N is the class size. Solving: N = 27 ÷ 0.375. Switch to fractions: 0.375 = 3/8, so N = 27 ÷ (3/8) = 27 × (8/3) = 72.",
+          "difficulty": 5,
+          "skills": [
+            "dec-addition-subtraction",
+            "dec-division",
+            "dec-frac-conversion",
+            "dec-arithmetic-multi"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "original-l13-mc4",
+            "calibrated-2006-q28"
+          ],
+          "hints": [
+            "Combine A and B: 0.125 + 0.25 = 0.375 of the class. So 0.375 × N = 27.",
+            "Solve for N: N = 27 ÷ 0.375.",
+            "Trick: 0.375 = 3/8. So N = 27 × 8/3 = 9 × 8 = 72."
+          ],
+          "on_correct": "Got it — 0.125 + 0.25 = 0.375 = 3/8, and 27 ÷ (3/8) = 72. Switching the decimal to a fraction made the reverse division clean.",
+          "on_wrong": "Answer is 72. A+B as fraction of class: 0.125 + 0.25 = 0.375 = 3/8. So 3/8 of the class is 27 students. Total class = 27 × 8/3 = 72. Trap: dividing 27/0.5 = 54 (using a wrong fraction) or 27 × 3 = 81 (forgetting to divide by 3 first)."
+        }
+      ]
+    },
+    {
+      "block_type": "challenge_extension",
+      "title": "Challenge Extension",
+      "description": "Optional 5pt stretch — three-stage decimal chain, reverse direction. Hardest item in the lesson.",
+      "questions": [
+        {
+          "id": "CE1",
+          "type": "mcq",
+          "source": "original",
+          "calibration_anchor": {
+            "year": 2002,
+            "question": "Q27",
+            "difficulty": "5pt",
+            "note": "MK 2002 Q27 (L1.2, 5pt) chained-reduction fraction problem (the L1.2 CE1 anchor pattern). Calibration band: 5pt reverse chained reduction — given the FINAL amount, find the ORIGINAL. L1.3 re-skin uses decimals (0.4, 0.5, 0.25) instead of fractions; the survival-fraction shortcut is the insight test."
+          },
+          "adaptation_note": "Original at 5pt. Three-stage forward chain (savings → book → snacks), then the student must INVERT the chain to recover the original allowance from $18 left over. The 5pt difficulty is in the survival-fraction insight: 'what fraction of the original allowance survives all three steps?' (= 0.6 × 0.5 × 0.75 = 0.225). Multi-step decimal arithmetic + reverse-direction synthesis. Each distractor maps to a specific chain-stage error.",
+          "question_text": "Anna divided her weekly allowance. She put 0.4 of it into savings. Then she spent 0.5 of what remained on a book. Then she spent 0.25 of what was left on snacks. After all three steps, she had $18 left. What was Anna's original allowance?",
+          "config": {
+            "options": [
+              "(A) $40",
+              "(B) $60",
+              "(C) $72",
+              "(D) $80",
+              "(E) $100"
+            ],
+            "answer": 3,
+            "shuffle": false
+          },
+          "explanation": "Track what fraction of the allowance survives each step. Step 1: 0.4 to savings, so 1 − 0.4 = 0.6 of the allowance remains. Step 2: 0.5 of that remainder spent on a book, so 0.5 of 0.6 = 0.3 of the allowance remains. Step 3: 0.25 of that spent on snacks, so 0.75 of 0.3 = 0.225 of the allowance remains. We're told this final survivor is $18, so 0.225 × A = 18, giving A = 18 ÷ 0.225 = $80. (Quick check: 0.4 × 80 = 32 saved; 0.5 × 48 = 24 on book; 0.25 × 24 = 6 on snacks; left = 80 − 32 − 24 − 6 = 18. ✓)",
+          "difficulty": 5,
+          "skills": [
+            "dec-multiplication",
+            "dec-division",
+            "dec-arithmetic-multi",
+            "dec-in-context",
+            "reverse-chained-reduction"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "original-l13-ce1",
+            "calibrated-2002-q27",
+            "reverse-chain"
+          ],
+          "hints": [
+            "Don't try to compute step-by-step forward — you don't know the starting allowance yet. Instead, track the survival fraction: after each step, what fraction of the original allowance is left?",
+            "Step 1: 1 − 0.4 = 0.6 survives. Step 2: 0.5 of 0.6 = 0.3 survives. Step 3: 0.75 of 0.3 = 0.225 survives. So 0.225 × A = $18.",
+            "Solve for A: A = 18 ÷ 0.225. Multiply top and bottom by 1000 to clear decimals: 18000 ÷ 225 = 80."
+          ],
+          "on_correct": "Got it — survival fractions: 0.6, then 0.3, then 0.225. So 0.225 × A = 18, giving A = 80. The reverse-chain trick beats forward guessing every time.",
+          "on_wrong": "Answer is $80. Insight: don't run the chain forward (you don't know A); instead track what survives each step. After all three: 0.6 × 0.5 × 0.75 = 0.225 of A is left, and that's $18. So A = 18 ÷ 0.225 = 80. Common traps: $60 — used 0.3 (forgot the snacks step shrinks it further). $40 — used 0.45 (mis-multiplied survival fractions). $72 — guessed 18 × 4. $100 — used 0.18 as survival.",
+          "figure": "Figures/lesson-1-3/ce1.svg",
+          "figure_spec": {
+            "type": "survival_flow_bar",
+            "color": "blue",
+            "start_label": "?",
+            "stages": [
+              "savings",
+              "book",
+              "snacks"
+            ],
+            "end_label": "$18"
+          },
+          "figure_description": "A flow diagram of the allowance passing through savings, book and snacks, ending in a box marked 18 dollars left, with the starting amount unknown."
+        }
+      ]
+    }
+  ]
+}

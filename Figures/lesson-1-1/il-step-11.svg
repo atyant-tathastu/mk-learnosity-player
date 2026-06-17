@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220" font-family='"Untitled Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'>
+
+  <!-- Pie centered at (110, 110), radius 80. Cut into 5 equal slices (72° each), starting from the top vertex and going clockwise. First 3 slices shaded blue. -->
+
+  <!-- Sector 1 (shaded): -90° to -18° -->
+  <path d="M 110,110 L 110,30 A 80,80 0 0,1 186.08,85.28 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Sector 2 (shaded): -18° to 54° -->
+  <path d="M 110,110 L 186.08,85.28 A 80,80 0 0,1 157.02,174.72 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Sector 3 (shaded): 54° to 126° -->
+  <path d="M 110,110 L 157.02,174.72 A 80,80 0 0,1 62.98,174.72 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Sector 4 (unshaded): 126° to 198° -->
+  <path d="M 110,110 L 62.98,174.72 A 80,80 0 0,1 33.92,85.28 Z" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Sector 5 (unshaded): 198° to -90° (= 270°) -->
+  <path d="M 110,110 L 33.92,85.28 A 80,80 0 0,1 110,30 Z" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+
+  <!-- Outer circle outline for a clean edge -->
+  <circle cx="110" cy="110" r="80" fill="none" stroke="#0A80D5" stroke-width="2"/>
+
+</svg>

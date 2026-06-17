@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" font-family='"Untitled Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'>
+<path d="M 120 120 L 120.00 20.00 A 100 100 0 0 1 206.60 70.00 Z" fill="#EBBDEC" stroke="#850F85" stroke-width="2"/>
+<path d="M 120 120 L 206.60 70.00 A 100 100 0 0 1 206.60 170.00 Z" fill="#EBBDEC" stroke="#850F85" stroke-width="2"/>
+<path d="M 120 120 L 206.60 170.00 A 100 100 0 0 1 120.00 220.00 Z" fill="#EBBDEC" stroke="#850F85" stroke-width="2"/>
+<path d="M 120 120 L 120.00 220.00 A 100 100 0 0 1 33.40 170.00 Z" fill="#EBBDEC" stroke="#850F85" stroke-width="2"/>
+<path d="M 120 120 L 33.40 170.00 A 100 100 0 0 1 33.40 70.00 Z" fill="#FFFFFF" stroke="#850F85" stroke-width="2"/>
+<path d="M 120 120 L 33.40 70.00 A 100 100 0 0 1 120.00 20.00 Z" fill="#FFFFFF" stroke="#850F85" stroke-width="2"/>
+</svg>

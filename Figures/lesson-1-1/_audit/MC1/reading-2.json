@@ -1,0 +1,30 @@
+{
+  "figure_type": "single_figure",
+  "single": {
+    "primitive": "labelled_square",
+    "structure": {
+      "shape": "square",
+      "side_labels": {
+        "top_left_segment": "2 cm",
+        "top_right_segment": "4 cm",
+        "left_top_segment": "2 cm",
+        "left_bottom_segment": "4 cm"
+      },
+      "internal_triangle": {
+        "vertices": [
+          "top edge at 2cm from left (i.e., 2cm mark)",
+          "left edge at 2cm from top (i.e., 2cm mark)",
+          "bottom-right corner"
+        ],
+        "shaded": true
+      }
+    }
+  },
+  "decorations_noted": [
+    "watermark text 'copy', 'work', 'for purchaser's use only' overlaid",
+    "fraction 2/9 shown to the left of the square as an answer hint"
+  ],
+  "primitive_gap": null,
+  "confidence": "high",
+  "notes": "Square has side 6 cm (2+4). Shaded triangle vertices: (2,0) on top edge, (0,2) on left edge, (6,6) bottom-right corner. Area = (1/2)|...| yields 2/9 of the square."
+}

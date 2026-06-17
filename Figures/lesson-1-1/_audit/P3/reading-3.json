@@ -1,0 +1,184 @@
+{
+  "figure_type": "option_strip",
+  "options": [
+    {
+      "label": "A",
+      "primitive": "mini_flag",
+      "structure": {
+        "rows": 3,
+        "cols": 2,
+        "shaded_cells": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "label": "B",
+      "primitive": "mini_flag",
+      "structure": {
+        "rows": 4,
+        "cols": 5,
+        "shaded_cells": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      }
+    },
+    {
+      "label": "C",
+      "primitive": "square_with_diagonals",
+      "structure": {
+        "pattern": "two_triangles"
+      }
+    },
+    {
+      "label": "D",
+      "primitive": "mini_flag",
+      "structure": {
+        "rows": 4,
+        "cols": 5,
+        "shaded_cells": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "label": "E",
+      "primitive": "mini_flag",
+      "structure": {
+        "rows": 2,
+        "cols": 4,
+        "shaded_cells": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      }
+    }
+  ],
+  "decorations_noted": [],
+  "primitive_gap": null,
+  "confidence": "high",
+  "notes": "Sub-crop pass; all options read with confidence."
+}

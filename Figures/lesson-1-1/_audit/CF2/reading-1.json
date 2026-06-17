@@ -1,0 +1,19 @@
+{
+  "figure_type": "single_figure",
+  "single": {
+    "primitive": "rectangle_with_triangle",
+    "structure": {
+      "rows": 2,
+      "cols": 3,
+      "triangle_row": 1,
+      "triangle_col": 1,
+      "triangle_corner": "bottom_right"
+    }
+  },
+  "decorations_noted": [
+    "page-number 3 visible at top-left"
+  ],
+  "primitive_gap": null,
+  "confidence": "high",
+  "notes": "2x3 grid; shaded right-triangle occupies the bottom-right half of the middle cell in the bottom row (cell at row 1, col 1)."
+}

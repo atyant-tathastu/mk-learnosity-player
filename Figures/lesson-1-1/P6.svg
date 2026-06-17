@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 670 418" width="670" height="418" font-family='"Untitled Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'>
+<rect x="40.0" y="36" width="180.0" height="64" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+<rect x="220.0" y="36" width="180.0" height="64" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+<rect x="400.0" y="36" width="180.0" height="64" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+<text x="592" y="73" font-size="18" fill="#2B2B2B" font-weight="500">60 min total</text>
+<rect x="40.0" y="130" width="180.0" height="64" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+<rect x="220.0" y="130" width="180.0" height="64" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+<rect x="400.0" y="130" width="180.0" height="64" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+<text x="592" y="167" font-size="18" fill="#2B2B2B" font-weight="500">math = 20</text>
+<rect x="40.0" y="224" width="108.0" height="64" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+<rect x="148.0" y="224" width="108.0" height="64" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+<rect x="256.0" y="224" width="108.0" height="64" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+<rect x="364.0" y="224" width="108.0" height="64" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+<rect x="472.0" y="224" width="108.0" height="64" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+<text x="592" y="261" font-size="18" fill="#2B2B2B" font-weight="500">geo = 16 of 40</text>
+<rect x="40.0" y="318" width="108.0" height="64" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+<rect x="148.0" y="318" width="108.0" height="64" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+<rect x="256.0" y="318" width="108.0" height="64" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+<rect x="364.0" y="318" width="108.0" height="64" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+<rect x="472.0" y="318" width="108.0" height="64" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+<text x="592" y="355" font-size="18" fill="#2B2B2B" font-weight="500">rest = 24 min</text>
+</svg>

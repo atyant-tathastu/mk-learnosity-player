@@ -1,0 +1,31 @@
+{
+  "figure_type": "single_figure",
+  "single": {
+    "primitive": "labelled_square",
+    "structure": {
+      "shape": "square",
+      "side_labels": {
+        "top_left_segment": "2 cm",
+        "top_right_segment": "4 cm",
+        "left_top_segment": "2 cm",
+        "left_bottom_segment": "4 cm"
+      },
+      "internal_triangle": {
+        "vertices": [
+          "top edge at 2cm from left (i.e. 2cm mark)",
+          "left edge at 2cm from top (i.e. 2cm mark)",
+          "bottom-right corner"
+        ],
+        "shaded": true,
+        "fill": "light green"
+      }
+    }
+  },
+  "decorations_noted": [
+    "watermark text 'copy... work' and 'for purchaser's use only' across the figure",
+    "fraction 2/9 printed to the left of the square (likely an answer option)"
+  ],
+  "primitive_gap": null,
+  "confidence": "high",
+  "notes": "Square has side 6cm (2+4). Top edge is split 2cm | 4cm; left edge is split 2cm | 4cm. Shaded triangle connects the two 2cm-mark points on the top and left edges with the bottom-right vertex of the square."
+}

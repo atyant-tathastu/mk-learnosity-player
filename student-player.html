@@ -1,0 +1,3993 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Math Kangaroo G5–6 — Lesson Player</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<link rel="stylesheet" href="_vendor/katex/katex.min.css" />
+<script defer src="_vendor/katex/katex.min.js"></script>
+<script defer src="_vendor/katex/auto-render.min.js"></script>
+
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --panel: #ffffff;
+    --panel-soft: #f0f3fa;
+    --border: #e3e7f0;
+    --border-strong: #c9d0dc;
+    --text: #1f2330;
+    --muted: #707892;
+    --accent: #5b6cff;
+    --accent-soft: #e8ecff;
+    --good: #16a47e;
+    --good-soft: #d9f4e8;
+    --bad: #d23f3f;
+    --bad-soft: #fbe2e2;
+    --warn: #d08a00;
+    --pyq: #8a4dd9;
+    --pyq-soft: #efe7fb;
+    --shadow-sm: 0 1px 2px rgba(20, 25, 50, 0.06);
+    --shadow-md: 0 4px 14px rgba(20, 25, 50, 0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.55; font-size: 15px;
+  }
+
+  /* ── HEADER ────────────────────────────────────────────────── */
+  header.app {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    padding: 12px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 18px;
+    align-items: center;
+  }
+  header.app .left, header.app .right {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 13px; color: var(--muted);
+  }
+  header.app .left a {
+    color: var(--accent); text-decoration: none; font-weight: 600;
+  }
+  header.app .left a:hover { text-decoration: underline; }
+  header.app .center {
+    text-align: center;
+    font-weight: 600; font-size: 15px;
+  }
+  header.app .center .sub {
+    display: block; font-size: 12px; color: var(--muted); font-weight: 500;
+  }
+  header.app .progress {
+    display: flex; align-items: center; gap: 10px;
+  }
+  header.app .progress .bar {
+    width: 140px; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;
+  }
+  header.app .progress .bar .fill {
+    height: 100%; background: linear-gradient(90deg, var(--accent), var(--good));
+    transition: width 0.3s ease;
+  }
+  header.app .xp {
+    background: var(--accent-soft); color: var(--accent);
+    padding: 4px 10px; border-radius: 999px;
+    font-weight: 600; font-size: 12px;
+  }
+
+  /* ── APP SHELL ─────────────────────────────────────────────── */
+  .shell {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: calc(100vh - 60px);
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+    aside.sidebar { display: none; }
+  }
+
+  /* ── SIDEBAR ───────────────────────────────────────────────── */
+  aside.sidebar {
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 18px 14px 30px;
+    position: sticky; top: 60px; align-self: start;
+    max-height: calc(100vh - 60px); overflow-y: auto;
+  }
+  aside.sidebar h3 {
+    margin: 0 0 12px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--muted); font-weight: 700;
+  }
+  aside.sidebar ol { list-style: none; padding: 0; margin: 0; }
+  aside.sidebar .block-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; border-radius: 8px;
+    cursor: pointer; font-size: 13px;
+    color: var(--text);
+    transition: background 0.15s;
+  }
+  aside.sidebar .block-item:hover { background: var(--panel-soft); }
+  aside.sidebar .block-item.active {
+    background: var(--accent-soft); color: var(--accent); font-weight: 600;
+  }
+  aside.sidebar .block-item.done .status { color: var(--good); }
+  aside.sidebar .block-item .status {
+    width: 18px; height: 18px;
+    border-radius: 50%; border: 1.5px solid var(--border-strong);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    background: var(--panel);
+    flex: 0 0 18px;
+  }
+  aside.sidebar .block-item.done .status {
+    background: var(--good); color: white; border-color: var(--good);
+  }
+  aside.sidebar .block-item.active .status {
+    border-color: var(--accent); color: var(--accent);
+  }
+  aside.sidebar .block-item.done.active .status {
+    background: var(--good); color: white;
+  }
+  aside.sidebar .block-item .title { flex: 1; }
+  aside.sidebar .block-item .count {
+    font-size: 11px; color: var(--muted); font-weight: 500;
+  }
+
+  /* ── MAIN ──────────────────────────────────────────────────── */
+  main.player {
+    padding: 24px 32px 80px;
+    max-width: 880px; margin: 0 auto; width: 100%;
+  }
+  .breadcrumb {
+    font-size: 12px; color: var(--muted);
+    display: flex; gap: 8px; align-items: center; margin-bottom: 8px;
+  }
+  .breadcrumb .chip {
+    background: var(--accent-soft); color: var(--accent);
+    padding: 2px 10px; border-radius: 999px;
+    font-weight: 600;
+  }
+  .breadcrumb .pyq-chip {
+    background: var(--pyq-soft); color: var(--pyq);
+    padding: 2px 10px; border-radius: 999px; font-weight: 600;
+  }
+  .breadcrumb .orig-chip {
+    background: var(--good-soft); color: var(--good);
+    padding: 2px 10px; border-radius: 999px; font-weight: 600;
+  }
+  .breadcrumb .diff-chip {
+    background: var(--panel-soft); color: var(--text);
+    padding: 2px 10px; border-radius: 999px; font-weight: 600;
+    border: 1px solid var(--border);
+  }
+  .item-title {
+    font-size: 22px; font-weight: 700; margin: 4px 0 2px;
+  }
+  .item-counter {
+    font-size: 12px; color: var(--muted); margin: 0 0 14px;
+  }
+
+  .panel {
+    background: var(--panel);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 22px 26px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 18px;
+  }
+
+  /* Figure rendering */
+  figure.fig {
+    margin: 4px 0 14px;
+    text-align: center;
+  }
+  figure.fig img {
+    display: inline-block; max-width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  figure.fig figcaption {
+    font-size: 11px; color: var(--muted);
+    margin-top: 6px; font-style: italic;
+  }
+
+  /* Question stem */
+  .stem {
+    font-size: 16px; line-height: 1.65;
+    margin: 8px 0 16px;
+  }
+
+  /* MCQ */
+  .mcq-options {
+    display: flex; flex-direction: column; gap: 10px;
+    margin: 12px 0;
+  }
+  .mcq-option {
+    background: var(--panel);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.15s, background 0.15s, transform 0.05s;
+    text-align: left;
+    width: 100%; font-family: inherit; color: var(--text);
+  }
+  .mcq-option:hover:not(.disabled) {
+    border-color: var(--accent); background: var(--accent-soft);
+  }
+  .mcq-option.selected {
+    border-color: var(--accent); background: var(--accent-soft);
+  }
+  .mcq-option.correct {
+    border-color: var(--good); background: var(--good-soft); color: var(--good);
+  }
+  .mcq-option.wrong {
+    border-color: var(--bad); background: var(--bad-soft); color: var(--bad);
+  }
+  .mcq-option.disabled { cursor: default; opacity: 0.7; }
+  .mcq-option .marker {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 1.5px solid var(--border-strong);
+    flex: 0 0 24px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--muted);
+    background: var(--panel);
+  }
+  .mcq-option.selected .marker {
+    border-color: var(--accent); background: var(--accent); color: white;
+  }
+  .mcq-option.correct .marker { background: var(--good); border-color: var(--good); color: white; }
+  .mcq-option.wrong .marker { background: var(--bad); border-color: var(--bad); color: white; }
+
+  /* Image-as-option MCQ — used when each option is itself a figure (e.g. WE1
+     apple-branch options). Grid layout, larger touch target, image fills the
+     button below a small letter badge. */
+  .mcq-options.is-image-grid {
+    display: grid; grid-template-columns: 1fr; gap: 10px;
+  }
+  .mcq-option.is-image {
+    flex-direction: column; align-items: stretch; padding: 10px 12px;
+  }
+  .mcq-option.is-image .marker { align-self: flex-start; }
+  .mcq-option.is-image img {
+    display: block; width: 100%; height: auto; max-height: 88px;
+    object-fit: contain; margin-top: 6px;
+    background: #fff; border-radius: 6px;
+  }
+
+  /* Fill in blank */
+  .fib-row {
+    display: flex; align-items: center; gap: 10px;
+    flex-wrap: wrap; margin: 10px 0;
+  }
+  .fib-input {
+    background: var(--panel);
+    border: 2px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 16px; font-family: inherit;
+    width: 80px; text-align: center;
+    color: var(--text);
+  }
+  .fib-input:focus { outline: none; border-color: var(--accent); }
+  .fib-input.correct { border-color: var(--good); background: var(--good-soft); color: var(--good); font-weight: 600; }
+  .fib-input.wrong { border-color: var(--bad); background: var(--bad-soft); color: var(--bad); font-weight: 600; }
+
+  /* Stacked fraction — inline visual that mirrors KaTeX's \frac{a}{b}. Either
+     half can be a fixed number or a text input the student fills in. Used in
+     every prompt with {blank}/{blank}, {blank}/N, N/{blank}, and standalone
+     answer inputs for fraction-format FIBs. */
+  .stacked-frac {
+    display: inline-flex; flex-direction: column; align-items: center;
+    vertical-align: middle; margin: 0 4px;
+    font-family: "KaTeX_Math", "Times New Roman", serif;
+    min-width: 44px;
+    position: relative; top: -0.15em;
+  }
+  .stacked-frac .num, .stacked-frac .den {
+    display: block; padding: 0 4px;
+    font-size: 1em; line-height: 1.2; text-align: center;
+  }
+  .stacked-frac .num { padding-bottom: 2px; }
+  .stacked-frac .den { padding-top: 2px; }
+  .stacked-frac .bar {
+    display: block; width: 100%; height: 1.5px;
+    background: var(--text);
+  }
+  .stacked-frac.correct .bar { background: var(--good); }
+  .stacked-frac.wrong .bar { background: var(--bad); }
+  /* Smaller text input inside the stacked fraction */
+  .stacked-frac .fib-input {
+    width: 56px; padding: 4px 6px; font-size: 16px;
+    background: var(--panel);
+    border: 1.5px dashed var(--border-strong);
+    border-radius: 5px;
+  }
+  .stacked-frac .fib-input.correct { border-style: solid; }
+  .stacked-frac .fib-input.wrong { border-style: solid; }
+  /* Inline single-blank input embedded mid-sentence */
+  .inline-blank {
+    display: inline-block;
+    width: 64px; padding: 4px 8px; font-size: 16px;
+    background: var(--panel);
+    border: 1.5px dashed var(--border-strong);
+    border-radius: 6px; text-align: center;
+    margin: 0 4px; vertical-align: middle;
+    font-family: inherit; color: var(--text);
+  }
+  .inline-blank:focus { outline: none; border-color: var(--accent); border-style: solid; }
+  .inline-blank.correct { border-color: var(--good); background: var(--good-soft); color: var(--good); border-style: solid; }
+  .inline-blank.wrong   { border-color: var(--bad);  background: var(--bad-soft);  color: var(--bad);  border-style: solid; }
+
+  /* Custom numeric keypad — opens when a [data-keypad="1"] input is focused.
+     Sample wired to IL Step 2 only for now. */
+  .num-keypad {
+    position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+    background: var(--panel); border: 1.5px solid var(--border-strong);
+    border-radius: 14px; padding: 10px; z-index: 1000;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+    display: none;
+    grid-template-columns: repeat(3, 56px); grid-auto-rows: 48px; gap: 8px;
+  }
+  .num-keypad.open { display: grid; }
+  .num-keypad button {
+    background: var(--panel);
+    border: 1.5px solid var(--border-strong);
+    border-radius: 10px;
+    font-size: 20px; font-weight: 600;
+    color: var(--text); cursor: pointer;
+    font-family: inherit;
+  }
+  .num-keypad button:hover { background: var(--bg); }
+  .num-keypad button:active { transform: translateY(1px); }
+  .num-keypad .kp-frac { color: var(--accent); }
+  .num-keypad .kp-dot  { color: var(--text); }
+  .num-keypad .kp-back { color: var(--bad); }
+  .num-keypad .kp-done {
+    grid-column: span 2; background: var(--accent); color: #fff;
+    border-color: var(--accent); font-size: 15px;
+  }
+
+  /* Action bar */
+  .actions {
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .btn {
+    background: var(--panel);
+    color: var(--text);
+    border: 1.5px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 14px; font-weight: 600; font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.05s;
+  }
+  .btn:hover:not(:disabled) { background: var(--panel-soft); }
+  .btn:active:not(:disabled) { transform: translateY(1px); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn.primary {
+    background: var(--accent); color: white; border-color: var(--accent);
+  }
+  .btn.primary:hover:not(:disabled) {
+    background: #4859e8; border-color: #4859e8;
+  }
+  .btn.ghost { border-color: transparent; }
+  .btn.ghost:hover:not(:disabled) { background: var(--panel-soft); }
+  .btn-spacer { flex: 1; }
+
+  /* Feedback */
+  .feedback {
+    padding: 12px 16px; border-radius: 8px;
+    font-size: 14px; margin-top: 12px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .feedback.good {
+    background: var(--good-soft); color: var(--good);
+    border-left: 4px solid var(--good);
+    animation: glow-correct 0.6s ease-out;
+  }
+  .feedback.bad {
+    background: var(--bad-soft); color: var(--bad);
+    border-left: 4px solid var(--bad);
+    animation: shake-wrong 0.4s ease-out;
+  }
+  @keyframes glow-correct {
+    0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); transform: scale(0.98); }
+    40%  { box-shadow: 0 0 0 8px rgba(34,197,94,0.18); transform: scale(1.02); }
+    100% { box-shadow: 0 0 0 0 rgba(34,197,94,0);    transform: scale(1); }
+  }
+  @keyframes shake-wrong {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-5px); }
+    40%      { transform: translateX(5px); }
+    60%      { transform: translateX(-3px); }
+    80%      { transform: translateX(3px); }
+  }
+  @keyframes panel-fade-in {
+    0%   { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .panel.is-fresh {
+    animation: panel-fade-in 0.4s ease-out;
+  }
+  .mcq-options.is-wrong {
+    animation: shake-wrong 0.4s ease-out;
+  }
+  .auto-advance-bar {
+    height: 3px; margin-top: 10px; border-radius: 2px;
+    background: var(--good-soft); overflow: hidden;
+  }
+  .auto-advance-bar > span {
+    display: block; height: 100%; width: 0;
+    background: var(--good);
+    animation: auto-advance-fill var(--advance-ms, 900ms) linear forwards;
+  }
+  @keyframes auto-advance-fill {
+    0%   { width: 0; }
+    100% { width: 100%; }
+  }
+  .feedback.info {
+    background: var(--accent-soft); color: var(--accent);
+    border-left: 4px solid var(--accent);
+  }
+  .feedback .icon { font-size: 18px; flex: 0 0 18px; }
+  .feedback strong { font-weight: 700; }
+  .feedback .counter {
+    color: var(--muted); font-weight: 500;
+    margin-left: 6px; opacity: 0.85;
+  }
+
+  /* Answer reveal — replaces the old ℹ info row + duplicate explanation.
+     Matches the sample player: one panel with 💡 + "Answer: X" header (blue)
+     and the explanation underneath in muted text. Used for wrong-shown and
+     (optionally) on-correct when there's an explanation worth surfacing. */
+  .answer-reveal {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-top: 14px;
+  }
+  .answer-reveal .header {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 17px; font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .answer-reveal .header .lightbulb { font-size: 20px; }
+  .answer-reveal .body {
+    color: var(--text); font-size: 14px; line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  /* Hints */
+  .hints {
+    margin-top: 14px;
+    border-top: 1px dashed var(--border);
+    padding-top: 14px;
+  }
+  .hint-list {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .hint {
+    background: var(--panel-soft);
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px; color: var(--text);
+  }
+  .hint .label {
+    font-weight: 700; color: var(--accent); margin-right: 6px;
+  }
+
+  /* Explanation (reveal) */
+  .explanation {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin-top: 14px;
+    font-size: 14px;
+  }
+  .explanation .label {
+    font-weight: 700; color: var(--accent);
+    display: block; margin-bottom: 6px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  /* Insight (yellow lightbulb-style) */
+  .insight {
+    background: #fff8e6;
+    border-left: 4px solid var(--warn);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .insight .icon { font-size: 18px; flex: 0 0 18px; }
+
+  /* Revision card grid (Key Insight block, card mode) */
+  .revision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin: 8px 0 18px;
+  }
+  .revision-card {
+    background: var(--panel-soft);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .revision-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(133, 15, 133, 0.08);
+  }
+  .revision-card-head {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 600; font-size: 15px; color: var(--text);
+  }
+  .revision-card-icon { font-size: 20px; flex: 0 0 auto; }
+  .revision-card-title { line-height: 1.2; }
+  .revision-card-concept {
+    font-size: 13.5px; line-height: 1.5; color: var(--text);
+  }
+  .revision-card-example {
+    background: var(--panel); border: 1px dashed var(--border-strong);
+    border-radius: 6px; padding: 8px 10px; font-size: 14px;
+    text-align: center; color: var(--text);
+  }
+  .revision-card-example-text { font-family: inherit; }
+  .revision-cheat {
+    margin: 8px 0 4px; padding: 14px 16px;
+    background: var(--panel-soft); border-radius: 10px;
+    display: flex; flex-direction: column; gap: 6px; align-items: flex-start;
+  }
+  .revision-cheat-hint {
+    font-size: 12.5px; color: var(--muted);
+  }
+
+  /* Rule table / summary table */
+  table.rule {
+    width: 100%; border-collapse: collapse;
+    margin: 14px 0; font-size: 14px;
+    background: var(--panel-soft); border-radius: 8px; overflow: hidden;
+  }
+  table.rule th, table.rule td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  table.rule th {
+    color: var(--muted); font-weight: 600;
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.4px;
+    background: var(--panel);
+  }
+  table.rule tr:last-child td { border-bottom: none; }
+
+  /* Bottom nav */
+  .bottom-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 24px; padding: 18px 0 0;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Scaffold (worked example) */
+  .scaffold {
+    margin-top: 18px;
+    background: var(--pyq-soft);
+    border: 1px solid var(--pyq);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .scaffold-header {
+    font-size: 13px; font-weight: 700; color: var(--pyq);
+    text-transform: uppercase; letter-spacing: 0.6px;
+    margin-bottom: 12px;
+  }
+  .scaffold-step {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .scaffold-step .step-num {
+    color: var(--pyq); font-weight: 700; font-size: 12px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  /* Mastery summary */
+  .mastery-result {
+    text-align: center; padding: 40px 30px;
+  }
+  .mastery-result .score {
+    font-size: 56px; font-weight: 800; line-height: 1;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .mastery-result .score.pass { color: var(--good); }
+  .mastery-result .score.fail { color: var(--bad); }
+  .mastery-result .label { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+  .mastery-result .verdict { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+  .mastery-result .verdict.pass { color: var(--good); }
+  .mastery-result .verdict.fail { color: var(--bad); }
+
+  /* ── Applet widgets (ported from lesson-viewer.html) ───────── */
+  .applet {
+    background: var(--panel-soft);
+    border: 1px dashed var(--pyq);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .applet .applet-label {
+    font-size: 11px; color: var(--pyq);
+    text-transform: uppercase; letter-spacing: 0.6px; font-weight: 700;
+  }
+  .applet .applet-round-badge {
+    display: inline-block; align-self: flex-start;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.4px;
+    text-transform: uppercase; color: var(--muted);
+    background: var(--panel); border: 1px solid var(--border);
+    padding: 2px 10px; border-radius: 999px;
+  }
+  .applet .applet-prompt {
+    font-size: 16px; font-weight: 600; line-height: 1.5;
+    margin: 2px 0;
+  }
+  .applet .applet-svg-host { display: flex; justify-content: center; }
+  .applet .applet-controls {
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+    font-size: 14px;
+  }
+  .applet .applet-controls label {
+    display: flex; gap: 8px; align-items: center;
+  }
+  .applet input[type="range"] {
+    width: 160px; accent-color: var(--pyq);
+  }
+  .applet .applet-val {
+    display: inline-block; min-width: 26px; text-align: center;
+    background: var(--panel); padding: 2px 8px; border-radius: 4px;
+    font-weight: 700; color: var(--pyq);
+    border: 1px solid var(--border);
+  }
+  .applet .applet-btn {
+    background: var(--panel); color: var(--text);
+    border: 1.5px solid var(--border-strong); border-radius: 6px;
+    padding: 6px 12px; font-size: 13px; cursor: pointer;
+    font-family: inherit; font-weight: 600;
+  }
+  .applet .applet-btn:hover { border-color: var(--pyq); }
+  .applet .applet-btn.active {
+    background: var(--pyq); color: white; border-color: var(--pyq);
+  }
+  .applet .applet-btn.relation { min-width: 44px; font-size: 16px; }
+  .applet .applet-result {
+    font-size: 14px; padding: 8px 12px;
+    background: var(--panel); border-radius: 6px;
+    border-left: 3px solid var(--good);
+  }
+  .applet .applet-result strong { color: var(--good); }
+  .applet .applet-feedback {
+    font-size: 13px; padding: 6px 10px; border-radius: 4px; min-height: 24px;
+  }
+  .applet .applet-feedback.good { background: var(--good-soft); color: var(--good); font-weight: 600; }
+  .applet .applet-feedback.bad  { background: var(--bad-soft); color: var(--bad); font-weight: 600; }
+
+  /* Loading / error */
+  .splash {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 60vh; flex-direction: column; gap: 12px;
+    color: var(--muted);
+  }
+  .error {
+    color: var(--bad); padding: 18px; border: 1px solid var(--bad);
+    background: var(--bad-soft); border-radius: 8px; max-width: 600px;
+  }
+</style>
+</head>
+<body>
+
+<header class="app">
+  <div class="left">
+    <a href="lesson-viewer.html?lesson=1-1">← Spec preview</a>
+  </div>
+  <div class="center">
+    <span id="lesson-title">Loading…</span>
+    <span class="sub" id="lesson-sub"></span>
+  </div>
+  <div class="right">
+    <div class="progress">
+      <span id="pct">0%</span>
+      <div class="bar"><div class="fill" id="bar-fill" style="width:0%"></div></div>
+    </div>
+    <span class="xp" id="xp">+0 XP</span>
+    <button id="sound-toggle" type="button" title="Toggle sound" onclick="toggleSound()"
+            style="background:transparent;border:1px solid var(--border);color:var(--text);
+                   width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:16px;
+                   margin-left:8px">🔊</button>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <h3>Blocks</h3>
+    <ol id="block-list"></ol>
+  </aside>
+  <main class="player">
+    <div id="content" class="splash">Loading lesson…</div>
+  </main>
+</div>
+
+<script>
+// ─── Lesson selection (?lesson=1-1 default) ───────────────────────
+const CATALOG = {
+  '1-1': { json: 'lesson-1-1-fractions.json', figDir: 'Figures/lesson-1-1/' },
+  '1-2': { json: 'lesson-1-2-fraction-mult-div.json', figDir: 'Figures/lesson-1-2/' },
+  '1-3': { json: 'lesson-1-3-decimals.json', figDir: 'Figures/lesson-1-3/' },
+  '1-4': { json: 'lesson-1-4-percentages.json', figDir: 'Figures/lesson-1-4/' },
+};
+const SLUG = (new URLSearchParams(location.search).get('lesson') || '1-1').trim();
+const CFG = CATALOG[SLUG] || CATALOG['1-1'];
+
+// ─── State ─────────────────────────────────────────────────────────
+const state = {
+  lesson: null,
+  items: [],      // flat list of nav-units
+  cursor: 0,      // current item index in items[]
+  itemState: {},  // {itemId: {attempts, hintsShown, answer, status, scaffoldOpen, subAnswers}}
+  xp: 0,
+  soundOn: localStorage.getItem('lessonSoundOn') !== 'false',  // default ON
+  pendingAdvance: null,  // {timer, deadline} for auto-advance
+};
+
+// ─── Sound engine (Web Audio API, mirrors cms-app soundEngine.js) ──
+const SoundEngine = (() => {
+  let ctx = null;
+  function getCtx() {
+    if (!ctx) {
+      try { ctx = new (window.AudioContext || window.webkitAudioContext)(); }
+      catch { return null; }
+    }
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+    return ctx;
+  }
+  function tone(freq, durSec, type = 'sine', delay = 0, endFreq = null, peakGain = 0.18) {
+    if (!state.soundOn) return;
+    const c = getCtx(); if (!c) return;
+    const t0 = c.currentTime + delay;
+    const osc = c.createOscillator();
+    const gain = c.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, t0);
+    if (endFreq !== null) osc.frequency.exponentialRampToValueAtTime(endFreq, t0 + durSec);
+    gain.gain.setValueAtTime(0.0001, t0);
+    gain.gain.exponentialRampToValueAtTime(peakGain, t0 + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + durSec);
+    osc.connect(gain).connect(c.destination);
+    osc.start(t0);
+    osc.stop(t0 + durSec + 0.02);
+  }
+  return {
+    playCorrect()    { tone(659.25, 0.15, 'sine'); tone(783.99, 0.25, 'sine', 0.08); },     // E5 → G5
+    playIncorrect()  { tone(300, 0.20, 'triangle', 0, 200, 0.14); },                        // descending buzz
+    playHintReveal() { tone(480, 0.18, 'sine', 0, 523.25, 0.13); },                         // soft pop → C5
+  };
+})();
+
+function toggleSound() {
+  state.soundOn = !state.soundOn;
+  localStorage.setItem('lessonSoundOn', state.soundOn ? 'true' : 'false');
+  const btn = document.getElementById('sound-toggle');
+  if (btn) btn.textContent = state.soundOn ? '🔊' : '🔇';
+}
+
+// ─── Auto-advance after correct / wrong-shown ────────────────────
+function cancelAutoAdvance() {
+  if (state.pendingAdvance) {
+    clearTimeout(state.pendingAdvance.timer);
+    state.pendingAdvance = null;
+  }
+}
+function scheduleAutoAdvance(ms) {
+  cancelAutoAdvance();
+  state.pendingAdvance = {
+    deadline: Date.now() + ms,
+    timer: setTimeout(() => { state.pendingAdvance = null; nextItem(); }, ms),
+  };
+}
+// Timings from cms-app migration spec (§12 Magic Numbers):
+//   Correct answer → 900ms · Wrong-shown (final reveal) → 3000ms.
+//   IL steps → a touch longer so the discovery / insight message is readable.
+const ADVANCE_CORRECT_MS = 900;
+const ADVANCE_WRONG_SHOWN_MS = 3000;
+const ADVANCE_IL_MS = 1600;
+
+// ─── Small DOM helpers ────────────────────────────────────────────
+function el(tag, attrs = {}, ...children) {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') node.className = v;
+    else if (k === 'html') node.innerHTML = v;
+    else if (k.startsWith('on') && typeof v === 'function') node.addEventListener(k.slice(2), v);
+    else if (v !== false && v != null) node.setAttribute(k, v);
+  }
+  for (const c of children) {
+    if (c == null || c === false) continue;
+    node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+  }
+  return node;
+}
+const $ = sel => document.querySelector(sel);
+
+// ─── Math (KaTeX) ─────────────────────────────────────────────────
+function mathifyText(s) {
+  if (!s) return s;
+  // Parenthesised fractions: (a × c)/(b × d), (a-b)/(c-d) → stacked. Run BEFORE
+  // the global ×/÷ replace so the captured groups still hold raw symbols.
+  s = s.replace(/\(([^()]+)\)\s*\/\s*\(([^()]+)\)/g, (_, n, d) => {
+    const fix = t => t.replace(/×/g, ' \\times ').replace(/÷/g, ' \\div ').replace(/\s+/g, ' ').trim();
+    return `\\(\\dfrac{${fix(n)}}{${fix(d)}}\\)`;
+  });
+  // Numeric fractions: 2/3 → stacked
+  s = s.replace(/(?<![.\d])(\d+)\/(\d+)(?!\d|\.\d)/g,
+    (_, n, d) => `\\(\\dfrac{${n}}{${d}}\\)`);
+  // The format hint "top/bottom" → stacked words
+  s = s.replace(/\btop\/bottom\b/g, '\\(\\dfrac{\\text{top}}{\\text{bottom}}\\)');
+  // Single-letter variable fractions: a/b, c/d, b/a (boundaries avoid and/or etc.)
+  s = s.replace(/(?<![A-Za-z0-9\\{}])([a-z])\/([a-z])(?![A-Za-z0-9{}])/g,
+    (_, n, d) => `\\(\\dfrac{${n}}{${d}}\\)`);
+  s = s.replace(/(\d)\s*×\s*(\d)/g, '$1 \\(\\times\\) $2');
+  s = s.replace(/(\d)\s*÷\s*(\d)/g, '$1 \\(\\div\\) $2');
+  s = s.replace(/×/g, '\\(\\times\\)');
+  s = s.replace(/÷/g, '\\(\\div\\)');
+  s = s.replace(/≤/g, '\\(\\leq\\)');
+  s = s.replace(/≥/g, '\\(\\geq\\)');
+  s = s.replace(/≠/g, '\\(\\neq\\)');
+  return s;
+}
+function mathifyDom(root) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  for (const node of nodes) {
+    let p = node.parentNode, skip = false;
+    while (p && p !== root) {
+      const tn = p.tagName;
+      if (tn === 'CODE' || tn === 'PRE' || tn === 'SCRIPT' || tn === 'STYLE' || tn === 'INPUT') { skip = true; break; }
+      // Skip anything inside a .katex node (already KaTeX-rendered) or any
+      // element opted out of math rendering via .no-math (e.g. counters like
+      // "(1 of 2)" — purely UI text, never a fraction).
+      if (p.classList && (p.classList.contains('katex') || p.classList.contains('no-math'))) { skip = true; break; }
+      p = p.parentNode;
+    }
+    if (skip) continue;
+    const replaced = mathifyText(node.nodeValue);
+    if (replaced !== node.nodeValue) {
+      const span = document.createElement('span');
+      span.innerHTML = replaced;
+      node.parentNode.replaceChild(span, node);
+    }
+  }
+  if (window.renderMathInElement) {
+    renderMathInElement(root, {
+      delimiters: [
+        { left: '\\(', right: '\\)', display: false },
+        { left: '$$', right: '$$', display: true },
+      ],
+      throwOnError: false,
+    });
+  }
+}
+
+// ─── Figure resolution ────────────────────────────────────────────
+// Render a stem with the figure placed intelligently. Authors can include
+// the marker {figure} anywhere in question_text to drop the image at that
+// point (e.g. "Setup sentence. {figure} Now the question?"). Without the
+// marker, the figure renders first as a standalone illustration above the
+// stem (the previous default). When the figure is INLINE (marker present),
+// we skip the italic caption — the surrounding text already provides
+// context, and stacking caption between two halves of a sentence reads
+// awkwardly.
+function renderStemWithFigure(stemText, figDesc, figPath) {
+  const out = document.createDocumentFragment();
+  const stem = stemText || '';
+  const marker = '{figure}';
+  const idx = stem.indexOf(marker);
+  const hasFig = !!(figPath || figDesc);
+  function addStem(t) {
+    if (t && t.trim()) out.appendChild(el('div', { class: 'stem' }, t.trim()));
+  }
+  function addFig(includeCaption) {
+    if (!hasFig) return;
+    const fig = renderFigure(includeCaption ? figDesc : null, figPath);
+    if (fig) out.appendChild(fig);
+  }
+  if (idx === -1) {
+    // No marker — figure stands alone above the question
+    addFig(true);
+    addStem(stem);
+  } else {
+    addStem(stem.slice(0, idx));
+    addFig(false); // inline — context comes from surrounding text
+    addStem(stem.slice(idx + marker.length));
+  }
+  return out;
+}
+
+function resolveFigPath(p) {
+  if (!p) return null;
+  let s = p;
+  if (s.startsWith('../')) s = s.slice(3);
+  if (!s.includes('/') && s.startsWith('MK_')) s = CFG.figDir + s;
+  return s;
+}
+function renderFigure(desc, path) {
+  if (!path && !desc) return null;
+  const fig = el('figure', { class: 'fig' });
+  if (path) {
+    const img = el('img', { src: resolveFigPath(path), alt: desc || path });
+    img.addEventListener('error', () => { img.style.display = 'none'; });
+    fig.appendChild(img);
+  }
+  return fig;
+}
+
+// ─── Item flattening: blocks → flat nav units ─────────────────────
+// Each nav-unit is one screen the student sees. Most blocks already
+// map 1:1 to items (CF questions, Practice questions, MC questions,
+// CE). IL is special — each of the 11 steps becomes one nav-unit. WE
+// is one MCQ per example, with scaffold expandable inline.
+function buildItems(lesson) {
+  const items = [];
+  let absIdx = 0;
+  for (let bi = 0; bi < lesson.blocks.length; bi++) {
+    const block = lesson.blocks[bi];
+    const blockMeta = {
+      blockIdx: bi,
+      blockType: block.block_type,
+      blockTitle: block.title || block.block_type,
+    };
+    if (block.block_type === 'challenge_first' || block.block_type === 'practice_lab' ||
+        block.block_type === 'challenge_extension') {
+      (block.questions || []).forEach((q, qi) => {
+        items.push({
+          ...blockMeta, id: q.id || `${block.block_type}-${qi}`,
+          kind: 'question', data: q,
+          posInBlock: qi + 1, totalInBlock: block.questions.length,
+          absIdx: absIdx++,
+        });
+      });
+    } else if (block.block_type === 'mastery_check') {
+      (block.questions || []).forEach((q, qi) => {
+        items.push({
+          ...blockMeta, id: q.id || `mc-${qi}`,
+          kind: 'mc-question', data: q,
+          posInBlock: qi + 1, totalInBlock: block.questions.length,
+          mcIdx: qi, mcTotal: block.questions.length, mcThreshold: block.pass_threshold || 3,
+          absIdx: absIdx++,
+        });
+      });
+      // synthesized summary at end of MC block
+      items.push({
+        ...blockMeta, id: 'mc-summary',
+        kind: 'mc-summary',
+        mcTotal: block.questions.length, mcThreshold: block.pass_threshold || 3,
+        posInBlock: block.questions.length + 1, totalInBlock: block.questions.length + 1,
+        absIdx: absIdx++,
+      });
+    } else if (block.block_type === 'worked_examples') {
+      (block.examples || []).forEach((we, qi) => {
+        items.push({
+          ...blockMeta, id: we.id,
+          kind: 'worked-example', data: we,
+          posInBlock: qi + 1, totalInBlock: block.examples.length,
+          absIdx: absIdx++,
+        });
+      });
+    } else if (block.block_type === 'interactive_lesson') {
+      (block.steps || []).forEach((step, si) => {
+        items.push({
+          ...blockMeta, id: `S${step.step}`,
+          kind: 'il-step', data: step,
+          posInBlock: si + 1, totalInBlock: block.steps.length,
+          absIdx: absIdx++,
+        });
+      });
+    } else if (block.block_type === 'key_insight') {
+      items.push({
+        ...blockMeta, id: 'key-insight',
+        kind: 'key-insight', data: block,
+        posInBlock: 1, totalInBlock: 1,
+        absIdx: absIdx++,
+      });
+    }
+  }
+  return items;
+}
+
+// ─── Sidebar render ───────────────────────────────────────────────
+function renderSidebar() {
+  const list = $('#block-list');
+  list.innerHTML = '';
+  const byBlock = {};
+  state.items.forEach(it => {
+    if (!byBlock[it.blockIdx]) byBlock[it.blockIdx] = { meta: it, total: 0, done: 0 };
+    byBlock[it.blockIdx].total += 1;
+    const itSt = state.itemState[it.id];
+    if (itSt && (itSt.status === 'correct' || itSt.status === 'wrong-shown' || itSt.status === 'completed')) {
+      byBlock[it.blockIdx].done += 1;
+    }
+  });
+  const current = state.items[state.cursor];
+  Object.values(byBlock).forEach(b => {
+    const node = el('li', { class: 'block-item' + (b.done === b.total && b.total > 0 ? ' done' : '') + (current && current.blockIdx === b.meta.blockIdx ? ' active' : '') },
+      el('span', { class: 'status' }, b.done === b.total && b.total > 0 ? '✓' : String(b.meta.blockIdx + 1)),
+      el('span', { class: 'title' }, b.meta.blockTitle || b.meta.blockType),
+      el('span', { class: 'count' }, b.total > 1 ? `${b.done}/${b.total}` : ''),
+    );
+    node.addEventListener('click', () => {
+      // jump to first item of this block
+      const firstItem = state.items.findIndex(x => x.blockIdx === b.meta.blockIdx);
+      if (firstItem >= 0) { state.cursor = firstItem; render(); }
+    });
+    list.appendChild(node);
+  });
+}
+
+// ─── Progress / XP ────────────────────────────────────────────────
+function recalcProgress() {
+  const total = state.items.length;
+  const done = state.items.filter(it => {
+    const st = state.itemState[it.id];
+    return st && (st.status === 'correct' || st.status === 'wrong-shown' || st.status === 'completed');
+  }).length;
+  const pct = total ? Math.round(done * 100 / total) : 0;
+  $('#pct').textContent = pct + '%';
+  $('#bar-fill').style.width = pct + '%';
+  $('#xp').textContent = `+${state.xp} XP`;
+}
+
+// ─── Item state helpers ───────────────────────────────────────────
+function getSt(id) {
+  if (!state.itemState[id]) {
+    state.itemState[id] = { attempts: 0, hintsShown: 0, status: 'pending', answer: null, scaffoldOpen: false, subAnswers: {} };
+  }
+  return state.itemState[id];
+}
+
+// ─── Prompt tokenizer + stacked-fraction inputs ───────────────────
+// Lesson JSON encodes blanks with {blank}, {blank1}, {blank2}, {0}, {1}.
+// We render them inline as inputs — never showing the literal placeholder
+// text to the student. The four patterns we recognise (in order):
+//   {blankN}/{blankM}  → stacked fraction, both halves are inputs
+//   {blankN}/(\d+)     → stacked fraction, numerator is input
+//   (\d+)/{blankN}     → stacked fraction, denominator is input
+//   {blankN}           → single inline input
+// A {N}-style cloze placeholder is also treated like {blank}.
+function tokenizePrompt(str) {
+  const tokens = [];
+  let i = 0;
+  const re = {
+    blankBlank: /^\{(?:blank\d*|\d+)\}\s*\/\s*\{(?:blank\d*|\d+)\}/,
+    blankNum:   /^\{(?:blank\d*|\d+)\}\s*\/\s*(\d+)/,
+    numBlank:   /^(\d+)\s*\/\s*\{(?:blank\d*|\d+)\}/,
+    blank:      /^\{(?:blank\d*|\d+)\}/,
+  };
+  while (i < str.length) {
+    const rest = str.slice(i);
+    let m;
+    if ((m = rest.match(re.blankBlank))) {
+      tokens.push({ kind: 'frac', topBlank: true, botBlank: true });
+      i += m[0].length;
+    } else if ((m = rest.match(re.blankNum))) {
+      tokens.push({ kind: 'frac', topBlank: true, bot: m[1] });
+      i += m[0].length;
+    } else if ((m = rest.match(re.numBlank))) {
+      tokens.push({ kind: 'frac', top: m[1], botBlank: true });
+      i += m[0].length;
+    } else if ((m = rest.match(re.blank))) {
+      tokens.push({ kind: 'blank' });
+      i += m[0].length;
+    } else {
+      const prev = tokens[tokens.length - 1];
+      if (prev && prev.kind === 'text') prev.content += str[i];
+      else tokens.push({ kind: 'text', content: str[i] });
+      i += 1;
+    }
+  }
+  return tokens;
+}
+
+// Count how many input boxes a tokenised prompt produces. Used to size the
+// st.fibVals array before any keystrokes arrive.
+function countBlanks(tokens) {
+  let n = 0;
+  for (const t of tokens) {
+    if (t.kind === 'frac') n += (t.topBlank ? 1 : 0) + (t.botBlank ? 1 : 0);
+    else if (t.kind === 'blank') n += 1;
+  }
+  return n;
+}
+
+// Build a stacked-fraction DOM node. Either half may be a fixed number
+// (`top` / `bot`) or a student input (`topBlank` / `botBlank`).
+function makeStackedFrac({ topBlank, botBlank, top, bot, st, valOffset, onChange, disabled, status }) {
+  const wrap = el('span', { class: 'stacked-frac' + (status ? ' ' + status : '') });
+  function blankInput(idx) {
+    const inp = el('input', {
+      class: 'fib-input' + (status ? ' ' + status : ''),
+      type: 'text', value: (st.fibVals && st.fibVals[idx]) || '',
+      placeholder: '?',
+    });
+    inp.disabled = !!disabled;
+    inp.addEventListener('input', e => {
+      st.fibVals[idx] = e.target.value;
+      if (onChange) onChange();
+    });
+    return inp;
+  }
+  // Numerator
+  let cursor = valOffset;
+  const numHost = el('span', { class: 'num' });
+  if (topBlank) { numHost.appendChild(blankInput(cursor)); cursor += 1; }
+  else numHost.appendChild(document.createTextNode(top));
+  wrap.appendChild(numHost);
+  // Bar
+  wrap.appendChild(el('span', { class: 'bar' }));
+  // Denominator
+  const denHost = el('span', { class: 'den' });
+  if (botBlank) { denHost.appendChild(blankInput(cursor)); cursor += 1; }
+  else denHost.appendChild(document.createTextNode(bot));
+  wrap.appendChild(denHost);
+  return wrap;
+}
+
+// Build a single inline input (for plain {blank} placeholders).
+function makeInlineInput({ st, valOffset, onChange, disabled, status }) {
+  const inp = el('input', {
+    class: 'inline-blank' + (status ? ' ' + status : ''),
+    type: 'text', value: (st.fibVals && st.fibVals[valOffset]) || '',
+    placeholder: '?',
+  });
+  inp.disabled = !!disabled;
+  inp.addEventListener('input', e => {
+    st.fibVals[valOffset] = e.target.value;
+    if (onChange) onChange();
+  });
+  return inp;
+}
+
+// ─── Custom numeric keypad ────────────────────────────────────────
+// Sample wired to IL Step 2 only — opt in by tagging an input with
+// `data-keypad="1"` (see renderILStep). The keypad is a single global
+// singleton appended to <body> on first use. Typing inserts at the
+// caret of the currently focused input; `/` jumps to the next blank
+// (so {blank}/{blank} flows numerator → denominator).
+const Keypad = (() => {
+  let root = null;
+  let target = null;
+
+  function ensureRoot() {
+    if (root) return root;
+    root = document.createElement('div');
+    root.className = 'num-keypad';
+    const keys = ['1','2','3','4','5','6','7','8','9','.','0','/'];
+    for (const k of keys) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = k;
+      if (k === '/') b.className = 'kp-frac';
+      if (k === '.') b.className = 'kp-dot';
+      b.addEventListener('mousedown', e => e.preventDefault()); // keep focus
+      b.addEventListener('click', () => press(k));
+      root.appendChild(b);
+    }
+    // Backspace — its own row, single-column width
+    const back = document.createElement('button');
+    back.type = 'button'; back.textContent = '⌫'; back.className = 'kp-back';
+    back.addEventListener('mousedown', e => e.preventDefault());
+    back.addEventListener('click', () => press('⌫'));
+    root.appendChild(back);
+    // Done — spans the remaining 2 columns of the last row
+    const done = document.createElement('button');
+    done.type = 'button'; done.textContent = 'Done'; done.className = 'kp-done';
+    done.addEventListener('mousedown', e => e.preventDefault());
+    done.addEventListener('click', hide);
+    root.appendChild(done);
+    document.body.appendChild(root);
+    return root;
+  }
+
+  function insertAtCaret(input, text) {
+    const s = input.selectionStart ?? input.value.length;
+    const e = input.selectionEnd ?? input.value.length;
+    input.value = input.value.slice(0, s) + text + input.value.slice(e);
+    const pos = s + text.length;
+    input.setSelectionRange(pos, pos);
+  }
+
+  function backspaceAtCaret(input) {
+    const s = input.selectionStart ?? input.value.length;
+    const e = input.selectionEnd ?? input.value.length;
+    if (s === e && s > 0) {
+      input.value = input.value.slice(0, s - 1) + input.value.slice(e);
+      input.setSelectionRange(s - 1, s - 1);
+    } else {
+      input.value = input.value.slice(0, s) + input.value.slice(e);
+      input.setSelectionRange(s, s);
+    }
+  }
+
+  function focusNextBlank(input) {
+    const all = Array.from(document.querySelectorAll(
+      '[data-keypad="1"]:not([disabled])'
+    ));
+    const i = all.indexOf(input);
+    if (i >= 0 && i < all.length - 1) all[i + 1].focus();
+  }
+
+  function press(key) {
+    if (!target) return;
+    if (key === '⌫') backspaceAtCaret(target);
+    else if (key === '/') {
+      // In a stacked-fraction layout ({blank}/{blank}), "/" jumps to the
+      // next blank. In a single inline blank, "/" inserts the slash as a
+      // character (so the student can type fraction strings like "3/5").
+      if (target.closest && target.closest('.stacked-frac')) {
+        focusNextBlank(target);
+        return;
+      }
+      insertAtCaret(target, '/');
+    }
+    else insertAtCaret(target, key);
+    target.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  function show(input) {
+    ensureRoot();
+    target = input;
+    root.classList.add('open');
+  }
+  function hide() {
+    if (root) root.classList.remove('open');
+    target = null;
+  }
+
+  // Global focus/blur delegation — only acts on inputs tagged data-keypad="1".
+  document.addEventListener('focusin', e => {
+    const t = e.target;
+    if (t && t.matches && t.matches('input[data-keypad="1"]')) show(t);
+  });
+  document.addEventListener('focusout', e => {
+    // Defer so a click on a keypad button (which immediately re-focuses
+    // the input) doesn't close the keypad.
+    setTimeout(() => {
+      const a = document.activeElement;
+      if (!a || !a.matches || !a.matches('input[data-keypad="1"]')) hide();
+    }, 0);
+  });
+
+  // Tag every fib/inline input inside `rootEl` so the keypad will open
+  // when one of them is focused. Also suppresses the native mobile
+  // keyboard via inputmode="none".
+  function attach(rootEl) {
+    if (!rootEl) return;
+    rootEl.querySelectorAll('.fib-input, .inline-blank').forEach(inp => {
+      inp.setAttribute('data-keypad', '1');
+      inp.setAttribute('inputmode', 'none');
+      inp.setAttribute('autocomplete', 'off');
+    });
+  }
+
+  return { attach, hide };
+})();
+
+// Render a prompt with inline inputs replacing all {blank}/.../ placeholders.
+// Returns a DOM node. Side effect: ensures st.fibVals is sized correctly.
+function renderInteractivePrompt(promptStr, st, onChange, disabled, status) {
+  const tokens = tokenizePrompt(promptStr || '');
+  const need = countBlanks(tokens);
+  if (!Array.isArray(st.fibVals) || st.fibVals.length !== need) {
+    const old = st.fibVals || [];
+    st.fibVals = Array(need).fill('').map((_, i) => old[i] || '');
+  }
+  const out = el('span', { class: 'prompt-interactive' });
+  let valOffset = 0;
+  for (const t of tokens) {
+    if (t.kind === 'text') {
+      out.appendChild(document.createTextNode(t.content));
+    } else if (t.kind === 'frac') {
+      out.appendChild(makeStackedFrac({
+        topBlank: t.topBlank, botBlank: t.botBlank, top: t.top, bot: t.bot,
+        st, valOffset, onChange, disabled, status,
+      }));
+      valOffset += (t.topBlank ? 1 : 0) + (t.botBlank ? 1 : 0);
+    } else if (t.kind === 'blank') {
+      out.appendChild(makeInlineInput({ st, valOffset, onChange, disabled, status }));
+      valOffset += 1;
+    }
+  }
+  return out;
+}
+
+// Parse a "1/3" answer string into [numerator, denominator] for stacked input
+// matching. Returns null if it's not a clean a/b string.
+function parseFractionAnswer(a) {
+  if (typeof a !== 'string') return null;
+  const m = a.trim().match(/^(-?\d+)\s*\/\s*(-?\d+)$/);
+  return m ? [m[1], m[2]] : null;
+}
+
+// ─── Renderers ────────────────────────────────────────────────────
+// Each renderer builds and returns a single DOM node for the main pane.
+
+function renderBreadcrumb(it) {
+  const q = it.data || {};
+  const isPyq = q.source === 'pyq' || (q.pyq && q.pyq.year);
+  const pyqInfo = q.pyq;
+  const inspired = q.inspired_by;
+  return el('div', { class: 'breadcrumb' },
+    el('span', { class: 'chip' }, it.blockTitle),
+    isPyq && pyqInfo ?
+      el('span', { class: 'pyq-chip' }, `PYQ ${pyqInfo.year} ${pyqInfo.question || pyqInfo.q || ''}`) :
+      (q.source === 'original' ? el('span', { class: 'orig-chip' }, 'Original') : null),
+    inspired ? el('span', { class: 'pyq-chip', style: 'background:transparent;border:1px dashed var(--pyq);color:var(--pyq)' },
+      `Based on PYQ ${inspired.year} ${inspired.question || inspired.q || ''}`) : null,
+    q.difficulty ? el('span', { class: 'diff-chip' }, q.difficulty + 'pt') : null,
+    el('span', {}, `· ${it.posInBlock} of ${it.totalInBlock}`),
+  );
+}
+
+// CF block has a non-negotiable rule: no hints. Wrong on 2nd attempt → reveal
+// the answer + full explanation directly. All other blocks keep the 3-attempt
+// hint-driven flow.
+function isCF(it) { return it && it.blockType === 'challenge_first'; }
+function wrongShownThresholdFor(it) { return isCF(it) ? 2 : 3; }
+
+// MCQ renderer — used by CF, P, CE, and WE main question
+function renderMCQ(it, opts = {}) {
+  const q = it.data;
+  const cfg = q.config || {};
+  const options = cfg.options || q.options || [];
+  const correctIdx = cfg.answer !== undefined ? cfg.answer : q.answer_index;
+  const st = getSt(it.id);
+
+  const panel = el('div', { class: 'panel' });
+  panel.appendChild(renderBreadcrumb(it));
+  panel.appendChild(el('div', { class: 'item-title' }, 'Choose one'));
+  panel.appendChild(el('div', { class: 'item-counter' },
+    `Block ${it.blockIdx + 1} · Question ${it.posInBlock} of ${it.totalInBlock}`));
+
+  // Stem + figure together — author controls placement with a {figure} marker
+  const figPath = q.figure || (q.figures && q.figures[0]);
+  panel.appendChild(renderStemWithFigure(q.question_text || q.prompt || '', q.figure_description, figPath));
+
+  // Options — supports text options (string) and image options ({ image, label? }).
+  // Image-option detection mirrors renderILAction so Practice Lab / MC / CE / WE
+  // can carry figure-in-options questions (e.g. P5 ribbon-pieces).
+  const hasImages = options.some(o => o && typeof o === 'object' && o.image);
+  const optionsBox = el('div', { class: 'mcq-options' + (hasImages ? ' is-image-grid' : '') });
+  options.forEach((opt, i) => {
+    const isImg = opt && typeof opt === 'object' && opt.image;
+    const btn = el('button', {
+      class: 'mcq-option' + (isImg ? ' is-image' : '') +
+        (st.answer === i ? ' selected' : '') +
+        (st.status === 'correct' && i === correctIdx ? ' correct' : '') +
+        (st.status === 'wrong' && st.answer === i ? ' wrong' : '') +
+        (st.status === 'wrong-shown' && i === correctIdx ? ' correct' : '') +
+        (st.status === 'correct' || st.status === 'wrong-shown' ? ' disabled' : '')
+    },
+      el('span', { class: 'marker' }, String.fromCharCode(65 + i)),
+    );
+    if (isImg) {
+      const img = el('img', { src: resolveFigPath(opt.image), alt: opt.label || `Option ${String.fromCharCode(65 + i)}` });
+      img.addEventListener('error', () => { img.style.display = 'none'; });
+      btn.appendChild(img);
+      if (opt.label) btn.appendChild(el('span', { style: 'font-size:13px;color:var(--muted);margin-top:4px' }, opt.label));
+    } else {
+      btn.appendChild(el('span', {}, String(opt).replace(/^\([A-E]\)\s*/, '')));
+    }
+    if (st.status !== 'correct' && st.status !== 'wrong-shown') {
+      btn.addEventListener('click', () => {
+        st.answer = i;
+        render();
+      });
+    }
+    optionsBox.appendChild(btn);
+  });
+  panel.appendChild(optionsBox);
+
+  // Action bar
+  const cfBlock = isCF(it);
+  const threshold = wrongShownThresholdFor(it);
+  const actions = el('div', { class: 'actions' });
+  if (st.status === 'pending' || st.status === 'wrong') {
+    if (!cfBlock) actions.appendChild(makeHintButton(it));
+    actions.appendChild(el('span', { class: 'btn-spacer' }));
+    const submit = el('button', { class: 'btn primary' }, st.attempts > 0 ? 'Try again' : 'Submit');
+    submit.disabled = st.answer == null;
+    submit.addEventListener('click', () => {
+      st.attempts += 1;
+      if (st.answer === correctIdx) {
+        st.status = 'correct';
+        state.xp += 10;
+        SoundEngine.playCorrect();
+      } else if (st.attempts >= threshold) {
+        st.status = 'wrong-shown';
+        SoundEngine.playIncorrect();
+      } else {
+        st.status = 'wrong';
+        SoundEngine.playIncorrect();
+      }
+      render();
+    });
+    actions.appendChild(submit);
+  } else {
+    actions.appendChild(el('span', { class: 'btn-spacer' }));
+    actions.appendChild(el('button', { class: 'btn primary', onclick: nextItem }, 'Next →'));
+  }
+  panel.appendChild(actions);
+
+  // Feedback + hints + explanation
+  if (st.status === 'correct') {
+    panel.appendChild(el('div', { class: 'feedback good' },
+      el('span', { class: 'icon' }, '✓'),
+      el('span', {}, st.attempts === 1 ? 'Correct! Nailed it on the first try.' : `Correct! Took ${st.attempts} ${st.attempts === 1 ? 'try' : 'tries'}.`),
+    ));
+    if (q.explanation) {
+      panel.appendChild(el('div', { class: 'explanation' },
+        el('span', { class: 'label' }, 'Explanation'),
+        el('span', {}, q.explanation),
+      ));
+    }
+  } else if (st.status === 'wrong') {
+    panel.appendChild(makeWrongFeedback(st.attempts, threshold));
+  } else if (st.status === 'wrong-shown') {
+    // Single reveal panel matching the sample player: 💡 + Answer + body.
+    // No separate ℹ row and no duplicate explanation below.
+    panel.appendChild(makeAnswerRevealPanel(formatMCQAnswerForDisplay(cfg), q.explanation));
+  }
+
+  if (!cfBlock) panel.appendChild(makeHintsPanel(it));
+  return panel;
+}
+
+// Fill-in-blank renderer — for single value or two-value (a/b)
+// Two shapes the renderer handles:
+//   (a) prompt has {blank} placeholders     → inputs rendered inline in prompt
+//   (b) prompt has no placeholders          → input rendered after the stem
+// Fraction-format answers ("1/3") get a stacked num/den pair either way.
+function renderFIB(it) {
+  const q = it.data;
+  const cfg = q.config || {};
+  const promptStr = q.question_text || q.prompt || '';
+  const promptHasBlanks = /\{(?:blank\d*|\d+)\}/.test(promptStr);
+  const isFractionAns = (cfg.format === 'fraction') ||
+                        (typeof cfg.answer === 'string' && /^\d+\/\d+$/.test(cfg.answer));
+  const st = getSt(it.id);
+
+  const statusForUI =
+    st.status === 'correct' ? 'correct' :
+    (st.status === 'wrong' || st.status === 'wrong-shown') ? 'wrong' : '';
+  const disabled = (st.status === 'correct' || st.status === 'wrong-shown');
+
+  const panel = el('div', { class: 'panel' });
+  panel.appendChild(renderBreadcrumb(it));
+  panel.appendChild(el('div', { class: 'item-title' }, 'Fill in the answer'));
+  panel.appendChild(el('div', { class: 'item-counter' },
+    `Block ${it.blockIdx + 1} · Question ${it.posInBlock} of ${it.totalInBlock}`));
+
+  const figPath = q.figure || (q.figures && q.figures[0]);
+
+  // Action bar — re-created when inputs change so Submit can enable/disable.
+  let actions;
+  function rerenderActions() {
+    if (!actions) return;
+    actions.innerHTML = '';
+    fillActions();
+    mathifyDom(actions);
+  }
+
+  // Stem + input — branch on whether prompt has inline blanks
+  if (promptHasBlanks) {
+    // For prompts containing both inline {blank} placeholders AND a possible
+    // {figure} marker, we split on {figure} first, then render each segment
+    // through the prompt-interactive tokenizer.
+    const marker = '{figure}';
+    const markerIdx = promptStr.indexOf(marker);
+    if (markerIdx >= 0 && (figPath || q.figure_description)) {
+      const before = promptStr.slice(0, markerIdx);
+      const after = promptStr.slice(markerIdx + marker.length);
+      if (before.trim()) {
+        const stem1 = el('div', { class: 'stem' });
+        stem1.appendChild(renderInteractivePrompt(before, st, rerenderActions, disabled, statusForUI));
+        panel.appendChild(stem1);
+      }
+      const fig = renderFigure(null, figPath); // no caption inline
+      if (fig) panel.appendChild(fig);
+      if (after.trim()) {
+        const stem2 = el('div', { class: 'stem' });
+        stem2.appendChild(renderInteractivePrompt(after, st, rerenderActions, disabled, statusForUI));
+        panel.appendChild(stem2);
+      }
+    } else {
+      // No figure marker — figure (if any) stands above; then the
+      // interactive prompt below.
+      if (figPath || q.figure_description) {
+        const fig = renderFigure(q.figure_description, figPath);
+        if (fig) panel.appendChild(fig);
+      }
+      const stem = el('div', { class: 'stem' });
+      stem.appendChild(renderInteractivePrompt(promptStr, st, rerenderActions, disabled, statusForUI));
+      panel.appendChild(stem);
+    }
+  } else {
+    // No inline {blank}s — stem + figure intelligently mixed
+    panel.appendChild(renderStemWithFigure(promptStr, q.figure_description, figPath));
+    // No inline blanks — render the answer input below the stem.
+    if (isFractionAns) {
+      // Stacked num/den input — answer expected as "a/b"
+      if (!Array.isArray(st.fibVals) || st.fibVals.length !== 2) st.fibVals = ['', ''];
+      const row = el('div', { class: 'fib-row' });
+      row.appendChild(el('span', { style: 'font-size:15px;color:var(--muted)' }, 'Your answer:'));
+      row.appendChild(makeStackedFrac({
+        topBlank: true, botBlank: true, st, valOffset: 0,
+        onChange: rerenderActions, disabled, status: statusForUI,
+      }));
+      panel.appendChild(row);
+    } else {
+      // Single inline input
+      if (!Array.isArray(st.fibVals) || st.fibVals.length !== 1) st.fibVals = [''];
+      const row = el('div', { class: 'fib-row' });
+      row.appendChild(el('span', { style: 'font-size:15px;color:var(--muted)' }, 'Your answer:'));
+      row.appendChild(makeInlineInput({ st, valOffset: 0, onChange: rerenderActions, disabled, status: statusForUI }));
+      panel.appendChild(row);
+    }
+  }
+
+  const cfBlock = isCF(it);
+  const threshold = wrongShownThresholdFor(it);
+  function fillActions() {
+    if (st.status === 'pending' || st.status === 'wrong') {
+      if (!cfBlock) actions.appendChild(makeHintButton(it));
+      actions.appendChild(el('span', { class: 'btn-spacer' }));
+      const submit = el('button', { class: 'btn primary' }, st.attempts > 0 ? 'Try again' : 'Submit');
+      const filled = (st.fibVals || []).every(v => String(v).trim() !== '');
+      submit.disabled = !filled;
+      submit.addEventListener('click', () => {
+        st.attempts += 1;
+        const ok = checkFIB(cfg, st.fibVals, isFractionAns);
+        if (ok) { st.status = 'correct'; state.xp += 10; SoundEngine.playCorrect(); }
+        else if (st.attempts >= threshold) { st.status = 'wrong-shown'; SoundEngine.playIncorrect(); }
+        else { st.status = 'wrong'; SoundEngine.playIncorrect(); }
+        render();
+      });
+      actions.appendChild(submit);
+    } else {
+      actions.appendChild(el('span', { class: 'btn-spacer' }));
+      actions.appendChild(el('button', { class: 'btn primary', onclick: nextItem }, 'Next →'));
+    }
+  }
+  actions = el('div', { class: 'actions' });
+  fillActions();
+  panel.appendChild(actions);
+
+  // Feedback / hints / explanation
+  if (st.status === 'correct') {
+    panel.appendChild(el('div', { class: 'feedback good' },
+      el('span', { class: 'icon' }, '✓'),
+      el('span', {}, st.attempts === 1 ? 'Correct!' : `Correct in ${st.attempts} tries.`),
+    ));
+    if (q.explanation) {
+      panel.appendChild(el('div', { class: 'explanation' },
+        el('span', { class: 'label' }, 'Explanation'),
+        el('span', {}, q.explanation),
+      ));
+    }
+  } else if (st.status === 'wrong') {
+    panel.appendChild(makeWrongFeedback(st.attempts, threshold));
+  } else if (st.status === 'wrong-shown') {
+    panel.appendChild(makeAnswerRevealPanel(formatAnswerForDisplay(cfg), q.explanation));
+  }
+  if (!cfBlock) panel.appendChild(makeHintsPanel(it));
+  return panel;
+}
+
+function formatAnswerForDisplay(cfg) {
+  if (Array.isArray(cfg.answers)) {
+    if (cfg.answers.length === 2) return `\\(\\frac{${cfg.answers[0]}}{${cfg.answers[1]}}\\)`;
+    return cfg.answers.join(', ');
+  }
+  if (cfg.answer != null) {
+    const m = String(cfg.answer).match(/^(\d+)\/(\d+)$/);
+    if (m) return `\\(\\frac{${m[1]}}{${m[2]}}\\)`;
+    return String(cfg.answer);
+  }
+  return '';
+}
+
+// For an MCQ correct answer, strip the leading "(A) " / "(B) " prefix since
+// the option itself is already highlighted in green. We just want the value.
+function formatMCQAnswerForDisplay(cfg) {
+  if (!cfg || !Array.isArray(cfg.options)) return '';
+  const opt = cfg.options[cfg.answer] || '';
+  return String(opt).replace(/^\([A-E]\)\s*/, '');
+}
+
+// Build the "💡 Answer: X" reveal panel used after wrong-shown.
+function makeAnswerRevealPanel(answerStr, explanation) {
+  const panel = el('div', { class: 'answer-reveal' });
+  panel.appendChild(el('div', { class: 'header' },
+    el('span', { class: 'lightbulb' }, '💡'),
+    el('span', { html: 'Answer: ' + answerStr }),
+  ));
+  if (explanation) {
+    panel.appendChild(el('div', { class: 'body' }, explanation));
+  }
+  return panel;
+}
+
+// "Not quite — one more chance / try again" with an attempts counter shown
+// as "(N of M)". We deliberately avoid the "N/M" slash form because the math
+// walker would otherwise convert it into a KaTeX stacked fraction — that's
+// correct behaviour for real fractions like 1/2 in question text, but wrong
+// for a progress counter. The .no-math class is also belt-and-braces so any
+// future slash-bearing counter is safe.
+function makeWrongFeedback(attempts, threshold) {
+  const oneLeft = attempts >= threshold - 1;
+  const msg = oneLeft ? 'Not quite — one more chance' : 'Not quite — try again';
+  return el('div', { class: 'feedback bad' },
+    el('span', { class: 'icon' }, '⊘'),
+    el('span', {}, msg),
+    el('span', { class: 'counter no-math' }, `(${attempts} of ${threshold})`),
+  );
+}
+
+// Normalize a single-blank free-text answer so "9/2", "9 / 2", " 9/2 " all
+// compare equal, and so "4.5" matches "4.5". Also evaluates simple a/b
+// fraction strings to a Number so "9/2" can compare numerically to "4.5".
+function _normFibText(s) { return String(s).replace(/\s+/g, '').trim(); }
+function _fibNumericValue(s) {
+  const t = _normFibText(s);
+  if (/^-?\d+(\.\d+)?$/.test(t)) return Number(t);
+  const m = t.match(/^(-?\d+)\/(\d+)$/);
+  if (m) {
+    const d = Number(m[2]); if (d === 0) return null;
+    return Number(m[1]) / d;
+  }
+  return null;
+}
+function _fibSingleMatches(val, answer) {
+  if (_normFibText(val) === _normFibText(answer)) return true;
+  const a = _fibNumericValue(val), b = _fibNumericValue(answer);
+  return (a !== null && b !== null && a === b);
+}
+function checkFIB(cfg, vals, isFractionAns) {
+  // Two-value answer (e.g. [3, 4] for a fraction prompt with two blanks)
+  if (Array.isArray(cfg.answers)) {
+    if (!vals || vals.length < cfg.answers.length) return false;
+    const exact = cfg.answers.every((a, i) => String(vals[i]).trim() === String(a).trim());
+    if (exact) return true;
+    // Opt-in: accept any equivalent fraction for a two-blank fraction answer
+    // (e.g. a multiplication product where 6/12, 3/6 and 1/2 are all correct).
+    // Only when the author sets accept_equivalent — equivalence/simplify-form
+    // questions must NOT set it.
+    if (cfg.accept_equivalent && cfg.answers.length === 2) {
+      const n = Number(vals[0]), d = Number(vals[1]);
+      const an = Number(cfg.answers[0]), ad = Number(cfg.answers[1]);
+      if (Number.isInteger(n) && Number.isInteger(d) && n >= 0 && d > 0) return n * ad === d * an;
+    }
+    return false;
+  }
+  if (cfg.answer == null) return false;
+  // Build a list of accepted single-blank forms: the canonical answer plus
+  // any author-supplied alternates in cfg.accept (e.g. ["9/2"] for "4.5").
+  const accepts = [cfg.answer].concat(Array.isArray(cfg.accept) ? cfg.accept : []);
+  // Fraction answer stored as "a/b"; vals can be [num, den] (stacked input)
+  // OR ["a/b"] (single input).
+  if (isFractionAns) {
+    if (vals.length === 2) {
+      const parsed = parseFractionAnswer(String(cfg.answer));
+      if (!parsed) return false;
+      if (String(vals[0]).trim() === parsed[0] && String(vals[1]).trim() === parsed[1]) return true;
+      if (cfg.accept_equivalent) {
+        const n = Number(vals[0]), d = Number(vals[1]), an = Number(parsed[0]), ad = Number(parsed[1]);
+        if (Number.isInteger(n) && Number.isInteger(d) && n >= 0 && d > 0) return n * ad === d * an;
+      }
+      return false;
+    }
+    return accepts.some(a => _fibSingleMatches(vals[0], a));
+  }
+  // Plain single-value answer
+  return accepts.some(a => _fibSingleMatches(vals[0], a));
+}
+
+// Hint button + hints panel
+function makeHintButton(it) {
+  const q = it.data;
+  const hints = q.hints || (q.hint ? [q.hint] : []);
+  const st = getSt(it.id);
+  if (!hints.length) return el('span');
+  const btn = el('button', { class: 'btn ghost' },
+    `💡 Hint ${st.hintsShown} / ${hints.length}`
+  );
+  btn.disabled = st.hintsShown >= hints.length;
+  btn.addEventListener('click', () => {
+    st.hintsShown = Math.min(st.hintsShown + 1, hints.length);
+    SoundEngine.playHintReveal();
+    render();
+  });
+  return btn;
+}
+function makeHintsPanel(it) {
+  const q = it.data;
+  const hints = q.hints || (q.hint ? [q.hint] : []);
+  const st = getSt(it.id);
+  if (!hints.length || st.hintsShown === 0) return el('span');
+  const box = el('div', { class: 'hints' });
+  const list = el('div', { class: 'hint-list' });
+  for (let i = 0; i < st.hintsShown; i++) {
+    list.appendChild(el('div', { class: 'hint' },
+      el('span', { class: 'label' }, `Hint ${i + 1}:`),
+      el('span', {}, hints[i]),
+    ));
+  }
+  box.appendChild(list);
+  return box;
+}
+
+// IL step renderer — explain / applet / apply / predict / reveal
+function renderILStep(it) {
+  const step = it.data;
+  const st = getSt(it.id);
+  const panel = el('div', { class: 'panel' });
+  panel.appendChild(renderBreadcrumb(it));
+  panel.appendChild(el('div', { class: 'item-title' },
+    `Step ${step.step}${step.section ? ' · Section ' + step.section : ''}${step.cpa_beat ? ' · ' + step.cpa_beat : ''}`,
+  ));
+  if (step.title) panel.appendChild(el('div', { class: 'stem', style: 'font-weight:600;font-size:18px' }, step.title));
+  panel.appendChild(el('div', { class: 'item-counter' },
+    `Block ${it.blockIdx + 1} · Step ${it.posInBlock} of ${it.totalInBlock}`));
+
+  // Stem text first — describes what's about to be shown
+  if (step.text) panel.appendChild(el('div', { class: 'stem' }, step.text));
+
+  // Figure or applet
+  let appletWidget = null;
+  const appletCtl = { onSolved: null };
+  if (step.type === 'applet' && step.applet_type) {
+    // Applet validates against its OWN state (predict + Check inside the
+    // applet). When its check succeeds, it calls back via appletCtl.onSolved,
+    // which is wired up later — once panel/nextBtn exist — so it can update
+    // them in place rather than re-render the whole step (re-render would
+    // destroy the applet's "just solved" state).
+    const onAppletSolved = () => { if (appletCtl.onSolved) appletCtl.onSolved(); };
+    appletWidget = renderApplet(step, onAppletSolved);
+    if (appletWidget) panel.appendChild(appletWidget);
+    else if (step.figure || step.figure_description) {
+      const fig = renderFigure(step.figure_description, step.figure);
+      if (fig) panel.appendChild(fig);
+    }
+  } else if (step.figure || step.figure_description) {
+    const fig = renderFigure(step.figure_description, step.figure);
+    if (fig) panel.appendChild(fig);
+  }
+  if (step.insight) panel.appendChild(el('div', { class: 'insight' },
+    el('span', { class: 'icon' }, '💡'),
+    el('span', {}, step.insight),
+  ));
+
+  // Rule table
+  if (step.rule_table && step.rule_table.length) {
+    const t = el('table', { class: 'rule' });
+    const head = el('tr');
+    Object.keys(step.rule_table[0]).forEach(k => head.appendChild(el('th', {}, prettifyKey(k))));
+    t.appendChild(head);
+    step.rule_table.forEach(row => {
+      const tr = el('tr');
+      Object.values(row).forEach(v => tr.appendChild(el('td', {}, v)));
+      t.appendChild(tr);
+    });
+    panel.appendChild(t);
+  }
+  if (step.summary_table && step.summary_table.length) {
+    const t = el('table', { class: 'rule' });
+    const head = el('tr');
+    Object.keys(step.summary_table[0]).forEach(k => head.appendChild(el('th', {}, prettifyKey(k))));
+    t.appendChild(head);
+    step.summary_table.forEach(row => {
+      const tr = el('tr');
+      Object.values(row).forEach(v => tr.appendChild(el('td', {}, v)));
+      t.appendChild(tr);
+    });
+    panel.appendChild(t);
+  }
+
+  // questions (build-up FIBs) / discovery_question / action (single MCQ/applet) /
+  // curiosity_question — render in this order. Questions come before action so that
+  // a predict step can build up sub-Q derivations before the MCQ predict prompt.
+  const actionItems = [];
+  if (step.questions) {
+    step.questions.forEach((q, i) => actionItems.push({ key: 'sub-' + i, q }));
+  }
+  if (step.discovery_question) actionItems.push({ key: 'discovery', q: step.discovery_question });
+  if (step.action) actionItems.push({ key: 'action', q: step.action });
+  if (step.curiosity_question) actionItems.push({ key: 'curiosity', q: step.curiosity_question });
+
+  if (st.subAnswers == null) st.subAnswers = {};
+  let allCorrect = actionItems.length > 0;
+  // Progressive disclosure: render questions one at a time. The next question
+  // appears only after the current one is answered correctly (or locked via
+  // wrong-shown after 3 attempts). Single-question steps (action / discovery /
+  // curiosity) are unaffected since the loop renders exactly one item anyway.
+  for (const { key, q } of actionItems) {
+    const subSt = st.subAnswers[key] || { vals: [], status: 'pending', hintsShown: 0 };
+    st.subAnswers[key] = subSt;
+    panel.appendChild(renderILAction(it, key, q, subSt, step));
+    if (subSt.status !== 'correct') allCorrect = false;
+    if (subSt.status !== 'correct' && subSt.status !== 'wrong-shown') break;
+  }
+
+  // Step completion: combine FIB-correctness and (if this is an applet step)
+  // the applet's own internal check (it validates against its current state
+  // and calls back to set st.__appletSolved). Auto-advance only when a gate
+  // exists (FIB or applet); pure text-only steps complete on render but advance
+  // manually via Next.
+  const hasApplet = step.type === 'applet' && step.applet_type;
+  const fibGateMet = actionItems.length === 0 || allCorrect;
+  const appletGateMet = !hasApplet || st.__appletSolved === true;
+  const stepDone = fibGateMet && appletGateMet;
+  st.__ilReadyToAdvance = stepDone && (hasApplet || actionItems.length > 0);
+  if (stepDone) {
+    if (step.discovery_message) panel.appendChild(el('div', { class: 'insight' },
+      el('span', { class: 'icon' }, '🔎'),
+      el('span', {}, step.discovery_message),
+    ));
+    if (step.on_all_correct) panel.appendChild(el('div', { class: 'insight' },
+      el('span', { class: 'icon' }, '🎯'),
+      el('span', {}, step.on_all_correct),
+    ));
+    if (step.curiosity_question && step.curiosity_question.reveal_message
+        && (st.subAnswers.curiosity || {}).status === 'correct') {
+      panel.appendChild(el('div', { class: 'insight' },
+        el('span', { class: 'icon' }, '→'),
+        el('span', {}, step.curiosity_question.reveal_message),
+      ));
+    }
+    if (st.status !== 'completed') {
+      st.status = 'completed';
+      state.xp += 5;
+    }
+  }
+
+  // Nav actions
+  const actions = el('div', { class: 'actions' });
+  actions.appendChild(el('span', { class: 'btn-spacer' }));
+  const nextBtn = el('button', { class: 'btn primary' }, 'Next →');
+  if (!stepDone && (actionItems.length > 0 || hasApplet)) {
+    nextBtn.disabled = true;
+    nextBtn.textContent = hasApplet && actionItems.length === 0
+      ? 'Solve the applet to continue'
+      : 'Answer the action to continue';
+  }
+  // predict step has proceed_regardless
+  if (step.action && step.action.proceed_regardless) {
+    nextBtn.disabled = false;
+    nextBtn.textContent = 'Next →';
+  }
+  nextBtn.addEventListener('click', nextItem);
+  actions.appendChild(nextBtn);
+  panel.appendChild(actions);
+
+  // Wire the in-place applet-solved handler now that panel/nextBtn exist.
+  // Patches the panel without re-rendering, so the applet stays on its
+  // last-round green state and the student sees a clean progression to the
+  // next step.
+  if (appletWidget) {
+    appletCtl.onSolved = () => {
+      if (st.__appletSolved) return;
+      st.__appletSolved = true;
+      st.__ilReadyToAdvance = true;
+      if (st.status !== 'completed') { st.status = 'completed'; state.xp += 5; }
+      // Append discovery_message / on_all_correct just below the applet.
+      const after = actions; // insert before the nav row
+      if (step.discovery_message) {
+        const d = el('div', { class: 'insight' },
+          el('span', { class: 'icon' }, '🔎'),
+          el('span', {}, step.discovery_message),
+        );
+        panel.insertBefore(d, after);
+      }
+      if (step.on_all_correct) {
+        const o = el('div', { class: 'insight' },
+          el('span', { class: 'icon' }, '🎯'),
+          el('span', {}, step.on_all_correct),
+        );
+        panel.insertBefore(o, after);
+      }
+      mathifyDom(panel);
+      // Flip the gate-locked button into a real Next.
+      nextBtn.disabled = false;
+      nextBtn.textContent = 'Next →';
+      // Schedule the inter-step auto-advance manually (the normal hook only
+      // fires from render(), but we deliberately skipped that re-render).
+      maybeScheduleAutoAdvance(it);
+    };
+  }
+
+  return panel;
+}
+
+// Render an action inside an IL step. q has prompt, config, hint
+function renderILAction(it, key, q, subSt, step) {
+  const wrap = el('div', { class: 'panel', style: 'background:var(--panel-soft);box-shadow:none;padding:14px 16px;margin:10px 0' });
+
+  // Optional sub-heading above the prompt — used to bridge between question
+  // arcs inside a multi-question step (e.g. "Try it with a class of students").
+  if (q.lead_in) {
+    wrap.appendChild(el('div', {
+      style: 'font-weight:600;font-size:14px;color:var(--accent);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--rule)'
+    }, q.lead_in));
+  }
+
+  const cfg = q.config || {};
+  const isMCQ = Array.isArray(cfg.options);
+  const promptStr = q.prompt || '';
+  const promptHasBlanks = /\{(?:blank\d*|\d+)\}/.test(promptStr);
+  const statusForUI =
+    subSt.status === 'correct' ? 'correct' :
+    (subSt.status === 'wrong' || subSt.status === 'wrong-shown') ? 'wrong' : '';
+  const disabled = (subSt.status === 'correct' || subSt.status === 'wrong-shown');
+
+  function complete(ok, vals) {
+    subSt.attempts = (subSt.attempts || 0) + 1;
+    if (ok) { subSt.status = 'correct'; state.xp += 5; SoundEngine.playCorrect(); }
+    else if (subSt.attempts >= 3) { subSt.status = 'wrong-shown'; SoundEngine.playIncorrect(); }
+    else { subSt.status = 'wrong'; SoundEngine.playIncorrect(); }
+    if (vals !== undefined) subSt.vals = vals;
+    render();
+  }
+
+  // Migrate older subSt.vals (legacy MCQ stored as [index]) into st.fibVals
+  if (!Array.isArray(subSt.fibVals)) subSt.fibVals = subSt.vals && Array.isArray(subSt.vals) ? subSt.vals.slice() : [];
+
+  if (isMCQ) {
+    // Show the prompt text as a single line; MCQ options below.
+    if (promptStr) wrap.appendChild(el('div', { class: 'stem', style: 'margin:0 0 10px;font-size:15px' }, promptStr));
+    const correctIdx = cfg.answer;
+    // An option is either a plain string OR an object { image, label }. If any
+    // option has an image, render the whole group as an image grid.
+    const hasImages = cfg.options.some(o => o && typeof o === 'object' && o.image);
+    const box = el('div', { class: 'mcq-options' + (hasImages ? ' is-image-grid' : '') });
+    cfg.options.forEach((opt, i) => {
+      const isImg = opt && typeof opt === 'object' && opt.image;
+      const btn = el('button', {
+        class: 'mcq-option' + (isImg ? ' is-image' : '')
+          + (subSt.vals && subSt.vals[0] === i ? ' selected' : '')
+          + (subSt.status === 'correct' && i === correctIdx ? ' correct' : '')
+          + ((subSt.status === 'wrong-shown') && i === correctIdx ? ' correct' : '')
+          + (subSt.status === 'wrong' && subSt.vals && subSt.vals[0] === i ? ' wrong' : '')
+          + (disabled ? ' disabled' : '')
+      },
+        el('span', { class: 'marker' }, String.fromCharCode(65 + i)),
+      );
+      if (isImg) {
+        const img = el('img', { src: resolveFigPath(opt.image), alt: opt.label || `Option ${String.fromCharCode(65 + i)}` });
+        img.addEventListener('error', () => { img.style.display = 'none'; });
+        btn.appendChild(img);
+        if (opt.label) btn.appendChild(el('span', { style: 'font-size:13px;color:var(--muted);margin-top:4px' }, opt.label));
+      } else {
+        btn.appendChild(el('span', {}, String(opt).replace(/^\([A-E]\)\s*/, '')));
+      }
+      if (!disabled) btn.addEventListener('click', () => complete(i === correctIdx, [i]));
+      box.appendChild(btn);
+    });
+    wrap.appendChild(box);
+  } else if (promptHasBlanks) {
+    // Fill-in-blank with inline placeholders — render prompt with inputs.
+    // We piggy-back st.fibVals onto subSt by aliasing the field name so
+    // renderInteractivePrompt / makeStackedFrac can stay generic.
+    const subProxy = { fibVals: subSt.fibVals };
+    const stem = el('div', { class: 'stem', style: 'margin:0 0 10px;font-size:15px;line-height:1.9' });
+    let actionsBox; // forward declared
+    function onInputChange() {
+      subSt.fibVals = subProxy.fibVals;
+      if (actionsBox) { actionsBox.innerHTML = ''; fillSubmit(); mathifyDom(actionsBox); }
+    }
+    stem.appendChild(renderInteractivePrompt(promptStr, subProxy, onInputChange, disabled, statusForUI));
+    wrap.appendChild(stem);
+    subSt.fibVals = subProxy.fibVals;
+    actionsBox = el('div', { class: 'actions' });
+    function fillSubmit() {
+      if (subSt.status !== 'pending' && subSt.status !== 'wrong') return;
+      const submit = el('button', { class: 'btn primary' }, subSt.attempts > 0 ? 'Try again' : 'Check');
+      const need = countBlanks(tokenizePrompt(promptStr));
+      const filled = subSt.fibVals && subSt.fibVals.length === need && subSt.fibVals.every(v => String(v).trim() !== '');
+      submit.disabled = !filled;
+      submit.addEventListener('click', () => {
+        // Validate via the shared checkFIB so cfg.accept (alternate forms)
+        // and stacked-fraction equivalence work consistently with renderFIB.
+        const vals = subSt.fibVals.map(v => String(v).trim());
+        const isFracAns = Array.isArray(cfg.answers) ||
+          (typeof cfg.answer === 'string' && /^\d+\/\d+$/.test(cfg.answer));
+        complete(checkFIB(cfg, vals, isFracAns));
+      });
+      actionsBox.appendChild(submit);
+    }
+    fillSubmit();
+    wrap.appendChild(actionsBox);
+  } else {
+    // Free-form FIB (no inline placeholders) — render prompt as stem,
+    // then a single answer input below.
+    if (promptStr) wrap.appendChild(el('div', { class: 'stem', style: 'margin:0 0 10px;font-size:15px' }, promptStr));
+    if (!Array.isArray(subSt.fibVals) || subSt.fibVals.length !== 1) subSt.fibVals = [''];
+    const subProxy = { fibVals: subSt.fibVals };
+    const row = el('div', { class: 'fib-row' });
+    row.appendChild(el('span', { style: 'font-size:14px;color:var(--muted)' }, 'Answer:'));
+    let actionsBox;
+    function onInputChange() {
+      subSt.fibVals = subProxy.fibVals;
+      if (actionsBox) { actionsBox.innerHTML = ''; fillSubmit(); }
+    }
+    row.appendChild(makeInlineInput({ st: subProxy, valOffset: 0, onChange: onInputChange, disabled, status: statusForUI }));
+    wrap.appendChild(row);
+    actionsBox = el('div', { class: 'actions' });
+    function fillSubmit() {
+      if (subSt.status !== 'pending' && subSt.status !== 'wrong') return;
+      const submit = el('button', { class: 'btn primary' }, subSt.attempts > 0 ? 'Try again' : 'Check');
+      submit.disabled = !String(subSt.fibVals[0] || '').trim();
+      submit.addEventListener('click', () => {
+        const vals = [String(subSt.fibVals[0]).trim()];
+        const isFracAns = (typeof cfg.answer === 'string' && /^\d+\/\d+$/.test(cfg.answer));
+        complete(checkFIB(cfg, vals, isFracAns));
+      });
+      actionsBox.appendChild(submit);
+    }
+    fillSubmit();
+    wrap.appendChild(actionsBox);
+  }
+
+  // Inline feedback (matches the sample player's "💡 Answer: X" pattern)
+  const ilThreshold = 3; // IL actions still get 3 attempts
+  if (subSt.status === 'correct') {
+    wrap.appendChild(el('div', { class: 'feedback good' },
+      el('span', { class: 'icon' }, '✓'),
+      el('span', {}, 'Correct.'),
+    ));
+  } else if (subSt.status === 'wrong') {
+    wrap.appendChild(makeWrongFeedback(subSt.attempts, ilThreshold));
+  } else if (subSt.status === 'wrong-shown') {
+    let correctStr;
+    if (isMCQ) correctStr = formatMCQAnswerForDisplay(cfg);
+    else if (Array.isArray(cfg.answers) && cfg.answers.length === 2)
+      correctStr = `\\(\\frac{${cfg.answers[0]}}{${cfg.answers[1]}}\\)`;
+    else if (Array.isArray(cfg.answers)) correctStr = cfg.answers.join(', ');
+    else {
+      // Single value — render as KaTeX fraction if it's "a/b", else plain.
+      const m = String(cfg.answer).match(/^(\d+)\/(\d+)$/);
+      correctStr = m ? `\\(\\frac{${m[1]}}{${m[2]}}\\)` : String(cfg.answer);
+    }
+    wrap.appendChild(makeAnswerRevealPanel(correctStr, null));
+  }
+  // Hint
+  if (q.hint && subSt.status !== 'correct') {
+    const showHint = el('button', { class: 'btn ghost', style: 'margin-top:8px' },
+      subSt.hintsShown >= 1 ? `💡 Hint shown` : `💡 Show hint`
+    );
+    if (subSt.hintsShown >= 1) showHint.disabled = true;
+    showHint.addEventListener('click', () => { subSt.hintsShown = 1; render(); });
+    wrap.appendChild(showHint);
+    if (subSt.hintsShown >= 1) {
+      wrap.appendChild(el('div', { class: 'hint', style: 'margin-top:8px' },
+        el('span', { class: 'label' }, 'Hint:'),
+        el('span', {}, q.hint),
+      ));
+    }
+  }
+  // Action: on_correct / on_wrong messages for predict steps
+  if (q.on_correct && subSt.status === 'correct') {
+    wrap.appendChild(el('div', { class: 'insight', style: 'margin-top:8px' },
+      el('span', { class: 'icon' }, '✓'),
+      el('span', {}, q.on_correct),
+    ));
+  }
+  if (q.on_wrong && (subSt.status === 'wrong' || subSt.status === 'wrong-shown')) {
+    wrap.appendChild(el('div', { class: 'insight', style: 'margin-top:8px;background:var(--bad-soft);border-left-color:var(--bad)' },
+      el('span', { class: 'icon' }, '↻'),
+      el('span', {}, q.on_wrong),
+    ));
+  }
+  return wrap;
+}
+
+// Worked example renderer — show main MCQ, scaffold expands on wrong
+function renderWE(it) {
+  const we = it.data;
+  const st = getSt(it.id);
+  const panel = el('div', { class: 'panel' });
+  panel.appendChild(renderBreadcrumb(it));
+  panel.appendChild(el('div', { class: 'item-title' }, `Worked Example ${it.posInBlock}`));
+  const weSourceLabel = we.pyq
+    ? `PYQ ${we.pyq.year} ${we.pyq.question}`
+    : (we.calibration_anchor
+        ? `Original (calibrated to MK ${we.calibration_anchor.year} ${we.calibration_anchor.question})`
+        : 'Original');
+  panel.appendChild(el('div', { class: 'item-counter' },
+    `Block ${it.blockIdx + 1} · WE ${it.posInBlock} of ${it.totalInBlock} · ${weSourceLabel}`));
+
+  // Stem + figure together — author controls placement with a {figure} marker
+  // (same as renderMCQ). Without a marker the figure renders above the stem.
+  const weFigPath = we.figure || (we.figures && we.figures[0]);
+  panel.appendChild(renderStemWithFigure(we.question_text || '', we.figure_description, weFigPath));
+
+  // Main MCQ
+  const correctIdx = we.answer_index;
+  const optionsBox = el('div', { class: 'mcq-options' });
+  (we.options || []).forEach((opt, i) => {
+    const btn = el('button', {
+      class: 'mcq-option' + (st.answer === i ? ' selected' : '')
+        + (st.status === 'correct' && i === correctIdx ? ' correct' : '')
+        + (st.status === 'wrong-shown' && i === correctIdx ? ' correct' : '')
+        + (st.status === 'wrong' && st.answer === i ? ' wrong' : '')
+        + (st.status === 'correct' || st.status === 'wrong-shown' ? ' disabled' : '')
+    },
+      el('span', { class: 'marker' }, String.fromCharCode(65 + i)),
+      el('span', {}, String(opt).replace(/^\([A-E]\)\s*/, '')),
+    );
+    if (st.status !== 'correct' && st.status !== 'wrong-shown') {
+      btn.addEventListener('click', () => { st.answer = i; render(); });
+    }
+    optionsBox.appendChild(btn);
+  });
+  panel.appendChild(optionsBox);
+
+  const actions = el('div', { class: 'actions' });
+  if (st.status === 'pending' || st.status === 'wrong') {
+    actions.appendChild(el('span', { class: 'btn-spacer' }));
+    const submit = el('button', { class: 'btn primary' }, st.attempts > 0 ? 'Try again' : 'Submit');
+    submit.disabled = st.answer == null;
+    submit.addEventListener('click', () => {
+      st.attempts += 1;
+      if (st.answer === correctIdx) {
+        st.status = 'correct'; state.xp += 15;
+      } else if (st.attempts >= 2) {
+        st.status = 'wrong-shown';
+        st.scaffoldOpen = true;
+      } else {
+        st.status = 'wrong';
+        st.scaffoldOpen = true; // show scaffold on first wrong
+      }
+      render();
+    });
+    actions.appendChild(submit);
+  } else {
+    actions.appendChild(el('span', { class: 'btn-spacer' }));
+    actions.appendChild(el('button', { class: 'btn primary', onclick: nextItem }, 'Next →'));
+  }
+  panel.appendChild(actions);
+
+  if (st.status === 'correct') {
+    panel.appendChild(el('div', { class: 'feedback good' },
+      el('span', { class: 'icon' }, '✓'),
+      el('span', {}, 'Correct on the first try! No scaffold needed.'),
+    ));
+  } else if (st.status === 'wrong') {
+    panel.appendChild(el('div', { class: 'feedback bad' },
+      el('span', { class: 'icon' }, '✗'),
+      el('span', {}, 'Not quite. The scaffold below breaks the problem into smaller steps — walk through them, then try again.'),
+    ));
+  } else if (st.status === 'wrong-shown') {
+    panel.appendChild(el('div', { class: 'feedback info' },
+      el('span', { class: 'icon' }, 'ℹ'),
+      el('span', {}, 'Answer revealed. Review the scaffold below.'),
+    ));
+  }
+
+  // Scaffold — show when scaffoldOpen
+  if (st.scaffoldOpen && we.steps && we.steps.length) {
+    const scaf = el('div', { class: 'scaffold' });
+    scaf.appendChild(el('div', { class: 'scaffold-header' }, `Scaffold — ${we.steps.length} mini-steps`));
+    we.steps.forEach((s, si) => {
+      const stepBox = el('div', { class: 'scaffold-step' });
+      stepBox.appendChild(el('div', { class: 'step-num' }, `Step ${s.step || (si + 1)} · ${s.note || ''}`));
+      (s.segments || []).forEach((seg, segi) => {
+        if (seg.figure_ref) {
+          const fig = renderFigure(seg.figure_description || null, seg.figure_ref);
+          if (fig) stepBox.appendChild(fig);
+        }
+        if (seg.narration) stepBox.appendChild(el('div', { style: 'margin:4px 0' }, seg.narration));
+        if (seg.narration_items) {
+          const ul = el('ul');
+          seg.narration_items.forEach(t => ul.appendChild(el('li', {}, t)));
+          stepBox.appendChild(ul);
+        }
+        if (seg.checkpoint) {
+          // Render checkpoint as an inline sub-action with hint + reveal
+          const subKey = `we-${si}-${segi}`;
+          if (!st.subAnswers) st.subAnswers = {};
+          const subSt = st.subAnswers[subKey] || { status: 'pending', vals: [] };
+          st.subAnswers[subKey] = subSt;
+          stepBox.appendChild(renderILAction(it, subKey, seg.checkpoint, subSt, s));
+          if (subSt.status === 'correct' && seg.checkpoint.explanation) {
+            stepBox.appendChild(el('div', { class: 'explanation' },
+              el('span', { class: 'label' }, 'Why'),
+              el('span', {}, seg.checkpoint.explanation),
+            ));
+          }
+        }
+      });
+      scaf.appendChild(stepBox);
+    });
+    panel.appendChild(scaf);
+  }
+
+  return panel;
+}
+
+// Mastery Check question — same as MCQ but tracks mastery state
+function renderMCQuestion(it) {
+  return renderMCQ(it, { mastery: true });
+}
+
+// Mastery summary
+function renderMCSummary(it) {
+  // Walk back to compute MC score from itemState
+  const mcItems = state.items.filter(x => x.kind === 'mc-question' && x.blockIdx === it.blockIdx);
+  const correctCount = mcItems.filter(x => (state.itemState[x.id] || {}).status === 'correct').length;
+  const pass = correctCount >= it.mcThreshold;
+  const panel = el('div', { class: 'panel' });
+  panel.appendChild(renderBreadcrumb(it));
+  panel.appendChild(el('div', { class: 'mastery-result' },
+    el('div', { class: 'score ' + (pass ? 'pass' : 'fail') }, `${correctCount} / ${it.mcTotal}`),
+    el('div', { class: 'label' }, `Mastery Check threshold: ${it.mcThreshold} of ${it.mcTotal}`),
+    el('div', { class: 'verdict ' + (pass ? 'pass' : 'fail') },
+      pass ? '✓ Passed — Lesson 1.2 unlocked' : '✗ Below threshold — review and retry'),
+    pass ? el('div', { style: 'margin-top:16px' },
+      el('button', { class: 'btn primary', onclick: () => location.href = location.pathname + '?lesson=1-2' }, 'Continue to Lesson 1.2 →')
+    ) : el('div', { style: 'margin-top:16px' },
+      el('button', { class: 'btn', onclick: () => { mcItems.forEach(x => state.itemState[x.id] = { attempts: 0, hintsShown: 0, status: 'pending' }); state.cursor = state.items.indexOf(mcItems[0]); render(); } }, 'Retry Mastery Check'),
+    ),
+  ));
+  // Mark this synthesized item as completed so progress bar advances
+  const st = getSt(it.id);
+  if (st.status !== 'completed') { st.status = 'completed'; }
+  return panel;
+}
+
+// Key insight (between blocks) — just shows the text
+function renderKeyInsight(it) {
+  const block = it.data;
+  const st = getSt(it.id);
+  const panel = el('div', { class: 'panel' });
+  panel.appendChild(renderBreadcrumb(it));
+  panel.appendChild(el('div', { class: 'item-title' }, block.title || 'Key Insight'));
+
+  // Card-grid mode: render concept cards + a cheat-sheet link.
+  // Falls back to the legacy single-paragraph mode if no cards array.
+  if (Array.isArray(block.cards) && block.cards.length) {
+    if (block.intro) panel.appendChild(el('div', { class: 'stem', style: 'margin-bottom:14px' }, block.intro));
+    const grid = el('div', { class: 'revision-grid' });
+    block.cards.forEach(card => {
+      const tile = el('div', { class: 'revision-card' });
+      const head = el('div', { class: 'revision-card-head' });
+      if (card.icon) head.appendChild(el('span', { class: 'revision-card-icon' }, card.icon));
+      head.appendChild(el('span', { class: 'revision-card-title' }, card.title || ''));
+      tile.appendChild(head);
+      if (card.concept) tile.appendChild(el('div', { class: 'revision-card-concept' }, card.concept));
+      if (card.example_math) {
+        const ex = el('div', { class: 'revision-card-example' });
+        ex.innerHTML = `\\(${card.example_math}\\)`;
+        tile.appendChild(ex);
+      } else if (card.example_text) {
+        tile.appendChild(el('div', { class: 'revision-card-example revision-card-example-text' }, card.example_text));
+      }
+      grid.appendChild(tile);
+    });
+    panel.appendChild(grid);
+    if (block.cheat_sheet_url) {
+      const cheatRow = el('div', { class: 'revision-cheat' });
+      const link = el('a', {
+        class: 'btn primary',
+        href: block.cheat_sheet_url,
+        target: '_blank',
+        rel: 'noopener',
+      }, '⬇ Download cheat sheet (PDF)');
+      cheatRow.appendChild(link);
+      cheatRow.appendChild(el('div', { class: 'revision-cheat-hint' },
+        'Opens a print-ready page. In the new tab, press Cmd/Ctrl + P → Save as PDF.'));
+      panel.appendChild(cheatRow);
+    }
+  } else {
+    panel.appendChild(el('div', { class: 'stem' }, block.text || ''));
+  }
+
+  const actions = el('div', { class: 'actions' });
+  actions.appendChild(el('span', { class: 'btn-spacer' }));
+  actions.appendChild(el('button', { class: 'btn primary', onclick: nextItem }, 'Got it — Next →'));
+  panel.appendChild(actions);
+  if (st.status !== 'completed') { st.status = 'completed'; state.xp += 5; }
+  return panel;
+}
+
+// ─── Applet widgets (ported from lesson-viewer.html) ──────────────
+const PURPLE_FILL = '#EBBDEC';
+const PURPLE_OUTLINE = '#850F85';
+const BLUE_FILL = '#8DD5F1';
+const BLUE_OUTLINE = '#0A80D5';
+const PANEL_WHITE = '#FFFFFF';
+const GREEN_FILL = '#AFE8C2';
+const GREEN_OUTLINE = '#149A55';
+const YELLOW_FILL = '#FFE599';
+const YELLOW_OUTLINE = '#B7920E';
+
+function frac(n, d) { return `\\(\\frac{${n}}{${d}}\\)`; }
+function drawBar(total, shaded, width = 360, height = 50, fill = PURPLE_FILL, outline = PURPLE_OUTLINE) {
+  const pieceW = width / total;
+  let pieces = '';
+  for (let i = 0; i < total; i++) {
+    const f = i < shaded ? fill : PANEL_WHITE;
+    pieces += `<rect x="${(i * pieceW).toFixed(2)}" y="0" width="${pieceW.toFixed(2)}" height="${height}" fill="${f}" stroke="${outline}" stroke-width="1.5"/>`;
+  }
+  return `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="max-width:100%;height:auto">${pieces}</svg>`;
+}
+
+function buildFractionBarBuilder(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const total_max = cfg.total_max || 12;
+  const total_min = 2;
+  let total = cfg.initial_total || 4;
+  let shaded = Math.min(cfg.initial_shaded || 3, total);
+  let solved = false;
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · fraction-bar-builder</div>
+    ${instruction ? `<div class="applet-prompt">${instruction}</div>` : ''}
+    <div class="applet-svg-host" data-role="bar"></div>
+    <div class="applet-controls">
+      <label>Total pieces
+        <input type="range" min="${total_min}" max="${total_max}" value="${total}" data-role="total" />
+        <span class="applet-val" data-role="total-val">${total}</span>
+      </label>
+      <label>Shaded
+        <input type="range" min="0" max="${total}" value="${shaded}" data-role="shaded" />
+        <span class="applet-val" data-role="shaded-val">${shaded}</span>
+      </label>
+    </div>
+    <div class="applet-prompt" data-role="check-head"></div>
+    <div class="applet-controls">
+      <span>Your answer:</span>
+      <span class="stacked-frac"
+        ><span class="num"><input class="fib-input" type="number" min="0" inputmode="numeric" data-role="inN" placeholder="?"></span
+        ><span class="bar"></span
+        ><span class="den"><input class="fib-input" type="number" min="1" inputmode="numeric" data-role="inD" placeholder="?"></span
+      ></span>
+      <button class="applet-btn" data-role="check">Check</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+  `;
+  const bar = wrap.querySelector('[data-role="bar"]');
+  const tSlider = wrap.querySelector('[data-role="total"]');
+  const sSlider = wrap.querySelector('[data-role="shaded"]');
+  const tVal = wrap.querySelector('[data-role="total-val"]');
+  const sVal = wrap.querySelector('[data-role="shaded-val"]');
+  const checkHead = wrap.querySelector('[data-role="check-head"]');
+  const inN = wrap.querySelector('[data-role="inN"]');
+  const inD = wrap.querySelector('[data-role="inD"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const result = wrap.querySelector('[data-role="result"]');
+  function update() {
+    total = parseInt(tSlider.value, 10);
+    sSlider.max = total;
+    if (parseInt(sSlider.value, 10) > total) sSlider.value = total;
+    shaded = parseInt(sSlider.value, 10);
+    tVal.textContent = total; sVal.textContent = shaded;
+    bar.innerHTML = drawBar(total, shaded);
+    checkHead.innerHTML = `Predict the fraction: shaded over total = ?`;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    result.innerHTML = '';
+    inN.value = ''; inD.value = '';
+  }
+  function check() {
+    const n = Number(inN.value), d = Number(inD.value);
+    if (!Number.isInteger(n) || !Number.isInteger(d) || d <= 0) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Enter both numbers — top and bottom.';
+      return;
+    }
+    const ok = (n === shaded && d === total) || (n * total === d * shaded && d > 0);
+    if (ok) {
+      feedback.className = 'applet-feedback good';
+      feedback.innerHTML = `✓ Correct — ${shaded} of ${total} equal pieces shaded.`;
+      result.innerHTML = `Fraction = <strong>\\(\\dfrac{${shaded}}{${total}}\\)</strong>`;
+      if (window.renderMathInElement) renderMathInElement(result, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+      SoundEngine.playCorrect();
+      if (!solved && typeof onSolved === 'function') { solved = true; onSolved(); }
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Not quite — count the shaded pieces (top) and the total pieces (bottom).';
+      SoundEngine.playIncorrect();
+    }
+  }
+  tSlider.addEventListener('input', update);
+  sSlider.addEventListener('input', update);
+  checkBtn.addEventListener('click', check);
+  update();
+  return wrap;
+}
+function buildEquivalentMultiplier(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const base = cfg.base_fraction || '1/3';
+  const [baseN, baseD] = base.split('/').map(Number);
+  const multipliers = cfg.multipliers || [1, 2, 3, 4, 5];
+  let current = 1;
+  const confirmed = new Set([1]);
+  let solved = false;
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  const btnsHtml = multipliers.map(m => `<button class="applet-btn" data-mult="${m}">×${m}</button>`).join('');
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · equivalent-fraction-multiplier (base ${base})</div>
+    ${instruction ? `<div class="applet-prompt">${instruction}</div>` : ''}
+    <div class="applet-svg-host" data-role="bar"></div>
+    <div class="applet-controls"><span>Multiplier:</span>${btnsHtml}</div>
+    <div class="applet-prompt" data-role="check-head"></div>
+    <div class="applet-controls">
+      <span>Your answer:</span>
+      <span class="stacked-frac"
+        ><span class="num"><input class="fib-input" type="number" min="0" inputmode="numeric" data-role="inN" placeholder="?"></span
+        ><span class="bar"></span
+        ><span class="den"><input class="fib-input" type="number" min="1" inputmode="numeric" data-role="inD" placeholder="?"></span
+      ></span>
+      <button class="applet-btn" data-role="check">Check</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+  `;
+  const bar = wrap.querySelector('[data-role="bar"]');
+  const btns = Array.from(wrap.querySelectorAll('.applet-btn[data-mult]'));
+  const checkHead = wrap.querySelector('[data-role="check-head"]');
+  const inN = wrap.querySelector('[data-role="inN"]');
+  const inD = wrap.querySelector('[data-role="inD"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const result = wrap.querySelector('[data-role="result"]');
+  function renderState() {
+    btns.forEach(b => {
+      const m = +b.dataset.mult;
+      b.classList.toggle('active', m === current);
+      b.classList.toggle('confirmed', confirmed.has(m));
+    });
+    const n = baseN * current, d = baseD * current;
+    bar.innerHTML = drawBar(d, current === 1 ? baseN : n, 360, 50);
+    checkHead.innerHTML = `Predict the equivalent at ×${current}: \\(\\dfrac{${baseN}}{${baseD}}\\) = ?`;
+    if (window.renderMathInElement) renderMathInElement(checkHead, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    inN.value = ''; inD.value = '';
+    const chain = [...confirmed].sort((a, b) => a - b).map(k => `\\(\\dfrac{${baseN * k}}{${baseD * k}}\\)`).join(' = ');
+    result.innerHTML = chain ? `Chain so far: <strong>${chain}</strong>` : '';
+    if (window.renderMathInElement) renderMathInElement(result, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+  }
+  function check() {
+    const n = Number(inN.value), d = Number(inD.value);
+    const expN = baseN * current, expD = baseD * current;
+    if (!Number.isInteger(n) || !Number.isInteger(d) || d <= 0) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Enter both numbers — top and bottom.';
+      return;
+    }
+    const ok = n === expN && d === expD;
+    if (ok) {
+      feedback.className = 'applet-feedback good';
+      feedback.innerHTML = `✓ Correct — multiply top and bottom by ${current}: \\(\\dfrac{${baseN}}{${baseD}} = \\dfrac{${expN}}{${expD}}\\).`;
+      if (window.renderMathInElement) renderMathInElement(feedback, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+      SoundEngine.playCorrect();
+      confirmed.add(current);
+      renderState();
+      const allConfirmed = multipliers.every(m => confirmed.has(m));
+      if (allConfirmed && !solved && typeof onSolved === 'function') { solved = true; onSolved(); }
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = `Not quite — multiply both top and bottom by ${current}.`;
+      SoundEngine.playIncorrect();
+    }
+  }
+  btns.forEach(b => b.addEventListener('click', () => { current = +b.dataset.mult; renderState(); }));
+  checkBtn.addEventListener('click', check);
+  renderState();
+  return wrap;
+}
+function buildEquivalenceBarBuilder(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const rounds = cfg.rounds || [];
+  let idx = 0;
+  let shaded = 0;
+  let solved = false;
+  const answered = new Array(rounds.length).fill(null);
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · equivalence-bar-builder</div>
+    <div class="applet-round-badge" data-role="round-badge"></div>
+    <div class="applet-prompt" data-role="prompt"></div>
+    <div class="applet-svg-host" data-role="bars"></div>
+    <div class="applet-controls">
+      <button class="applet-btn" data-role="dec">−</button>
+      <span class="applet-val" data-role="shaded-val">0</span>
+      <button class="applet-btn" data-role="inc">+</button>
+      <span style="margin-left:10px;color:var(--muted)">shaded pieces</span>
+      <button class="applet-btn" data-role="check" style="margin-left:auto">Check</button>
+      <button class="applet-btn" data-role="next" disabled>Next round →</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+  `;
+  const badge = wrap.querySelector('[data-role="round-badge"]');
+  const prompt = wrap.querySelector('[data-role="prompt"]');
+  const bars = wrap.querySelector('[data-role="bars"]');
+  const shadedVal = wrap.querySelector('[data-role="shaded-val"]');
+  const decBtn = wrap.querySelector('[data-role="dec"]');
+  const incBtn = wrap.querySelector('[data-role="inc"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const nextBtn = wrap.querySelector('[data-role="next"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const result = wrap.querySelector('[data-role="result"]');
+  function renderBars() {
+    const r = rounds[idx];
+    const width = 400;
+    const h = 44;
+    const gap = 24;
+    const givenW = drawBar(r.given_d, r.given_n, width, h, PURPLE_FILL, PURPLE_OUTLINE);
+    const targetW = drawBar(r.target_d, shaded, width, h, BLUE_FILL, BLUE_OUTLINE);
+    bars.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:${gap}px;align-items:flex-start;width:100%">
+        <div style="display:flex;align-items:center;gap:14px;width:100%">
+          <div style="min-width:48px;text-align:right">\\(\\dfrac{${r.given_n}}{${r.given_d}}\\)</div>
+          <div style="flex:1">${givenW}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;width:100%">
+          <div style="min-width:48px;text-align:right">\\(\\dfrac{${shaded === 0 ? '?' : shaded}}{${r.target_d}}\\)</div>
+          <div style="flex:1">${targetW}</div>
+        </div>
+      </div>
+    `;
+    if (window.renderMathInElement) renderMathInElement(bars, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+  }
+  function renderRound() {
+    const r = rounds[idx];
+    if (!r) return;
+    shaded = 0;
+    badge.textContent = `Round ${idx + 1} of ${rounds.length}`;
+    prompt.innerHTML = `Build a bar equal in length to \\(\\dfrac{${r.given_n}}{${r.given_d}}\\) using <strong>${r.target_d}</strong> equal pieces.`;
+    if (window.renderMathInElement) renderMathInElement(prompt, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+    shadedVal.textContent = shaded;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    nextBtn.disabled = true;
+    checkBtn.disabled = false;
+    renderBars();
+  }
+  function adjust(delta) {
+    const r = rounds[idx];
+    shaded = Math.max(0, Math.min(r.target_d, shaded + delta));
+    shadedVal.textContent = shaded;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    renderBars();
+  }
+  function check() {
+    const r = rounds[idx];
+    const ok = shaded === r.answer_n;
+    answered[idx] = ok ? 'good' : 'bad';
+    feedback.className = 'applet-feedback ' + (ok ? 'good' : 'bad');
+    if (ok) {
+      feedback.innerHTML = `✓ Correct — \\(\\dfrac{${r.given_n}}{${r.given_d}} = \\dfrac{${r.answer_n}}{${r.target_d}}\\). Same length, different name.`;
+      nextBtn.disabled = false;
+      checkBtn.disabled = true;
+      SoundEngine.playCorrect();
+    } else {
+      const tooMany = shaded > r.answer_n;
+      feedback.textContent = tooMany ? 'Too much shaded — your bar is longer than the top bar.' : 'Not enough — your bar is shorter than the top bar.';
+      SoundEngine.playIncorrect();
+    }
+    if (window.renderMathInElement) renderMathInElement(feedback, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+    if (idx === rounds.length - 1 && ok) {
+      const good = answered.filter(x => x === 'good').length;
+      result.textContent = `Done — ${good} of ${rounds.length} correct.`;
+    }
+    const allGood = answered.every(x => x === 'good');
+    if (allGood && !solved && typeof onSolved === 'function') { solved = true; onSolved(); }
+    if (ok && idx < rounds.length - 1) {
+      setTimeout(() => { if (idx < rounds.length - 1) { idx += 1; renderRound(); } }, 1100);
+    }
+  }
+  decBtn.addEventListener('click', () => adjust(-1));
+  incBtn.addEventListener('click', () => adjust(1));
+  checkBtn.addEventListener('click', check);
+  nextBtn.addEventListener('click', () => {
+    if (idx < rounds.length - 1) { idx += 1; renderRound(); }
+    else nextBtn.disabled = true;
+  });
+  renderRound();
+  return wrap;
+}
+function buildFractionComparator(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const rounds = cfg.rounds || [];
+  let idx = 0;
+  let solved = false;
+  const answered = new Array(rounds.length).fill(null);
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · fraction-comparator</div>
+    <div class="applet-round-badge" data-role="round-badge"></div>
+    <div class="applet-prompt" data-role="round-head"></div>
+    <div class="applet-svg-host" data-role="bars"></div>
+    <div class="applet-controls">
+      <span>Relation:</span>
+      <button class="applet-btn relation" data-rel="<">&lt;</button>
+      <button class="applet-btn relation" data-rel="=">=</button>
+      <button class="applet-btn relation" data-rel=">">&gt;</button>
+      <button class="applet-btn" data-role="next" style="margin-left:auto" disabled>Next round →</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+  `;
+  const bars = wrap.querySelector('[data-role="bars"]');
+  const head = wrap.querySelector('[data-role="round-head"]');
+  const badge = wrap.querySelector('[data-role="round-badge"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const result = wrap.querySelector('[data-role="result"]');
+  const nextBtn = wrap.querySelector('[data-role="next"]');
+  const relBtns = Array.from(wrap.querySelectorAll('.applet-btn.relation'));
+  function renderRound() {
+    if (!rounds[idx]) return;
+    const r = rounds[idx];
+    const [aN, aD] = r.a.split('/').map(Number);
+    const [bN, bD] = r.b.split('/').map(Number);
+    badge.textContent = `Round ${idx + 1} of ${rounds.length}`;
+    head.innerHTML = `Compare \\(\\dfrac{${aN}}{${aD}}\\) and \\(\\dfrac{${bN}}{${bD}}\\)`;
+    const w = 360, h = 36, gap = 14;
+    let svg = `<svg viewBox="0 0 ${w} ${h * 2 + gap}" width="${w}" height="${h * 2 + gap}" style="max-width:100%;height:auto">`;
+    const aPiece = w / aD;
+    for (let i = 0; i < aD; i++) svg += `<rect x="${(i * aPiece).toFixed(2)}" y="0" width="${aPiece.toFixed(2)}" height="${h}" fill="${i < aN ? PURPLE_FILL : PANEL_WHITE}" stroke="${PURPLE_OUTLINE}" stroke-width="1.5"/>`;
+    const bPiece = w / bD;
+    for (let i = 0; i < bD; i++) svg += `<rect x="${(i * bPiece).toFixed(2)}" y="${h + gap}" width="${bPiece.toFixed(2)}" height="${h}" fill="${i < bN ? BLUE_FILL : PANEL_WHITE}" stroke="${BLUE_OUTLINE}" stroke-width="1.5"/>`;
+    svg += `</svg>`;
+    bars.innerHTML = svg;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    nextBtn.disabled = true;
+    relBtns.forEach(b => b.classList.remove('active'));
+    if (window.renderMathInElement) renderMathInElement(head, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+  }
+  function submit(rel) {
+    const r = rounds[idx];
+    const ok = rel === r.relation;
+    answered[idx] = ok ? 'good' : 'bad';
+    relBtns.forEach(b => b.classList.toggle('active', b.dataset.rel === rel));
+    feedback.className = 'applet-feedback ' + (ok ? 'good' : 'bad');
+    const [aN, aD] = r.a.split('/').map(Number);
+    const [bN, bD] = r.b.split('/').map(Number);
+    // The relation glyph is rendered as a text node to avoid the `<`/`>` being parsed as HTML.
+    const relTxt = r.relation === '<' ? 'less than' : r.relation === '>' ? 'greater than' : 'equal to';
+    feedback.innerHTML = ok
+      ? `✓ Correct — \\(\\dfrac{${aN}}{${aD}}\\) is ${relTxt} \\(\\dfrac{${bN}}{${bD}}\\).`
+      : `Not quite — \\(\\dfrac{${aN}}{${aD}}\\) is ${relTxt} \\(\\dfrac{${bN}}{${bD}}\\).`;
+    if (window.renderMathInElement) renderMathInElement(feedback, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+    if (ok) SoundEngine.playCorrect(); else SoundEngine.playIncorrect();
+    nextBtn.disabled = false;
+    const isLast = idx === rounds.length - 1;
+    if (isLast) {
+      const good = answered.filter(x => x === 'good').length;
+      result.textContent = `Done — ${good} of ${rounds.length} correct.`;
+    }
+    const allGood = answered.every(x => x === 'good');
+    if (allGood && !solved && typeof onSolved === 'function') { solved = true; onSolved(); }
+    // Auto-advance to the next round on a correct submission so the student doesn't
+    // need to chase the "Next round →" button between rounds. Stays put on a wrong
+    // submission so they can re-try.
+    if (ok && !isLast) {
+      setTimeout(() => { if (idx < rounds.length - 1) { idx += 1; renderRound(); } }, 1100);
+    }
+  }
+  relBtns.forEach(b => b.addEventListener('click', () => submit(b.dataset.rel)));
+  nextBtn.addEventListener('click', () => { if (idx < rounds.length - 1) { idx += 1; renderRound(); } else nextBtn.disabled = true; });
+  renderRound();
+  return wrap;
+}
+// Step 2 (L1.2) — multiply two fractions by overlapping a grid.
+// Pure exploration: the product (green overlap) is shown; the discovery
+// question (a separate FIB) is the gate.
+function buildFractionMultiplierGrid(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const parse = (s, n, d) => { const m = String(s || '').split('/').map(Number); return [m[0] || n, m[1] || d]; };
+  // Optional multi-round mode: cfg.rounds = [{a, b, locked, note}, ...].
+  // Each round defines a pair to predict; locked rounds freeze the sliders so
+  // the student must verify the specified pair. Backward-compatible: if no
+  // rounds, behaves as a single-check applet using initial_a/initial_b.
+  const rounds = Array.isArray(cfg.rounds) && cfg.rounds.length > 0 ? cfg.rounds : null;
+  let currentRound = 0;
+  const firstPair = rounds ? rounds[0] : { a: cfg.initial_a, b: cfg.initial_b };
+  let [aN, aD] = parse(firstPair.a, 1, 2);
+  let [bN, bD] = parse(firstPair.b, 1, 3);
+  let solved = false;
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  const badgeHtml = rounds ? `<div class="applet-label" data-role="round-badge" style="margin-top:4px;background:#F4ECFB;color:#5B2A86">Round 1 of ${rounds.length}</div>` : '';
+  const noteHtml = rounds ? `<div class="applet-prompt" data-role="round-note" style="font-style:italic;color:#555"></div>` : '';
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · fraction-multiplier-grid</div>
+    ${badgeHtml}
+    ${instruction ? `<div class="applet-prompt">${instruction}</div>` : ''}
+    ${noteHtml}
+    <div class="applet-svg-host" data-role="grid"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:12px;color:#555;margin:6px 0 4px">
+      <span style="display:inline-flex;align-items:center;gap:5px"><span style="display:inline-block;width:14px;height:14px;background:#F8ECF8;border:1px solid #999"></span>A's columns</span>
+      <span style="display:inline-flex;align-items:center;gap:5px"><span style="display:inline-block;width:14px;height:14px;background:#E5F4FB;border:1px solid #999"></span>B's rows</span>
+      <span style="display:inline-flex;align-items:center;gap:5px"><span style="display:inline-block;width:14px;height:14px;background:transparent;border:2px solid #149A55"></span>green outline = product</span>
+    </div>
+    <div class="applet-controls">
+      <label>A — shaded columns <input type="range" min="1" max="6" value="${aN}" data-role="aN"><span class="applet-val" data-role="aN-v"></span></label>
+      <label>of columns <input type="range" min="2" max="6" value="${aD}" data-role="aD"><span class="applet-val" data-role="aD-v"></span></label>
+    </div>
+    <div class="applet-controls">
+      <label>B — shaded rows <input type="range" min="1" max="6" value="${bN}" data-role="bN"><span class="applet-val" data-role="bN-v"></span></label>
+      <label>of rows <input type="range" min="2" max="6" value="${bD}" data-role="bD"><span class="applet-val" data-role="bD-v"></span></label>
+    </div>
+    <div class="applet-prompt" data-role="check-head"></div>
+    <div class="applet-controls">
+      <span>Your answer:</span>
+      <span class="stacked-frac"
+        ><span class="num"><input class="fib-input" type="number" min="0" inputmode="numeric" data-role="inN" placeholder="?"></span
+        ><span class="bar"></span
+        ><span class="den"><input class="fib-input" type="number" min="1" inputmode="numeric" data-role="inD" placeholder="?"></span
+      ></span>
+      <button class="applet-btn" data-role="check">Check</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+  `;
+  const Q = s => wrap.querySelector(s);
+  const host = Q('[data-role="grid"]'), result = Q('[data-role="result"]');
+  const checkHead = Q('[data-role="check-head"]');
+  const feedback = Q('[data-role="feedback"]');
+  const inN = Q('[data-role="inN"]'), inD = Q('[data-role="inD"]');
+  const checkBtn = Q('[data-role="check"]');
+  const roundBadge = Q('[data-role="round-badge"]');
+  const roundNote = Q('[data-role="round-note"]');
+  const E = {}; ['aN', 'aD', 'bN', 'bD'].forEach(k => { E[k] = Q(`[data-role="${k}"]`); E[k + 'v'] = Q(`[data-role="${k}-v"]`); });
+  function lockSliders(locked) {
+    ['aN', 'aD', 'bN', 'bD'].forEach(k => {
+      E[k].disabled = !!locked;
+      E[k].style.opacity = locked ? '0.55' : '1';
+      E[k].style.cursor = locked ? 'not-allowed' : '';
+    });
+  }
+  function applyRound(idx) {
+    const r = rounds[idx];
+    if (r.a) [aN, aD] = parse(r.a, aN, aD);
+    if (r.b) [bN, bD] = parse(r.b, bN, bD);
+    E.aN.value = aN; E.aD.value = aD; E.bN.value = bN; E.bD.value = bD;
+    lockSliders(!!r.locked);
+    if (roundBadge) roundBadge.textContent = `Round ${idx + 1} of ${rounds.length}`;
+    if (roundNote) {
+      if (r.note) { roundNote.textContent = r.note; roundNote.style.display = ''; }
+      else { roundNote.textContent = ''; roundNote.style.display = 'none'; }
+    }
+    drawGrid();
+  }
+  function drawGrid() {
+    aD = +E.aD.value; bD = +E.bD.value;
+    E.aN.max = aD; E.bN.max = bD;
+    aN = Math.min(+E.aN.value, aD); bN = Math.min(+E.bN.value, bD);
+    E.aN.value = aN; E.bN.value = bN;
+    E.aNv.textContent = aN; E.aDv.textContent = aD; E.bNv.textContent = bN; E.bDv.textContent = bD;
+    const S = 240, cw = S / aD, ch = S / bD;
+    // Layered rendering: A's shaded columns are ONE block full height
+    // (purple), B's shaded rows are ONE block full width (blue, semi-
+    // transparent so it visibly mixes with A in the overlap). Cell-level
+    // grid lines sit on top so cells are countable. A thick green outline
+    // marks the overlap region — that's the product the student predicts.
+    const COL_TINT = '#F8ECF8';   // A's columns — light purple
+    const ROW_TINT = '#E5F4FB';   // B's rows — light blue
+    let svgBody = '';
+    if (aN > 0) {
+      svgBody += `<rect x="0" y="0" width="${(aN * cw).toFixed(1)}" height="${S}" fill="${COL_TINT}"/>`;
+    }
+    if (bN > 0) {
+      svgBody += `<rect x="0" y="0" width="${S}" height="${(bN * ch).toFixed(1)}" fill="${ROW_TINT}" fill-opacity="0.75"/>`;
+    }
+    for (let r = 0; r < bD; r++) for (let c = 0; c < aD; c++) {
+      svgBody += `<rect x="${(c * cw).toFixed(1)}" y="${(r * ch).toFixed(1)}" width="${cw.toFixed(1)}" height="${ch.toFixed(1)}" fill="none" stroke="#999" stroke-width="1"/>`;
+    }
+    if (aN > 0 && bN > 0) {
+      svgBody += `<rect x="0" y="0" width="${(aN * cw).toFixed(1)}" height="${(bN * ch).toFixed(1)}" fill="none" stroke="${GREEN_OUTLINE}" stroke-width="3.5"/>`;
+    }
+    host.innerHTML = `<svg viewBox="0 0 ${S} ${S}" width="${S}" height="${S}" style="max-width:100%;height:auto">${svgBody}</svg>`;
+    // The check prompt mirrors whatever the sliders are set to right now.
+    checkHead.innerHTML = `Predict the product: \\(\\dfrac{${aN}}{${aD}}\\) × \\(\\dfrac{${bN}}{${bD}}\\) = ?`;
+    if (window.renderMathInElement) renderMathInElement(checkHead, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+    // Reset the check state whenever the configuration changes.
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    result.innerHTML = '';
+    inN.value = ''; inD.value = '';
+  }
+  function check() {
+    const pN = aN * bN, pD = aD * bD;
+    const n = Number(inN.value), d = Number(inD.value);
+    if (!Number.isInteger(n) || !Number.isInteger(d) || d <= 0) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Enter both numbers — top and bottom.';
+      return;
+    }
+    const ok = (n === pN && d === pD) || (n * pD === d * pN);
+    if (ok) {
+      feedback.className = 'applet-feedback good';
+      feedback.innerHTML = `✓ Correct — ${pN} cells inside the green outline, out of ${pD} total.`;
+      result.innerHTML = `\\(\\dfrac{${aN}}{${aD}}\\) × \\(\\dfrac{${bN}}{${bD}}\\) = <strong>\\(\\dfrac{${pN}}{${pD}}\\)</strong>`;
+      if (window.renderMathInElement) renderMathInElement(result, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+      SoundEngine.playCorrect();
+      if (rounds) {
+        if (currentRound < rounds.length - 1) {
+          // Pause briefly so the student reads the success message, then advance.
+          setTimeout(() => { currentRound++; applyRound(currentRound); }, 1400);
+        } else if (!solved && typeof onSolved === 'function') {
+          solved = true; onSolved();
+        }
+      } else if (!solved && typeof onSolved === 'function') {
+        solved = true; onSolved();
+      }
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Not quite — count the cells inside the green outline, then the total cells.';
+      SoundEngine.playIncorrect();
+    }
+  }
+  ['aN', 'aD', 'bN', 'bD'].forEach(k => E[k].addEventListener('input', drawGrid));
+  checkBtn.addEventListener('click', check);
+  if (rounds) applyRound(0);
+  else drawGrid();
+  return wrap;
+}
+
+// Step 5 (L1.2) — a fraction of a quantity. Pick a total and a fraction;
+// the items recolour so the count can be read off.
+function buildFractionOfQuantity(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const totals = cfg.totals || [6, 12, 18, 24];
+  const fractions = cfg.fractions || ['1/2', '1/3', '1/4', '2/3', '3/4', '5/6'];
+  let total = cfg.initial_total || 12;
+  let fr = cfg.initial_fraction || '1/3';
+  let solved = false;
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  const totChips = totals.map(t => `<button class="applet-btn" data-tot="${t}">${t}</button>`).join('');
+  const frChips = fractions.map(f => `<button class="applet-btn" data-fr="${f}">${f}</button>`).join('');
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · fraction-of-quantity</div>
+    ${instruction ? `<div class="applet-prompt">${instruction}</div>` : ''}
+    <div class="applet-controls"><span>Total:</span>${totChips}</div>
+    <div class="applet-controls"><span>Fraction:</span>${frChips}</div>
+    <div class="applet-svg-host" data-role="items"></div>
+    <div class="applet-prompt" data-role="check-head"></div>
+    <div class="applet-controls">
+      <span>Your answer:</span>
+      <input type="number" min="0" inputmode="numeric" style="width:64px;text-align:center" data-role="in" placeholder="?">
+      <button class="applet-btn" data-role="check">Check</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+  `;
+  const host = wrap.querySelector('[data-role="items"]');
+  const checkHead = wrap.querySelector('[data-role="check-head"]');
+  const inEl = wrap.querySelector('[data-role="in"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const result = wrap.querySelector('[data-role="result"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const totBtns = Array.from(wrap.querySelectorAll('[data-tot]'));
+  const frBtns = Array.from(wrap.querySelectorAll('[data-fr]'));
+  function draw() {
+    totBtns.forEach(b => b.classList.toggle('active', +b.dataset.tot === total));
+    frBtns.forEach(b => b.classList.toggle('active', b.dataset.fr === fr));
+    const [a, b] = fr.split('/').map(Number);
+    const exact = total * a / b;
+    const shaded = Math.max(0, Math.min(total, Math.round(exact)));
+    const perRow = Math.min(total, 12), rad = 12, gap = 30;
+    const rows = Math.ceil(total / perRow);
+    const W = perRow * gap + 20, H = rows * gap + 20;
+    let circ = '';
+    for (let i = 0; i < total; i++) {
+      const cx = 16 + (i % perRow) * gap, cy = 16 + Math.floor(i / perRow) * gap;
+      const on = i < shaded;
+      circ += `<circle cx="${cx}" cy="${cy}" r="${rad}" fill="${on ? PURPLE_FILL : PANEL_WHITE}" stroke="${on ? PURPLE_OUTLINE : '#999'}" stroke-width="2"/>`;
+    }
+    host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="max-width:100%;height:auto">${circ}</svg>`;
+    checkHead.innerHTML = `Predict the count: \\(\\dfrac{${a}}{${b}}\\) of ${total} = ?`;
+    if (window.renderMathInElement) renderMathInElement(checkHead, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    result.innerHTML = '';
+    inEl.value = '';
+  }
+  function check() {
+    const [a, b] = fr.split('/').map(Number);
+    const exact = total * a / b;
+    const v = Number(inEl.value);
+    if (!Number.isInteger(v)) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Enter a whole number.';
+      return;
+    }
+    if (!Number.isInteger(exact)) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = `${a}/${b} of ${total} doesn't split evenly into ${b} parts — pick a total divisible by ${b} and try again.`;
+      return;
+    }
+    if (v === exact) {
+      feedback.className = 'applet-feedback good';
+      feedback.textContent = `✓ Correct — ${exact} of the ${total} items.`;
+      result.innerHTML = `\\(\\dfrac{${a}}{${b}}\\) of ${total} = <strong>${exact}</strong>`;
+      if (window.renderMathInElement) renderMathInElement(result, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+      SoundEngine.playCorrect();
+      if (!solved && typeof onSolved === 'function') { solved = true; onSolved(); }
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Not quite — count the shaded items.';
+      SoundEngine.playIncorrect();
+    }
+  }
+  totBtns.forEach(b => b.addEventListener('click', () => { total = +b.dataset.tot; draw(); }));
+  frBtns.forEach(b => b.addEventListener('click', () => { fr = b.dataset.fr; draw(); }));
+  checkBtn.addEventListener('click', check);
+  draw();
+  return wrap;
+}
+
+// Step 8 (L1.2) — divide by a fraction = "how many sub-units fit?".
+// Multi-round; each round shows `total` unit boxes split into sub-cups.
+function buildFractionDividerCount(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const rounds = cfg.rounds || [];
+  let idx = 0;
+  const answered = new Array(rounds.length).fill(false);
+  let solved = false;
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · fraction-divider-count</div>
+    <div class="applet-round-badge" data-role="badge"></div>
+    ${instruction ? `<div class="applet-prompt" data-role="prompt"></div>` : ''}
+    <div class="applet-svg-host" data-role="beaker"></div>
+    <div class="applet-prompt" data-role="check-head"></div>
+    <div class="applet-controls">
+      <span>Your answer:</span>
+      <input type="number" min="0" inputmode="numeric" style="width:64px;text-align:center" data-role="in" placeholder="?">
+      <button class="applet-btn" data-role="check">Check</button>
+      <button class="applet-btn" data-role="next" style="margin-left:auto" disabled>Next round →</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+  `;
+  const badge = wrap.querySelector('[data-role="badge"]');
+  const promptEl = wrap.querySelector('[data-role="prompt"]');
+  const beaker = wrap.querySelector('[data-role="beaker"]');
+  const checkHead = wrap.querySelector('[data-role="check-head"]');
+  const inEl = wrap.querySelector('[data-role="in"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const result = wrap.querySelector('[data-role="result"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const nextBtn = wrap.querySelector('[data-role="next"]');
+  function renderRound() {
+    const r = rounds[idx]; if (!r) return;
+    const [dn, dd] = String(r.divisor).split('/').map(Number);
+    const subPerUnit = dd / dn;
+    badge.textContent = `Round ${idx + 1} of ${rounds.length}`;
+    if (promptEl) promptEl.textContent = instruction;
+    const unitW = 70, H = 70, x0 = 10, y0 = 10;
+    const W = x0 * 2 + r.total * unitW;
+    let svg = '', n = 0;
+    for (let u = 0; u < r.total; u++) {
+      const ux = x0 + u * unitW;
+      const sw = unitW / subPerUnit;
+      for (let s = 0; s < subPerUnit; s++) {
+        const col = (n % 2 === 0) ? BLUE_FILL : '#CDEBFA';
+        svg += `<rect x="${(ux + s * sw).toFixed(1)}" y="${y0}" width="${sw.toFixed(1)}" height="${H}" fill="${col}" stroke="${BLUE_OUTLINE}" stroke-width="1"/>`;
+        n++;
+      }
+      svg += `<rect x="${ux}" y="${y0}" width="${unitW}" height="${H}" fill="none" stroke="${PURPLE_OUTLINE}" stroke-width="2.5"/>`;
+    }
+    beaker.innerHTML = `<svg viewBox="0 0 ${W} ${H + 20}" width="${W}" height="${H + 20}" style="max-width:100%;height:auto">${svg}</svg>`;
+    checkHead.innerHTML = `Predict the count: ${r.total} ÷ \\(\\dfrac{${dn}}{${dd}}\\) = ?`;
+    if (window.renderMathInElement) renderMathInElement(checkHead, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+    inEl.value = '';
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    result.innerHTML = '';
+    checkBtn.disabled = false;
+    nextBtn.disabled = !answered[idx];
+    nextBtn.textContent = idx < rounds.length - 1 ? 'Next round →' : 'Restart';
+  }
+  function check() {
+    const r = rounds[idx];
+    const [dn, dd] = String(r.divisor).split('/').map(Number);
+    const subPerUnit = dd / dn;
+    const target = r.count != null ? r.count : Math.round(r.total * subPerUnit);
+    const v = Number(inEl.value);
+    if (!Number.isInteger(v)) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Enter a whole number.';
+      return;
+    }
+    if (v === target) {
+      feedback.className = 'applet-feedback good';
+      feedback.textContent = `✓ Correct — ${target} sub-cups fit.`;
+      result.innerHTML = `${r.total} ÷ \\(\\dfrac{${dn}}{${dd}}\\) = <strong>${target}</strong>`;
+      if (window.renderMathInElement) renderMathInElement(result, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+      SoundEngine.playCorrect();
+      answered[idx] = true;
+      checkBtn.disabled = true;
+      nextBtn.disabled = false;
+      if (answered.every(x => x === true) && !solved && typeof onSolved === 'function') {
+        solved = true;
+        onSolved();
+      } else if (idx < rounds.length - 1) {
+        setTimeout(() => { if (idx < rounds.length - 1) { idx += 1; renderRound(); } }, 1100);
+      }
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Not quite — count the sub-cup segments inside the bar.';
+      SoundEngine.playIncorrect();
+    }
+  }
+  checkBtn.addEventListener('click', check);
+  nextBtn.addEventListener('click', () => {
+    if (idx < rounds.length - 1) { idx += 1; renderRound(); }
+    else { idx = 0; renderRound(); }
+  });
+  renderRound();
+  return wrap;
+}
+
+// L1.2 Pass 3 — "fraction of the rest" applied to a bottle. Dynamic: the
+// student picks fill fraction and pour fraction with buttons; total slices,
+// water count, pour count, and remaining count all reflect live in the bottle
+// SVG and the side counts panel. To complete the step the student must enter
+// the correct remaining-fraction for `required` distinct (fill, pour) pairs.
+function buildBottlePour(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const fillOptions = cfg.fills || ['1/2', '1/3', '2/3', '3/4'];
+  const pourOptions = cfg.pours || ['1/3', '1/2', '2/3', '1/4'];
+  const required = cfg.required || 3;
+  let fill = cfg.initial_fill || fillOptions[0];
+  let pour = cfg.initial_pour || pourOptions[0];
+  const correctSet = new Set();
+  let solved = false;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  const fillBtns = fillOptions.map(f => {
+    const [n, d] = f.split('/');
+    return `<button class="applet-btn" data-fill="${f}"><span style="display:inline-flex;flex-direction:column;align-items:center;font-size:11px;line-height:1.1;padding:0 2px"><span>${n}</span><span style="border-top:1.2px solid currentColor;padding:0 4px">${d}</span></span></button>`;
+  }).join('');
+  const pourBtns = pourOptions.map(p => {
+    const [n, d] = p.split('/');
+    return `<button class="applet-btn" data-pour="${p}"><span style="display:inline-flex;flex-direction:column;align-items:center;font-size:11px;line-height:1.1;padding:0 2px"><span>${n}</span><span style="border-top:1.2px solid currentColor;padding:0 4px">${d}</span></span></button>`;
+  }).join('');
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · bottle-pour</div>
+    ${instruction ? `<div class="applet-prompt" data-role="prompt"></div>` : ''}
+    <div class="applet-controls"><span>Bottle was:</span>${fillBtns}<span style="margin-left:4px">full</span></div>
+    <div class="applet-controls"><span>Then poured:</span>${pourBtns}<span style="margin-left:4px">of the water</span></div>
+    <div style="display:flex;gap:24px;align-items:center;margin:14px 0 8px;flex-wrap:wrap;justify-content:center">
+      <div data-role="bottle"></div>
+      <div data-role="counts" style="font-size:13px;line-height:1.7;min-width:220px"></div>
+    </div>
+    <div class="applet-prompt" data-role="check-head"></div>
+    <div class="applet-controls">
+      <span>Water left =</span>
+      <input type="number" min="0" inputmode="numeric" style="width:54px;text-align:center" data-role="num" placeholder="?">
+      <span style="font-weight:700;font-size:18px">/</span>
+      <input type="number" min="0" inputmode="numeric" style="width:54px;text-align:center" data-role="den" placeholder="?">
+      <span>of the bottle</span>
+      <button class="applet-btn" data-role="check">Check</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+    <div data-role="progress" style="margin-top:8px;font-size:12px;color:#666;text-align:center"></div>
+  `;
+  const promptEl = wrap.querySelector('[data-role="prompt"]');
+  const bottleHost = wrap.querySelector('[data-role="bottle"]');
+  const countsEl = wrap.querySelector('[data-role="counts"]');
+  const checkHead = wrap.querySelector('[data-role="check-head"]');
+  const numIn = wrap.querySelector('[data-role="num"]');
+  const denIn = wrap.querySelector('[data-role="den"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const result = wrap.querySelector('[data-role="result"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const progressEl = wrap.querySelector('[data-role="progress"]');
+  const fillBtnsEls = Array.from(wrap.querySelectorAll('[data-fill]'));
+  const pourBtnsEls = Array.from(wrap.querySelectorAll('[data-pour]'));
+  if (instruction && promptEl) promptEl.textContent = instruction;
+
+  function parseFrac(s) { const [n, d] = String(s).split('/').map(Number); return [n, d]; }
+  function gcd(a, b) { return b ? gcd(b, a % b) : a; }
+  function simplify(n, d) { const g = gcd(Math.abs(n), Math.abs(d)) || 1; return [n / g, d / g]; }
+  function eq(n1, d1, n2, d2) { return n1 * d2 === n2 * d1; }
+
+  function compute() {
+    const [fn, fd] = parseFrac(fill);
+    const [pn, pd] = parseFrac(pour);
+    // total = fd * pd guarantees integer slice counts for any proper fraction pair
+    const total = fd * pd;
+    const water = fn * pd;        // total * fn/fd
+    const pourCount = fn * pn;    // water * pn/pd
+    const remaining = water - pourCount;
+    return { total, water, pourCount, remaining, fn, fd, pn, pd };
+  }
+
+  function draw() {
+    fillBtnsEls.forEach(b => b.classList.toggle('active', b.dataset.fill === fill));
+    pourBtnsEls.forEach(b => b.classList.toggle('active', b.dataset.pour === pour));
+
+    const c = compute();
+    const total = c.total;
+
+    // Render bottle SVG
+    const w = 80;
+    const hSlice = Math.max(13, Math.min(32, 240 / total));
+    const padTop = 18, padBot = 12;
+    const H = padTop + total * hSlice + padBot;
+    let body = '';
+    body += `<rect x="${w/2 - 12}" y="${padTop - 12}" width="24" height="10" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2" rx="2"/>`;
+    body += `<rect x="0" y="${padTop}" width="${w}" height="${total * hSlice}" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2" rx="4"/>`;
+    for (let i = 0; i < total; i++) {
+      const y = padTop + (total - 1 - i) * hSlice;
+      let f = '#FFFFFF';
+      if (i < c.remaining) f = '#8DD5F1';
+      else if (i < c.remaining + c.pourCount) f = '#FEEFA0';
+      body += `<rect x="0" y="${y}" width="${w}" height="${hSlice}" fill="${f}" stroke="#0A80D5" stroke-width="1"/>`;
+    }
+    bottleHost.innerHTML = `
+      <svg viewBox="0 0 ${w} ${H}" width="${w + 6}" height="${H + 4}" style="display:block">${body}</svg>
+      <div style="display:flex;flex-direction:column;gap:3px;justify-content:center;font-size:11px;color:#666;margin-top:6px;text-align:center">
+        <span><span style="display:inline-block;width:10px;height:10px;background:#8DD5F1;border:1px solid #0A80D5;vertical-align:middle;margin-right:3px"></span>water left</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#FEEFA0;border:1px solid #0A80D5;vertical-align:middle;margin-right:3px"></span>poured</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#FFFFFF;border:1px solid #0A80D5;vertical-align:middle;margin-right:3px"></span>empty</span>
+      </div>
+    `;
+
+    countsEl.innerHTML = `
+      <div><strong>Total slices:</strong> ${total} <span style="color:#999">(= ${c.fd} × ${c.pd})</span></div>
+      <div><strong>Water before pour:</strong> ${c.water} slices <span style="color:#999">(= ${c.fn}/${c.fd} of ${total})</span></div>
+      <div><strong>Poured out:</strong> ${c.pourCount} slices <span style="color:#999">(= ${c.pn}/${c.pd} of ${c.water})</span></div>
+      <div style="color:#0A80D5;font-weight:600">Water left: ${c.remaining} of ${total} slices</div>
+    `;
+
+    checkHead.innerHTML = `Type the remaining water as a fraction of the bottle:`;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    result.innerHTML = '';
+    numIn.value = '';
+    denIn.value = '';
+    progressEl.textContent = solved
+      ? `✓ Solved — ${correctSet.size} of ${required} distinct combinations correct.`
+      : `Correct combinations: ${correctSet.size} of ${required}. Try a different fill or pour after each correct answer.`;
+  }
+
+  function check() {
+    const c = compute();
+    const n = Number(numIn.value);
+    const d = Number(denIn.value);
+    if (!Number.isInteger(n) || !Number.isInteger(d) || d <= 0) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Enter whole numbers in both boxes.';
+      return;
+    }
+    if (eq(n, d, c.remaining, c.total)) {
+      feedback.className = 'applet-feedback good';
+      const [sN, sD] = simplify(c.remaining, c.total);
+      feedback.textContent = `✓ Correct — ${c.remaining} of ${c.total} slices.`;
+      result.innerHTML = `Remaining water = \\(\\dfrac{${c.remaining}}{${c.total}}\\) = \\(\\dfrac{${sN}}{${sD}}\\) of the bottle.`;
+      if (window.renderMathInElement) renderMathInElement(result, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+      SoundEngine.playCorrect();
+      correctSet.add(`${fill}|${pour}`);
+      if (!solved && correctSet.size >= required) {
+        solved = true;
+        if (typeof onSolved === 'function') onSolved();
+      }
+      progressEl.textContent = solved
+        ? `✓ Solved — ${correctSet.size} of ${required} distinct combinations correct.`
+        : `Correct combinations: ${correctSet.size} of ${required}. Pick a different fill or pour to continue.`;
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = `Not quite. Count the BLUE slices (water still left) and put that over ${c.total}.`;
+      SoundEngine.playIncorrect();
+    }
+  }
+
+  fillBtnsEls.forEach(b => b.addEventListener('click', () => { fill = b.dataset.fill; draw(); }));
+  pourBtnsEls.forEach(b => b.addEventListener('click', () => { pour = b.dataset.pour; draw(); }));
+  checkBtn.addEventListener('click', check);
+  draw();
+  return wrap;
+}
+
+// ─── Applet: decimal-fraction-converter (L1.3 Pass 1 — visual card-matching) ───
+function buildDecimalFractionConverter(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const rounds = cfg.rounds || [
+    { decimal: '0.25', fraction: '1/4' },
+    { decimal: '0.7',  fraction: '7/10' },
+    { decimal: '0.125', fraction: '1/8' }
+  ];
+  const n = rounds.length;
+  const decimals = rounds.map(r => r.decimal);
+  const fractions = rounds.map(r => r.fraction);
+  // Scramble fraction display order for non-leak (canonical scramble for n=3)
+  const fractionOrder = (n === 3) ? [2, 0, 1] : [...Array(n).keys()];
+  let selectedDecimalIdx = null;  // decimal originally indexed (matches rounds)
+  const pairs = new Map();        // decimalIdx -> fractionOrigIdx
+  let solved = false;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  // Helper: render fraction as KaTeX stacked frac
+  const toKatexFrac = (fracStr) => {
+    const parts = String(fracStr).split('/');
+    return (parts.length === 2)
+      ? `\\(\\dfrac{${parts[0]}}{${parts[1]}}\\)`
+      : fracStr;
+  };
+  const decimalCardsHtml = decimals.map((d, i) =>
+    `<div class="dfc-card" data-role="dec" data-d-idx="${i}"
+      style="display:flex;width:104px;height:64px;border:2px solid #850F85;background:#EBBDEC;border-radius:10px;align-items:center;justify-content:center;cursor:pointer;font-size:1.4em;font-weight:600;margin:8px 0;user-select:none;transition:opacity .2s,outline .15s;">${d}</div>`
+  ).join('');
+  const fractionCardsHtml = fractionOrder.map((origIdx) =>
+    `<div class="dfc-card" data-role="frac" data-f-orig-idx="${origIdx}"
+      style="display:flex;width:104px;height:64px;border:2px solid #0A80D5;background:#FFFFFF;border-radius:10px;align-items:center;justify-content:center;cursor:pointer;font-size:1.3em;font-weight:600;margin:8px 0;user-select:none;transition:opacity .2s,outline .15s;">${toKatexFrac(fractions[origIdx])}</div>`
+  ).join('');
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · decimal-fraction-converter</div>
+    ${instruction ? `<div class="applet-prompt">${instruction}</div>` : ''}
+    <div class="applet-prompt" data-role="status" style="font-size:0.95em;color:#666;"></div>
+    <div style="display:flex;justify-content:center;gap:120px;margin:14px 0 8px;align-items:flex-start;">
+      <div>
+        <div style="font-size:0.8em;color:#666;text-align:center;margin-bottom:4px;font-weight:600;letter-spacing:.04em;">DECIMALS</div>
+        ${decimalCardsHtml}
+      </div>
+      <div>
+        <div style="font-size:0.8em;color:#666;text-align:center;margin-bottom:4px;font-weight:600;letter-spacing:.04em;">FRACTIONS</div>
+        ${fractionCardsHtml}
+      </div>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-controls" style="margin-top:8px;justify-content:center;gap:12px;">
+      <button class="applet-btn" data-role="check">Check matches</button>
+      <button class="applet-btn" data-role="reset" style="background:#FFFFFF;border:1px solid #CCC;color:#333;">Reset</button>
+    </div>
+  `;
+  const status = wrap.querySelector('[data-role="status"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const resetBtn = wrap.querySelector('[data-role="reset"]');
+  const decCards = Array.from(wrap.querySelectorAll('[data-role="dec"]'));
+  const fracCards = Array.from(wrap.querySelectorAll('[data-role="frac"]'));
+
+  // Render KaTeX fractions in the cards
+  if (window.renderMathInElement) {
+    renderMathInElement(wrap, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+  }
+
+  function updateUI() {
+    const pairedFracs = new Set(pairs.values());
+    decCards.forEach(card => {
+      const i = +card.dataset.dIdx;
+      const paired = pairs.has(i);
+      card.style.opacity = paired ? '0.5' : '1';
+      card.style.outline = (selectedDecimalIdx === i) ? '3px solid #149A55' : 'none';
+      card.style.outlineOffset = '2px';
+    });
+    fracCards.forEach(card => {
+      const origIdx = +card.dataset.fOrigIdx;
+      card.style.opacity = pairedFracs.has(origIdx) ? '0.5' : '1';
+    });
+    if (pairs.size === 0) {
+      status.textContent = selectedDecimalIdx !== null
+        ? `Selected ${decimals[selectedDecimalIdx]} — now click its fraction partner.`
+        : 'Click a decimal card, then click its fraction partner.';
+    } else {
+      status.textContent = `${pairs.size} of ${n} pairs matched.`;
+    }
+  }
+  decCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const i = +card.dataset.dIdx;
+      if (pairs.has(i)) return;
+      selectedDecimalIdx = (selectedDecimalIdx === i) ? null : i;
+      feedback.className = 'applet-feedback';
+      feedback.textContent = '';
+      updateUI();
+    });
+  });
+  fracCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const origIdx = +card.dataset.fOrigIdx;
+      if (new Set(pairs.values()).has(origIdx)) return;
+      if (selectedDecimalIdx === null) {
+        feedback.className = 'applet-feedback bad';
+        feedback.textContent = 'Pick a decimal first, then click its fraction.';
+        return;
+      }
+      pairs.set(selectedDecimalIdx, origIdx);
+      selectedDecimalIdx = null;
+      feedback.className = 'applet-feedback';
+      feedback.textContent = '';
+      updateUI();
+    });
+  });
+  checkBtn.addEventListener('click', () => {
+    if (pairs.size < n) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = `Match all ${n} pairs first.`;
+      return;
+    }
+    const wrongs = [];
+    for (const [dIdx, fOrigIdx] of pairs.entries()) {
+      if (dIdx !== fOrigIdx) wrongs.push(`${decimals[dIdx]} → ${fractions[fOrigIdx]}`);
+    }
+    if (wrongs.length === 0) {
+      feedback.className = 'applet-feedback good';
+      feedback.innerHTML = `✓ All ${n} pairs correct. <strong>${decimals.map((d,i)=>`${d} = ${toKatexFrac(fractions[i])}`).join(' · ')}</strong>`;
+      if (window.renderMathInElement) renderMathInElement(feedback, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+      if (typeof SoundEngine !== 'undefined') SoundEngine.playCorrect();
+      if (!solved && typeof onSolved === 'function') { solved = true; onSolved(); }
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = `These pairs aren't right: ${wrongs.join(', ')}. Try again.`;
+      if (typeof SoundEngine !== 'undefined') SoundEngine.playIncorrect();
+    }
+  });
+  resetBtn.addEventListener('click', () => {
+    pairs.clear();
+    selectedDecimalIdx = null;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    updateUI();
+  });
+  updateUI();
+  return wrap;
+}
+
+// ─── Applet: decimal-place-value-builder (L1.3 Pass 2) ────────────
+function buildDecimalPlaceValueBuilder(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const rounds = cfg.rounds || [
+    { target: '0.3',   places: ['tenths'],                            digits: [3] },
+    { target: '0.47',  places: ['tenths','hundredths'],               digits: [4, 7] },
+    { target: '0.625', places: ['tenths','hundredths','thousandths'], digits: [6, 2, 5] }
+  ];
+  let roundIdx = 0;
+  let solved = false;
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · decimal-place-value-builder</div>
+    ${instruction ? `<div class="applet-prompt">${instruction}</div>` : ''}
+    <div class="applet-prompt" data-role="round-badge"></div>
+    <div class="applet-controls" data-role="target"></div>
+    <div class="applet-controls" data-role="columns"></div>
+    <div class="applet-controls">
+      <button class="applet-btn" data-role="check">Check</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+  `;
+  const target = wrap.querySelector('[data-role="target"]');
+  const columns = wrap.querySelector('[data-role="columns"]');
+  const roundBadge = wrap.querySelector('[data-role="round-badge"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  function renderState() {
+    if (roundIdx >= rounds.length) {
+      roundBadge.textContent = 'All rounds complete';
+      target.innerHTML = ''; columns.innerHTML = '';
+      checkBtn.disabled = true;
+      return;
+    }
+    const r = rounds[roundIdx];
+    roundBadge.textContent = `Round ${roundIdx + 1} of ${rounds.length}`;
+    // Render target — if it contains "/", display as stacked fraction (KaTeX) so the student must convert
+    const tgtStr = String(r.target);
+    const tgtParts = tgtStr.split('/');
+    const tgtDisplay = (tgtParts.length === 2)
+      ? `\\(\\dfrac{${tgtParts[0]}}{${tgtParts[1]}}\\)`
+      : tgtStr;
+    const label = r.target_label || 'Build the decimal:';
+    target.innerHTML = `<span>${label}</span> <strong style="font-size:1.6em;margin-left:6px;">${tgtDisplay}</strong>`;
+    if (window.renderMathInElement) {
+      renderMathInElement(target, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+    }
+    const onesHtml = `
+      <span style="display:inline-flex;flex-direction:column;align-items:center;margin:0 4px;vertical-align:top;">
+        <span style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;border:2px solid #0A80D5;border-radius:8px;font-size:1.7em;font-weight:700;color:#2B2B2B;background:#FFFFFF;box-sizing:border-box;">0</span>
+        <span style="font-size:0.78em;color:#666;margin-top:6px;">ones</span>
+      </span>`;
+    const dpHtml = `
+      <span style="display:inline-flex;flex-direction:column;align-items:center;margin:0 4px;vertical-align:top;">
+        <span style="width:18px;height:56px;display:flex;align-items:center;justify-content:center;">
+          <span style="display:inline-block;width:13px;height:13px;border-radius:50%;background:#149A55;"></span>
+        </span>
+        <span style="font-size:0.78em;color:transparent;margin-top:6px;">.</span>
+      </span>`;
+    const placesHtml = r.places.map((place, i) => `
+      <span style="display:inline-flex;flex-direction:column;align-items:center;margin:0 4px;vertical-align:top;">
+        <input class="fib-input" type="number" min="0" max="9" inputmode="numeric" data-role="d${i}" placeholder="?" style="width:56px;height:56px;text-align:center;font-size:1.7em;font-weight:700;border:2px solid #0A80D5;border-radius:8px;padding:0;box-sizing:border-box;">
+        <span style="font-size:0.78em;color:#666;margin-top:6px;">${place}</span>
+      </span>`).join('');
+    columns.innerHTML = onesHtml + dpHtml + placesHtml;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+  }
+  function check() {
+    if (roundIdx >= rounds.length) return;
+    const r = rounds[roundIdx];
+    const userDigits = r.digits.map((_, i) => {
+      const inp = wrap.querySelector(`[data-role="d${i}"]`);
+      return inp ? Number(inp.value) : NaN;
+    });
+    if (userDigits.some(d => !Number.isInteger(d) || d < 0 || d > 9)) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Enter a digit (0–9) in each column.';
+      return;
+    }
+    const ok = userDigits.every((d, i) => d === r.digits[i]);
+    if (ok) {
+      feedback.className = 'applet-feedback good';
+      feedback.textContent = `✓ ${userDigits.map((d,i) => `${d} ${r.places[i]}`).join(' + ')} = ${r.target}.`;
+      if (typeof SoundEngine !== 'undefined') SoundEngine.playCorrect();
+      roundIdx++;
+      setTimeout(() => {
+        renderState();
+        if (roundIdx >= rounds.length && !solved && typeof onSolved === 'function') { solved = true; onSolved(); }
+      }, 800);
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = `Not quite — check each digit's place.`;
+      if (typeof SoundEngine !== 'undefined') SoundEngine.playIncorrect();
+    }
+  }
+  checkBtn.addEventListener('click', check);
+  renderState();
+  return wrap;
+}
+
+// ─── Applet: decimal-shift-visualizer (L1.3 Pass 3) ───────────────
+function buildDecimalShiftVisualizer(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const rounds = cfg.rounds || [
+    { start: '5.7',  op: '× 10',  expected: '57' },
+    { start: '0.04', op: '× 100', expected: '4'  },
+    { start: '1230', op: '÷ 100', expected: '12.3' }
+  ];
+  let roundIdx = 0;
+  let solved = false;
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · decimal-shift-visualizer</div>
+    ${instruction ? `<div class="applet-prompt">${instruction}</div>` : ''}
+    <div class="applet-prompt" data-role="round-badge"></div>
+    <div class="applet-controls" data-role="prompt"></div>
+    <div class="applet-controls">
+      <span>Result:</span>
+      <input class="fib-input" type="text" inputmode="decimal" data-role="result-input" placeholder="?" style="width:120px;font-size:1.3em;">
+      <button class="applet-btn" data-role="check">Check</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+  `;
+  const promptEl = wrap.querySelector('[data-role="prompt"]');
+  const roundBadge = wrap.querySelector('[data-role="round-badge"]');
+  const input = wrap.querySelector('[data-role="result-input"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  function renderState() {
+    if (roundIdx >= rounds.length) {
+      roundBadge.textContent = 'All rounds complete';
+      promptEl.innerHTML = '';
+      checkBtn.disabled = true; input.disabled = true;
+      return;
+    }
+    const r = rounds[roundIdx];
+    roundBadge.textContent = `Round ${roundIdx + 1} of ${rounds.length}`;
+    promptEl.innerHTML = `<strong style="font-size:1.5em">${r.start}</strong> <strong>${r.op}</strong> = ?`;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    input.value = '';
+  }
+  function check() {
+    if (roundIdx >= rounds.length) return;
+    const r = rounds[roundIdx];
+    const userStr = String(input.value).trim();
+    if (!userStr) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Type the result.';
+      return;
+    }
+    const userN = Number(userStr);
+    const expN = Number(r.expected);
+    if (!Number.isFinite(userN)) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Enter a number.';
+      return;
+    }
+    const ok = (userN === expN);
+    if (ok) {
+      feedback.className = 'applet-feedback good';
+      feedback.textContent = `✓ ${r.start} ${r.op} = ${r.expected}. The decimal point shifted.`;
+      if (typeof SoundEngine !== 'undefined') SoundEngine.playCorrect();
+      roundIdx++;
+      setTimeout(() => {
+        renderState();
+        if (roundIdx >= rounds.length && !solved && typeof onSolved === 'function') { solved = true; onSolved(); }
+      }, 1000);
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = `Not quite — for ${r.op}, think about how many places the decimal moves.`;
+      if (typeof SoundEngine !== 'undefined') SoundEngine.playIncorrect();
+    }
+  }
+  checkBtn.addEventListener('click', check);
+  renderState();
+  return wrap;
+}
+
+// ─── Applet: percent-bar-builder (L1.4 IL3) ───────────────────────
+function buildPercentBarBuilder(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const rounds = cfg.rounds || [];
+  let roundIdx = 0;
+  let shaded = 0;          // segments shaded across all bars (0..200)
+  let solved = false;
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · percent-bar-builder</div>
+    ${instruction ? `<div class="applet-prompt">${instruction}</div>` : ''}
+    <div class="applet-round-badge" data-role="round-badge"></div>
+    <div class="applet-prompt" data-role="prompt"></div>
+    <div data-role="bars" style="display:flex;flex-direction:column;gap:10px;margin:10px 0;"></div>
+    <div class="applet-controls">
+      <button class="applet-btn" data-role="dec">−</button>
+      <span class="applet-val" data-role="shaded-val">0</span>
+      <span style="color:var(--muted)">of 100 shaded</span>
+      <button class="applet-btn" data-role="inc">+</button>
+      <button class="applet-btn" data-role="check" style="margin-left:auto">Check</button>
+    </div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+  `;
+  const badge = wrap.querySelector('[data-role="round-badge"]');
+  const prompt = wrap.querySelector('[data-role="prompt"]');
+  const barsHost = wrap.querySelector('[data-role="bars"]');
+  const shadedVal = wrap.querySelector('[data-role="shaded-val"]');
+  const decBtn = wrap.querySelector('[data-role="dec"]');
+  const incBtn = wrap.querySelector('[data-role="inc"]');
+  const checkBtn = wrap.querySelector('[data-role="check"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const result = wrap.querySelector('[data-role="result"]');
+  function maxSegments() {
+    const r = rounds[roundIdx];
+    return ((r && r.bars) || 1) * 100;
+  }
+  // Render one or two 100-segment bars; click a segment to set the shaded count.
+  function renderBars() {
+    const r = rounds[roundIdx];
+    const numBars = (r && r.bars) || 1;
+    let html = '';
+    for (let b = 0; b < numBars; b++) {
+      const lo = b * 100;
+      // shaded count within this bar (0..100)
+      const inThisBar = Math.max(0, Math.min(100, shaded - lo));
+      const fill = b === 0 ? GREEN_FILL : BLUE_FILL;
+      const outline = b === 0 ? GREEN_OUTLINE : BLUE_OUTLINE;
+      const width = 500, height = 36;
+      const pieceW = width / 100;
+      let pieces = '';
+      for (let i = 0; i < 100; i++) {
+        const f = i < inThisBar ? fill : PANEL_WHITE;
+        pieces += `<rect data-seg="${lo + i + 1}" x="${(i * pieceW).toFixed(2)}" y="0" width="${pieceW.toFixed(2)}" height="${height}" fill="${f}" stroke="${outline}" stroke-width="0.6" style="cursor:pointer"/>`;
+      }
+      html += `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="max-width:100%;height:auto" data-role="bar-svg">${pieces}</svg>`;
+    }
+    barsHost.innerHTML = html;
+    barsHost.querySelectorAll('rect[data-seg]').forEach(rc => {
+      rc.addEventListener('click', () => {
+        const seg = +rc.dataset.seg;
+        // clicking the currently-last shaded segment unshades it; else set to seg
+        shaded = (shaded === seg) ? seg - 1 : seg;
+        afterShadeChange();
+      });
+    });
+  }
+  function afterShadeChange() {
+    shaded = Math.max(0, Math.min(maxSegments(), shaded));
+    shadedVal.textContent = shaded;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    renderBars();
+  }
+  function adjust(delta) {
+    shaded = Math.max(0, Math.min(maxSegments(), shaded + delta));
+    afterShadeChange();
+  }
+  function toKatexFrac(fracStr) {
+    const parts = String(fracStr).split('/');
+    return (parts.length === 2) ? `\\(\\dfrac{${parts[0]}}{${parts[1]}}\\)` : fracStr;
+  }
+  function renderRound() {
+    const r = rounds[roundIdx];
+    if (!r) return;
+    shaded = 0;
+    badge.textContent = (cfg.round_badge || 'Round N of 3').replace('N', String(roundIdx + 1)).replace(/of\s+\d+/, `of ${rounds.length}`);
+    prompt.innerHTML = `Shade the bar to show <strong>${r.target_label}</strong>.`;
+    shadedVal.textContent = shaded;
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    result.innerHTML = '';
+    checkBtn.disabled = false;
+    decBtn.disabled = false; incBtn.disabled = false;
+    renderBars();
+  }
+  function check() {
+    const r = rounds[roundIdx];
+    if (!r) return;
+    if (shaded === r.segments) {
+      const rb = r.readback || {};
+      feedback.className = 'applet-feedback good';
+      feedback.innerHTML = `✓ ${r.segments} of 100 shaded.`;
+      result.innerHTML = `<strong>${r.segments} of 100 = ${rb.percent || r.target_label} = ${toKatexFrac(rb.fraction)} = ${rb.decimal}</strong>`;
+      if (window.renderMathInElement) renderMathInElement(result, { delimiters: [{ left: '\\(', right: '\\)', display: false }], throwOnError: false });
+      if (typeof SoundEngine !== 'undefined') SoundEngine.playCorrect();
+      checkBtn.disabled = true; decBtn.disabled = true; incBtn.disabled = true;
+      if (roundIdx < rounds.length - 1) {
+        setTimeout(() => { roundIdx += 1; renderRound(); }, 1600);
+      } else if (!solved && typeof onSolved === 'function') {
+        solved = true; onSolved();
+      }
+    } else {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = shaded < r.segments
+        ? `Not enough — you have ${shaded} of 100 shaded, keep going to ${r.target_label}.`
+        : `Too much — you have ${shaded} of 100 shaded, that's past ${r.target_label}.`;
+      if (typeof SoundEngine !== 'undefined') SoundEngine.playIncorrect();
+    }
+  }
+  decBtn.addEventListener('click', () => adjust(-1));
+  incBtn.addEventListener('click', () => adjust(1));
+  checkBtn.addEventListener('click', check);
+  renderRound();
+  return wrap;
+}
+
+// ─── Applet: survival-fraction-tracker (L1.4 IL14) ────────────────
+function buildSurvivalFractionTracker(cfg, instruction, onSolved) {
+  cfg = cfg || {};
+  const rounds = cfg.rounds || [];
+  let roundIdx = 0;
+  let solved = false;
+  const wrap = document.createElement('div');
+  wrap.className = 'applet';
+  wrap.innerHTML = `
+    <div class="applet-label">Interactive · survival-fraction-tracker</div>
+    ${instruction ? `<div class="applet-prompt">${instruction}</div>` : ''}
+    <div class="applet-round-badge" data-role="round-badge"></div>
+    <div class="applet-prompt" data-role="prompt"></div>
+    <div data-role="stages" style="display:flex;flex-wrap:wrap;gap:14px;margin:10px 0;align-items:flex-end;"></div>
+    <div class="applet-controls">
+      <button class="applet-btn" data-role="check-stages">Check survival rates</button>
+    </div>
+    <div data-role="final" style="margin-top:10px;display:none;"></div>
+    <div class="applet-feedback" data-role="feedback"></div>
+    <div class="applet-result" data-role="result"></div>
+  `;
+  const badge = wrap.querySelector('[data-role="round-badge"]');
+  const prompt = wrap.querySelector('[data-role="prompt"]');
+  const stagesHost = wrap.querySelector('[data-role="stages"]');
+  const checkStagesBtn = wrap.querySelector('[data-role="check-stages"]');
+  const finalHost = wrap.querySelector('[data-role="final"]');
+  const feedback = wrap.querySelector('[data-role="feedback"]');
+  const result = wrap.querySelector('[data-role="result"]');
+  const approx = (a, b) => Math.abs(a - b) < 1e-6;
+  function fmtProduct(p) {
+    // trim trailing zeros, keep readable (0.4, 0.99, 0.21)
+    return String(parseFloat(p.toFixed(6)));
+  }
+  function renderRound() {
+    const r = rounds[roundIdx];
+    if (!r) return;
+    badge.textContent = (cfg.round_badge || 'Round N of 3').replace('N', String(roundIdx + 1)).replace(/of\s+\d+/, `of ${rounds.length}`);
+    prompt.innerHTML = `Enter the survival rate left after each change. The running product builds as you go.`;
+    const cards = r.stages.map((st, i) => `
+      <span style="display:inline-flex;flex-direction:column;align-items:center;gap:6px;">
+        <span style="font-weight:700;font-size:1.15em;color:var(--good)">${st.change_label}</span>
+        <input class="fib-input" type="text" inputmode="decimal" data-role="sr${i}" placeholder="?" style="width:72px;text-align:center;font-size:1.2em;">
+        <span style="font-size:0.78em;color:var(--muted)">survives</span>
+        <span data-role="rp${i}" style="font-size:0.85em;color:var(--muted);min-height:1.1em;"></span>
+      </span>
+      ${i < r.stages.length - 1 ? '<span style="font-size:1.3em;align-self:center;color:var(--muted)">×</span>' : ''}
+    `).join('');
+    stagesHost.innerHTML = cards;
+    checkStagesBtn.disabled = false;
+    finalHost.style.display = 'none';
+    finalHost.innerHTML = '';
+    feedback.className = 'applet-feedback';
+    feedback.textContent = '';
+    result.innerHTML = '';
+  }
+  function checkStages() {
+    const r = rounds[roundIdx];
+    if (!r) return;
+    const vals = r.stages.map((_, i) => {
+      const inp = wrap.querySelector(`[data-role="sr${i}"]`);
+      return inp ? Number(String(inp.value).trim()) : NaN;
+    });
+    if (vals.some(v => !Number.isFinite(v))) {
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = 'Enter a survival rate (a decimal like 0.8) for each change.';
+      return;
+    }
+    const firstWrong = r.stages.findIndex((st, i) => !approx(vals[i], st.survival_rate));
+    if (firstWrong !== -1) {
+      const st = r.stages[firstWrong];
+      feedback.className = 'applet-feedback bad';
+      feedback.textContent = st.direction === 'up'
+        ? `Check the ${st.change_label} stage — a rise means more than 100% survives.`
+        : `Check the ${st.change_label} stage — if ${st.percent}% is lost, what fraction is left?`;
+      if (typeof SoundEngine !== 'undefined') SoundEngine.playIncorrect();
+      return;
+    }
+    // all stage rates correct — show running products
+    r.stages.forEach((st, i) => {
+      const rp = wrap.querySelector(`[data-role="rp${i}"]`);
+      if (rp) rp.textContent = `running: ${fmtProduct(r.running_products[i])}`;
+    });
+    if (typeof SoundEngine !== 'undefined') SoundEngine.playCorrect();
+    feedback.className = 'applet-feedback good';
+    feedback.textContent = '✓ Survival rates correct — now finish the chain.';
+    checkStagesBtn.disabled = true;
+    showFinalQuestion();
+  }
+  function showFinalQuestion() {
+    const r = rounds[roundIdx];
+    finalHost.style.display = 'block';
+    finalHost.innerHTML = `
+      <div class="applet-prompt">After the last stage, <strong>${fmtProduct(r.final_product)}</strong> is left — what percent is that?</div>
+      <div class="applet-controls">
+        <input class="fib-input" type="text" inputmode="decimal" data-role="final-input" placeholder="?" style="width:100px;font-size:1.2em;">
+        <button class="applet-btn" data-role="check-final">Check</button>
+      </div>
+    `;
+    const finalInput = finalHost.querySelector('[data-role="final-input"]');
+    const checkFinalBtn = finalHost.querySelector('[data-role="check-final"]');
+    function checkFinal() {
+      const raw = String(finalInput.value).trim().replace('%', '');
+      const userN = Number(raw);
+      const expN = Number(String(r.final_percent).replace('%', ''));
+      if (!Number.isFinite(userN)) {
+        feedback.className = 'applet-feedback bad';
+        feedback.textContent = 'Enter the percent (for example, 40 or 40%).';
+        return;
+      }
+      if (approx(userN, expN)) {
+        feedback.className = 'applet-feedback good';
+        feedback.innerHTML = `✓ ${fmtProduct(r.final_product)} of the original = ${r.final_percent}.`;
+        result.innerHTML = `<strong>${r.stages.map(s => s.survival_rate).join(' × ')} = ${fmtProduct(r.final_product)} = ${r.final_percent}</strong>`;
+        if (typeof SoundEngine !== 'undefined') SoundEngine.playCorrect();
+        checkFinalBtn.disabled = true; finalInput.disabled = true;
+        if (roundIdx < rounds.length - 1) {
+          setTimeout(() => { roundIdx += 1; renderRound(); }, 1600);
+        } else if (!solved && typeof onSolved === 'function') {
+          solved = true; onSolved();
+        }
+      } else {
+        feedback.className = 'applet-feedback bad';
+        feedback.textContent = `Not quite — to turn ${fmtProduct(r.final_product)} into a percent, multiply by 100.`;
+        if (typeof SoundEngine !== 'undefined') SoundEngine.playIncorrect();
+      }
+    }
+    checkFinalBtn.addEventListener('click', checkFinal);
+  }
+  checkStagesBtn.addEventListener('click', checkStages);
+  renderRound();
+  return wrap;
+}
+
+function renderApplet(step, onSolved) {
+  if (!step || step.type !== 'applet' || !step.applet_type) return null;
+  const cfg = step.config || {};
+  switch (step.applet_type) {
+    case 'fraction-bar-builder': return buildFractionBarBuilder(cfg, step.instruction, onSolved);
+    case 'equivalent-fraction-multiplier': return buildEquivalentMultiplier(cfg, step.instruction, onSolved);
+    case 'equivalence-bar-builder': return buildEquivalenceBarBuilder(cfg, step.instruction, onSolved);
+    case 'fraction-comparator': return buildFractionComparator(cfg, step.instruction, onSolved);
+    case 'fraction-multiplier-grid': return buildFractionMultiplierGrid(cfg, step.instruction, onSolved);
+    case 'fraction-of-quantity': return buildFractionOfQuantity(cfg, step.instruction, onSolved);
+    case 'fraction-divider-count': return buildFractionDividerCount(cfg, step.instruction, onSolved);
+    case 'bottle-pour': return buildBottlePour(cfg, step.instruction, onSolved);
+    case 'decimal-fraction-converter': return buildDecimalFractionConverter(cfg, step.instruction, onSolved);
+    case 'decimal-place-value-builder': return buildDecimalPlaceValueBuilder(cfg, step.instruction, onSolved);
+    case 'decimal-shift-visualizer': return buildDecimalShiftVisualizer(cfg, step.instruction, onSolved);
+    case 'percent-bar-builder': return buildPercentBarBuilder(cfg, step.instruction, onSolved);
+    case 'survival-fraction-tracker': return buildSurvivalFractionTracker(cfg, step.instruction, onSolved);
+    default: return null;
+  }
+}
+
+function prettifyKey(k) {
+  return String(k || '').replace(/_/g, ' ').replace(/^\w/, c => c.toUpperCase());
+}
+
+// ─── Top-level render ─────────────────────────────────────────────
+function render() {
+  renderSidebar();
+  const content = $('#content');
+  content.innerHTML = '';
+  content.className = ''; // remove splash class
+  const it = state.items[state.cursor];
+  if (!it) {
+    content.appendChild(el('div', { class: 'panel' }, el('div', { class: 'item-title' }, 'Lesson complete 🎉')));
+    recalcProgress();
+    return;
+  }
+  let node;
+  if (it.kind === 'question') {
+    const q = it.data;
+    if (q.type === 'fill_in_blank' || q.type === 'cloze_drag') node = renderFIB(it);
+    else node = renderMCQ(it);
+  } else if (it.kind === 'mc-question') {
+    const q = it.data;
+    if (q.type === 'fill_in_blank' || q.type === 'cloze_drag') node = renderFIB(it);
+    else node = renderMCQ(it);
+  } else if (it.kind === 'worked-example') {
+    node = renderWE(it);
+  } else if (it.kind === 'il-step') {
+    node = renderILStep(it);
+  } else if (it.kind === 'key-insight') {
+    node = renderKeyInsight(it);
+  } else if (it.kind === 'mc-summary') {
+    node = renderMCSummary(it);
+  }
+  if (node) {
+    node.classList.add('is-fresh');
+    content.appendChild(node);
+  }
+
+  // Bottom nav (Prev / Next)
+  const nav = el('div', { class: 'bottom-nav' },
+    el('button', { class: 'btn' + (state.cursor === 0 ? ' disabled' : ''), onclick: prevItem, disabled: state.cursor === 0 }, '← Previous'),
+    el('span', { class: 'item-counter', style: 'margin:0' }, `Item ${state.cursor + 1} of ${state.items.length}`),
+    el('button', { class: 'btn', onclick: nextItem, disabled: state.cursor >= state.items.length - 1 }, 'Next →'),
+  );
+  content.appendChild(nav);
+
+  // Math render pass
+  mathifyDom(content);
+  // Numeric keypad: tag every fill-in-blank in the just-rendered content
+  // so tapping a blank pops the keypad and tapping elsewhere dismisses it.
+  Keypad.attach(content);
+  recalcProgress();
+  // Sync URL hash to position
+  history.replaceState(null, '', `?lesson=${SLUG}#${state.cursor}`);
+
+  // ─── Auto-advance: schedule once per (cursor, status) transition ───
+  // Only for MCQ/FIB items (question / mc-question kinds). IL steps,
+  // worked examples, key insights, and the MC summary advance manually.
+  maybeScheduleAutoAdvance(it);
+}
+
+function maybeScheduleAutoAdvance(it) {
+  if (!it) return;
+  if (state.cursor >= state.items.length - 1) return;  // last item — let user finish
+  const st = getSt(it.id);
+  if (!st) return;
+
+  let ms = 0;
+  if (it.kind === 'question' || it.kind === 'mc-question') {
+    // MCQ / FIB items.
+    ms =
+      st.status === 'correct' ? ADVANCE_CORRECT_MS :
+      st.status === 'wrong-shown' ? ADVANCE_WRONG_SHOWN_MS : 0;
+  } else if (it.kind === 'il-step' && st.__ilReadyToAdvance) {
+    // Interactive-lesson step whose questions are all answered correctly.
+    ms = ADVANCE_IL_MS;
+  }
+  if (!ms) return;
+  if (st.__advanceScheduledFor === state.cursor) return;  // already scheduled this turn
+  st.__advanceScheduledFor = state.cursor;
+  scheduleAutoAdvance(ms);
+  // Add a visual progress bar under the feedback so the student sees what's coming.
+  const fb = document.querySelector('.feedback.good, .answer-reveal, .applet-feedback.good, .applet .insight');
+  if (fb) {
+    const bar = document.createElement('div');
+    bar.className = 'auto-advance-bar';
+    bar.style.setProperty('--advance-ms', ms + 'ms');
+    bar.innerHTML = '<span></span>';
+    fb.parentNode.insertBefore(bar, fb.nextSibling);
+  }
+}
+
+function nextItem() {
+  cancelAutoAdvance();
+  if (state.cursor < state.items.length - 1) {
+    state.cursor += 1;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    render();
+  }
+}
+function prevItem() {
+  cancelAutoAdvance();
+  if (state.cursor > 0) {
+    state.cursor -= 1;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    render();
+  }
+}
+
+// ─── Init ─────────────────────────────────────────────────────────
+async function init() {
+  try {
+    const res = await fetch(CFG.json);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    state.lesson = await res.json();
+  } catch (e) {
+    $('#content').innerHTML = '';
+    $('#content').appendChild(el('div', { class: 'error' },
+      'Could not load lesson JSON: ' + e.message + '. Serve via HTTP — file:// will not work.'));
+    return;
+  }
+  state.items = buildItems(state.lesson);
+  // Read cursor from URL hash if present
+  const hashIdx = parseInt(location.hash.replace('#', ''), 10);
+  if (Number.isFinite(hashIdx) && hashIdx >= 0 && hashIdx < state.items.length) {
+    state.cursor = hashIdx;
+  }
+  $('#lesson-title').textContent = `Lesson ${state.lesson.lesson_number} — ${state.lesson.title}`;
+  $('#lesson-sub').textContent = state.lesson.unit;
+  const soundBtn = document.getElementById('sound-toggle');
+  if (soundBtn) soundBtn.textContent = state.soundOn ? '🔊' : '🔇';
+  render();
+}
+init();
+</script>
+</body>
+</html>

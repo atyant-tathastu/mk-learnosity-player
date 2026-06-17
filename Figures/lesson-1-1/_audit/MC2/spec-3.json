@@ -1,0 +1,40 @@
+{
+  "type": "option_strip",
+  "cell_width": 130,
+  "cell_height": 130,
+  "color": "blue",
+  "options": [
+    {
+      "label": "A",
+      "spec": {
+        "type": "square_with_diagonals",
+        "pattern": "quarter",
+        "color": "blue"
+      }
+    },
+    {
+      "label": "B",
+      "spec": {
+        "type": "square_with_diagonals",
+        "pattern": "diamond_quarters",
+        "color": "blue"
+      }
+    },
+    {
+      "label": "C",
+      "spec": {
+        "type": "square_with_diagonals",
+        "pattern": "two_triangles",
+        "color": "blue"
+      }
+    },
+    {
+      "label": "D",
+      "spec": {
+        "type": "square_with_diagonals",
+        "pattern": "X",
+        "color": "blue"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "figure_type": "single_figure",
+  "single": {
+    "primitive": "labelled_square",
+    "structure": {
+      "shape": "square",
+      "side_labels": {
+        "top_left_segment": "2 cm",
+        "top_right_segment": "4 cm",
+        "left_top_segment": "2 cm",
+        "left_bottom_segment": "4 cm"
+      },
+      "internal_triangle": {
+        "vertices": [
+          "top_edge_at_2cm_from_left",
+          "left_edge_at_2cm_from_top",
+          "bottom_right_corner"
+        ],
+        "shaded": true,
+        "fill": "light_green"
+      }
+    }
+  },
+  "decorations_noted": [
+    "watermark text 'copy' and 'for purchaser's use only' behind figure",
+    "answer fraction '2/9' visible to the left of the square"
+  ],
+  "primitive_gap": null,
+  "confidence": "high",
+  "notes": "Square of side 6 cm (2+4). Triangle vertices: (2,0) on top edge, (0,2) on left edge, and (6,6) bottom-right corner. Shaded region is this triangle. Answer 2/9 shown alongside."
+}

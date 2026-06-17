@@ -1,0 +1,9 @@
+{
+  "type": "rectangle_with_triangle",
+  "rows": 2,
+  "cols": 3,
+  "triangle_row": 1,
+  "triangle_col": 1,
+  "triangle_corner": "bottom_right",
+  "color": "blue"
+}

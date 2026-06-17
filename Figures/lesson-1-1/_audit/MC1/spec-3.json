@@ -1,0 +1,20 @@
+{
+  "type": "labelled_square",
+  "shape": "square",
+  "side_labels": {
+    "top_left_segment": "2 cm",
+    "top_right_segment": "4 cm",
+    "left_top_segment": "2 cm",
+    "left_bottom_segment": "4 cm"
+  },
+  "internal_triangle": {
+    "vertices": [
+      "top edge at 2cm from left (i.e. 2cm mark)",
+      "left edge at 2cm from top (i.e. 2cm mark)",
+      "bottom-right corner"
+    ],
+    "shaded": true,
+    "fill": "light green"
+  },
+  "color": "blue"
+}

@@ -1,0 +1,37 @@
+{
+  "figure_type": "option_strip",
+  "options": [
+    {
+      "label": "A",
+      "primitive": "square_with_diagonals",
+      "structure": {
+        "pattern": "quarter"
+      }
+    },
+    {
+      "label": "B",
+      "primitive": "square_with_diagonals",
+      "structure": {
+        "pattern": "diamond_quarters"
+      }
+    },
+    {
+      "label": "C",
+      "primitive": "square_with_diagonals",
+      "structure": {
+        "pattern": "two_triangles"
+      }
+    },
+    {
+      "label": "D",
+      "primitive": "square_with_diagonals",
+      "structure": {
+        "pattern": "X"
+      }
+    }
+  ],
+  "decorations_noted": [],
+  "primitive_gap": null,
+  "confidence": "high",
+  "notes": "Sub-crop pass; all options read with confidence."
+}

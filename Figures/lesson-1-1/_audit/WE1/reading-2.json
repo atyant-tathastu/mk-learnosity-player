@@ -1,0 +1,70 @@
+{
+  "figure_type": "option_strip",
+  "options": [
+    {
+      "label": "A",
+      "primitive": "hearts_string",
+      "structure": {
+        "total": 5,
+        "shaded": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "label": "B",
+      "primitive": "hearts_string",
+      "structure": {
+        "total": 9,
+        "shaded": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "label": "C",
+      "primitive": "hearts_string",
+      "structure": {
+        "total": 6,
+        "shaded": [
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "label": "D",
+      "primitive": "hearts_string",
+      "structure": {
+        "total": 5,
+        "shaded": [
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "label": "E",
+      "primitive": "hearts_string",
+      "structure": {
+        "total": 9,
+        "shaded": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  ],
+  "decorations_noted": [],
+  "primitive_gap": null,
+  "confidence": "high",
+  "notes": "Sub-crop pass; all options read with confidence."
+}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 220" width="540" height="220" font-family='"Untitled Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'>
+
+  <!-- LEFT PANEL: 8 dots, 3 filled green -->
+  <g>
+    <circle cx="32" cy="60" r="22" fill="#AFE8C2" stroke="#149A55" stroke-width="2"/>
+    <circle cx="82" cy="60" r="22" fill="#AFE8C2" stroke="#149A55" stroke-width="2"/>
+    <circle cx="132" cy="60" r="22" fill="#AFE8C2" stroke="#149A55" stroke-width="2"/>
+    <circle cx="182" cy="60" r="22" fill="#FFFFFF" stroke="#808080" stroke-width="2"/>
+    <circle cx="232" cy="60" r="22" fill="#FFFFFF" stroke="#808080" stroke-width="2"/>
+    <circle cx="82"  cy="140" r="22" fill="#FFFFFF" stroke="#808080" stroke-width="2"/>
+    <circle cx="132" cy="140" r="22" fill="#FFFFFF" stroke="#808080" stroke-width="2"/>
+    <circle cx="182" cy="140" r="22" fill="#FFFFFF" stroke="#808080" stroke-width="2"/>
+    <text x="132" y="200" text-anchor="middle" font-size="14" fill="#0A80D5" font-weight="bold">Dots</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="290" y1="20" x2="290" y2="200" stroke="#D0D0D0" stroke-width="1" stroke-dasharray="4 3"/>
+
+  <!-- RIGHT PANEL: 7 squares, 4 filled green -->
+  <g>
+    <rect x="320" y="40"  width="40" height="40" fill="#AFE8C2" stroke="#149A55" stroke-width="2"/>
+    <rect x="370" y="40"  width="40" height="40" fill="#AFE8C2" stroke="#149A55" stroke-width="2"/>
+    <rect x="420" y="40"  width="40" height="40" fill="#AFE8C2" stroke="#149A55" stroke-width="2"/>
+    <rect x="470" y="40"  width="40" height="40" fill="#AFE8C2" stroke="#149A55" stroke-width="2"/>
+    <rect x="345" y="120" width="40" height="40" fill="#FFFFFF" stroke="#808080" stroke-width="2"/>
+    <rect x="395" y="120" width="40" height="40" fill="#FFFFFF" stroke="#808080" stroke-width="2"/>
+    <rect x="445" y="120" width="40" height="40" fill="#FFFFFF" stroke="#808080" stroke-width="2"/>
+    <text x="415" y="200" text-anchor="middle" font-size="14" fill="#0A80D5" font-weight="bold">Squares</text>
+  </g>
+
+</svg>

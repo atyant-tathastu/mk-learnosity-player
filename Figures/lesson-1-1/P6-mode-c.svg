@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" font-family='"Untitled Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'>
+
+  <!-- Pie cut into 12 equal slices (30° each), starting from the top vertex and going clockwise. First 8 slices shaded blue. Center (120,120), radius 100. -->
+
+  <!-- Slice 1 (shaded): -90° to -60° -->
+  <path d="M 120,120 L 120,20 A 100,100 0 0,1 170,33.4 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 2 (shaded): -60° to -30° -->
+  <path d="M 120,120 L 170,33.4 A 100,100 0 0,1 206.6,70 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 3 (shaded): -30° to 0° -->
+  <path d="M 120,120 L 206.6,70 A 100,100 0 0,1 220,120 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 4 (shaded): 0° to 30° -->
+  <path d="M 120,120 L 220,120 A 100,100 0 0,1 206.6,170 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 5 (shaded): 30° to 60° -->
+  <path d="M 120,120 L 206.6,170 A 100,100 0 0,1 170,206.6 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 6 (shaded): 60° to 90° -->
+  <path d="M 120,120 L 170,206.6 A 100,100 0 0,1 120,220 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 7 (shaded): 90° to 120° -->
+  <path d="M 120,120 L 120,220 A 100,100 0 0,1 70,206.6 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 8 (shaded): 120° to 150° -->
+  <path d="M 120,120 L 70,206.6 A 100,100 0 0,1 33.4,170 Z" fill="#8DD5F1" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 9 (unshaded): 150° to 180° -->
+  <path d="M 120,120 L 33.4,170 A 100,100 0 0,1 20,120 Z" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 10 (unshaded): 180° to 210° -->
+  <path d="M 120,120 L 20,120 A 100,100 0 0,1 33.4,70 Z" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 11 (unshaded): 210° to 240° -->
+  <path d="M 120,120 L 33.4,70 A 100,100 0 0,1 70,33.4 Z" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+  <!-- Slice 12 (unshaded): 240° to 270° -->
+  <path d="M 120,120 L 70,33.4 A 100,100 0 0,1 120,20 Z" fill="#FFFFFF" stroke="#0A80D5" stroke-width="2"/>
+
+  <!-- Outer circle outline for a clean edge -->
+  <circle cx="120" cy="120" r="100" fill="none" stroke="#0A80D5" stroke-width="2"/>
+
+</svg>

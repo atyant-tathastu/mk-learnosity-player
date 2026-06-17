@@ -1,0 +1,2135 @@
+{
+  "unit": "Unit 1: Fractions, Decimals & Percentages",
+  "lesson_number": "1.4",
+  "title": "Percentages: Meaning, Calculation, Word Problems",
+  "slug": "lesson-1-4-percentages",
+  "technique": "Percent = per hundred; convert percent <-> decimal <-> fraction; find X% of a number; find what percent one number is of another; single-step and chained percentage increase/decrease.",
+  "key_insight": "A percent is a fraction with denominator 100, so 25% = 25/100 = 1/4 = 0.25 -- one number in three notations. When changes chain, multiply what survives at each step; don't add the percents.",
+  "skills": [
+    "pct-meaning",
+    "pct-frac-dec-conversion",
+    "pct-of-quantity",
+    "pct-from-quantity",
+    "pct-greater-than-100",
+    "pct-increase-decrease",
+    "pct-chained-compounding",
+    "pct-reverse",
+    "pct-in-context"
+  ],
+  "estimated_minutes": 45,
+  "difficulty_range": "3pt-5pt",
+  "narrative_thread": "Anna as default recurring student; Tom and Lara as secondary actors for comparison and price items. Neutral locale, $.",
+  "prior_lesson_hook": "L1.3 closing concept (x100 / div100 shifts the decimal point): 'You already know 0.25 x 100 = 25. Percent just means per hundred -- so 0.25 = 25%. You've been doing percent the whole time.'",
+  "blocks": [
+    {
+      "block_type": "challenge_first",
+      "title": "Challenge First",
+      "note": "2 cold problems. The player auto-reveals after 2 wrong attempts. No hints.",
+      "questions": [
+        {
+          "id": "CF1",
+          "type": "mcq",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "3pt",
+            "fingerprint_pool": [
+              "pyq-2007-q2"
+            ],
+            "step_count": 2,
+            "twist_pattern": "all_three_forms_must_agree",
+            "sub_skill": "pct-frac-dec-conversion",
+            "llm_consensus": [],
+            "audit_log_path": "audits/L1-4-CF1.json"
+          },
+          "calibration_note": "Mode C original (MC-A conversion diagnostic). RE-SKIN ATTEMPT FAILED: the only L1.3 conversion PYQ available for cross-lesson re-skin is MK 2002 Q07, which is a 'rank five arithmetic expressions and pick the greatest' item (10 × 0.001 × 100; 100 ÷ 0.01; 10,000 × 100 ÷ 10; …). Re-skinning it into a percent surface would either keep the rank-five-expressions structure (wrong cognition for a percent-meaning diagnostic — it tests ×/÷-by-10 arithmetic ranking, not %↔frac↔dec equivalence) or gut it to a single conversion (difficulty erosion, the banned L1.2 CF1 pattern). No clean re-skin lands, so CF1 is a flagged Mode C original per pyq-allocations.md (CF1 = re-skin-OR-original) and skeleton §7. CALIBRATION ANCHOR: MK 2007 Q2 (3pt — fraction-of-day with clean percent-convertible bases 1/4 = 25%, ×1.5 → 3/8 = 37.5%). Twist-density parity: 2007 Q2 is a 2-move 3pt (read a clean fraction base, then apply a multiplier/convert); CF1 is also 2-move (convert the decimal across the per-hundred shift, then check all three forms agree as one number). Calibrated to the same 3pt band — not a 1-step recall of a memorized equivalence. Per CF cognitive-work rule (cf-author.md): the answer is NOT a single memorized fact — the student must run the ×100 conversion AND reject three forms that each pass one notation test but fail the equivalence, so it cannot be answered by recalling '0.4 = 40%' alone. Multi-form-correct conversion → MCQ per the Percentages chapter rule (course CLAUDE.md). 4-option per distractor-plan.md CF1 (CF MCQ precedent). Distractor values + R-tags taken verbatim from distractor-plan.md CF1.",
+          "question_text": "Anna writes the number 0.4 three different ways and claims all three name the same amount. Which row is correct?",
+          "config": {
+            "options": [
+              "0.4 = 40% = 2/5",
+              "0.4 = 4% = 2/5",
+              "0.4 = 0.4% = 4/10",
+              "0.4 = 4% = 4/10"
+            ],
+            "answer": 0
+          },
+          "explanation": "Percent means per hundred, so to turn a decimal into a percent you multiply by 100: 0.4 × 100 = 40, which is 40%. As a fraction, 0.4 = 4/10 = 2/5 once you simplify. So all three forms of the same number are 0.4 = 40% = 2/5. The other rows slip on the percent: 0.4 → 4% shifts the point only one place instead of two, and 0.4 → 0.4% just sticks a percent sign on without converting at all. And 4/10 is a true fraction for 0.4, but it isn't the percent — only 40% is.",
+          "difficulty": 3,
+          "skills": [
+            "pct-frac-dec-conversion",
+            "pct-meaning"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "original-calibrated-2007-q2"
+          ],
+          "on_correct": "Right — 0.4 × 100 = 40, so 0.4 = 40%, and 0.4 = 4/10 = 2/5. One number, three outfits: decimal, percent, fraction.",
+          "on_wrong": "The correct row is 0.4 = 40% = 2/5. To make a percent, multiply the decimal by 100: 0.4 × 100 = 40, so 40% — moving 0.4 to 4% only shifts one place, and 0.4% doesn't convert at all. As a fraction, 0.4 = 4/10 = 2/5."
+        },
+        {
+          "id": "CF2",
+          "type": "fill_in_blank",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "3pt",
+            "fingerprint_pool": [
+              "pyq-2007-q2"
+            ],
+            "step_count": 2,
+            "twist_pattern": "find_growth_multiplier_then_apply",
+            "sub_skill": "pct-increase-decrease",
+            "llm_consensus": [],
+            "audit_log_path": "audits/L1-4-CF2.json"
+          },
+          "calibration_note": "Mode C original (MC-B single-step % increase). Confirmed corpus-empty: scanner verdict reports zero single-step 3pt percent-change PYQs anywhere in the 720-corpus (pyq-allocations.md CF2, skeleton §7). CALIBRATION ANCHOR: MK 2007 Q2 (3pt). Twist-density parity: 2007 Q2 is a 2-move 3pt (clean base + multiplier). CF2 is also 2-move: the student must (1) turn '15% more' into the growth multiplier — recognise that the new price keeps the original 100% PLUS 15%, i.e. 115% = 1.15 of the old — then (2) apply it to $40 → $46. This is deliberately NOT a 1-step triviality (avoids the L1.2 CF1 erosion incident, block-design §7): a student who just computes 15% of 40 (= $6) and stops, or who adds the bare percent number (40 + 15 = 55), lands wrong. Clean numbers (40, 15%) keep it a true 3pt, not harder. Single dollar value → FIB per the Percentages chapter rule. DISTINCT from P4 (forward single-step '$80 coat 25% off → $60', a DECREASE) and from IL Step 9 prime ('$50 game up 20% → $60'): CF2 is an INCREASE with a different base/rate and a non-multiple-of-10 percent, so it does not collide. accept[] carries the bare value and the $-prefixed and decimal-tail forms the numeric normalizer treats as equal.",
+          "question_text": "A bookshop raises the price of a $40 board game by 15%.\n\nWhat is the new price, in dollars?\n\n{blank}",
+          "config": {
+            "answers": [
+              "46"
+            ],
+            "accept": [
+              "46",
+              "$46",
+              "46.00",
+              "$46.00",
+              "46.0"
+            ]
+          },
+          "explanation": "A 15% increase means the new price is the whole original price plus another 15% of it — that is 100% + 15% = 115% of $40. Written as a multiplier, 115% = 1.15, so the new price is 1.15 × 40 = $46. You can also see it in two pieces: 15% of 40 is 0.15 × 40 = $6, and $40 + $6 = $46. Adding the bare number 15 to 40 (getting $55) treats the percent as dollars, and finding only the $6 increase forgets to add it back to the original.",
+          "difficulty": 3,
+          "skills": [
+            "pct-increase-decrease",
+            "pct-in-context"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "original-calibrated-2007-q2"
+          ],
+          "on_correct": "Right — a 15% rise means the price becomes 115% of $40, so 1.15 × 40 = $46. The original 100% stays and the 15% is added on top.",
+          "on_wrong": "The new price is $46. A 15% increase keeps the whole $40 (that's 100%) and adds 15% more on top: 100% + 15% = 115% = 1.15, so 1.15 × 40 = $46. Or find 15% of 40 = $6 first, then add it back: $40 + $6 = $46."
+        }
+      ]
+    },
+    {
+      "block_type": "interactive_lesson",
+      "title": "Interactive Lesson",
+      "design_principles": [
+        "Every step requires student input",
+        "Connection statements anchor + bridge across steps",
+        "Teacher voice, not AI",
+        "CPA progression: concrete -> pictorial -> abstract"
+      ],
+      "estimated_minutes": 12,
+      "steps": [
+        {
+          "id": "IL1",
+          "step": 1,
+          "type": "predict",
+          "section": "Hook",
+          "section_title": "You've been doing percent already",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-4/il-step-1.svg",
+          "figure_description": "A single number card showing the decimal 0.25 on the left, a right-pointing arrow labelled '× 100' above it, and an empty card on the right where the percent will go. A small note under the arrow reads 'per hundred'.",
+          "text": "Last lesson Anna shifted the decimal point: 0.25 × 100 = 25. That little move has a name. 'Percent' just means 'per hundred', so 0.25 is 25 per hundred. So what is 0.25 written as a percent?",
+          "action": {
+            "prompt": "0.25 × 100 = 25, so 0.25 = {blank}",
+            "max_attempts": 1,
+            "proceed_regardless": true,
+            "type": "mcq",
+            "config": {
+              "options": [
+                "25%",
+                "2.5%",
+                "0.25%",
+                "250%"
+              ],
+              "answer": 0
+            },
+            "on_correct": "Right — 0.25 × 100 = 25, and 'per hundred' is what percent means, so 0.25 = 25%. You've been doing percent all along.",
+            "on_wrong": "It's 25%. The full move is × 100 — 0.25 × 100 = 25 — so 0.25 = 25%. The next steps will picture why."
+          },
+          "color": "purple",
+          "figure_spec": {
+            "type": "decimal_percent_arrow_card",
+            "decimal": "0.25",
+            "multiplier": "× 100",
+            "note": "per hundred",
+            "show_result": false,
+            "color": "purple"
+          }
+        },
+        {
+          "id": "IL2",
+          "step": 2,
+          "type": "explain",
+          "section": "Per hundred",
+          "section_title": "Twenty-five out of a hundred",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-4/il-step-2.svg",
+          "figure_description": "A long horizontal bar divided into 100 equal narrow segments. The leftmost 25 segments are shaded blue; the remaining 75 are unshaded. A faint vertical tick marks every tenth segment so the shaded run can be counted in groups of ten.",
+          "text": "Here's a bar cut into 100 equal segments — a whole 'hundred'. Some segments are shaded blue. Count what's in front of you.",
+          "questions": [
+            {
+              "prompt": "How many of the 100 segments are shaded? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "25"
+                ]
+              },
+              "on_correct": "Yes — 25 segments shaded out of 100.",
+              "on_wrong": "Count in tens: two full groups of ten, then five more. That's 25 segments."
+            },
+            {
+              "prompt": "25 shaded out of 100. Write the shaded part as a fraction of the whole bar: {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "25",
+                  "100"
+                ]
+              },
+              "on_correct": "Right — 25/100 of the bar is shaded. '25 per hundred' is exactly what 25% says.",
+              "on_wrong": "25 shaded out of 100 total = 25/100. And '25 per hundred' is what '25%' means."
+            },
+            {
+              "prompt": "Simplify 25/100 to its simplest form: {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "1",
+                  "4"
+                ]
+              },
+              "on_correct": "Yes — divide top and bottom by 25: 25/100 = 1/4. So 25% and 1/4 are the same amount.",
+              "on_wrong": "Divide top and bottom by 25: 25 ÷ 25 = 1, 100 ÷ 25 = 4. So 25/100 = 1/4."
+            },
+            {
+              "prompt": "And as a decimal, the same shaded amount is {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.25"
+                ],
+                "accept": [
+                  "0.25",
+                  ".25"
+                ]
+              },
+              "on_correct": "Right — 25/100 = 0.25. So 25% = 25/100 = 1/4 = 0.25. One amount, four ways to write it.",
+              "on_wrong": "25 out of 100 = 25/100 = 0.25. So 25% = 25/100 = 1/4 = 0.25 — the same amount."
+            }
+          ],
+          "figure_spec": {
+            "type": "pct_bar_100seg",
+            "shaded_segments": 25,
+            "show_tens_ticks": true,
+            "show_labels": false,
+            "color": "blue"
+          },
+          "color": "blue"
+        },
+        {
+          "id": "IL3",
+          "step": 3,
+          "type": "applet",
+          "applet_type": "percent-bar-builder",
+          "section": "Practice",
+          "section_title": "Shade the bar yourself",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-4/il-step-3.svg",
+          "figure_description": "A blank horizontal bar divided into 100 equal segments, with a second identical blank bar stacked below it for amounts past 100. Faint ticks mark every tenth segment. Nothing is shaded — the student shades each bar.",
+          "text": "The bar showed 25 of 100 — that was 25%, 1/4, 0.25, all one amount. Now shade some bars yourself and read off all three forms.",
+          "instruction": "Shade the bar to show each percent. Then read off what fraction and decimal you've made.",
+          "config": {
+            "rounds": [
+              {
+                "target_percent": 25,
+                "target_label": "25%",
+                "segments": 25,
+                "bars": 1,
+                "readback": {
+                  "percent": "25%",
+                  "fraction": "1/4",
+                  "decimal": "0.25"
+                }
+              },
+              {
+                "target_percent": 60,
+                "target_label": "60%",
+                "segments": 60,
+                "bars": 1,
+                "readback": {
+                  "percent": "60%",
+                  "fraction": "3/5",
+                  "decimal": "0.6"
+                }
+              },
+              {
+                "target_percent": 150,
+                "target_label": "150%",
+                "segments": 150,
+                "bars": 2,
+                "readback": {
+                  "percent": "150%",
+                  "fraction": "3/2",
+                  "decimal": "1.5"
+                }
+              }
+            ],
+            "dynamic_question": {
+              "template": "{{shaded_segments}} of 100 shaded — what percent? what fraction? what decimal?",
+              "derives_from": "shaded_segments",
+              "answer_fields": [
+                "percent",
+                "fraction",
+                "decimal"
+              ],
+              "no_leak": "The target percent appears only in the instruction; no segments are pre-shaded.",
+              "distractor_spec": {
+                "percent_round_1_2": "offer the R5 family — the value shifted one place each way and the value with '%' appended unshifted",
+                "percent_round_3_150": "also offer a <=100% distractor (R4 — 'you can't shade past one full bar, so it must be 100%')"
+              }
+            },
+            "rounds_count": 3,
+            "round_badge": "Round N of 3"
+          },
+          "on_correct": "Right — shade the segments, and the count out of 100 reads straight off as the percent, the fraction, and the decimal.",
+          "on_wrong": "Read the segments out of 100: 25 of 100 = 25% = 1/4 = 0.25; 60 of 100 = 60% = 3/5 = 0.6. For 150, you shade a full bar plus half of a second — more than one whole.",
+          "discovery_message": "Shading out of 100 turns any percent into a fraction and a decimal at once: 25% = 1/4 = 0.25, 60% = 3/5 = 0.6. And 150% just spills past one full bar — a whole and a half, which is 3/2 = 1.5. Percent can go above 100.",
+          "figure_spec": {
+            "type": "pct_bar_100seg_builder_static",
+            "bars": 2,
+            "shaded_segments": 0,
+            "show_tens_ticks": true,
+            "show_labels": false,
+            "color": "green"
+          },
+          "color": "green"
+        },
+        {
+          "id": "IL4",
+          "step": 4,
+          "type": "reveal",
+          "section": "Closure",
+          "section_title": "One number, three notations",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-4/il-step-4.svg",
+          "figure_description": "A short horizontal bar with the left quarter shaded purple. Three labels point at the same shaded region from above, side by side: '25%', '1/4', and '0.25'. A small caption reads 'one number'.",
+          "text": "So 25% is 1/4 is 0.25 — one number wearing three outfits. And when a percent climbs past 100, like 150%, it just means more than one whole. Your turn on a fresh one.",
+          "questions": [
+            {
+              "prompt": "Write 0.6 as a percent: {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "60%"
+                ],
+                "accept": [
+                  "60%",
+                  "60"
+                ]
+              },
+              "on_correct": "Right — 0.6 × 100 = 60, so 0.6 = 60%. Move the decimal two places right to read a decimal as a percent.",
+              "on_wrong": "0.6 × 100 = 60, so 0.6 = 60%. Reading a decimal as a percent means × 100 — two places right."
+            },
+            {
+              "prompt": "And going the other way — write 40% as a fraction over 100, then simplify: {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "2",
+                  "5"
+                ]
+              },
+              "on_correct": "Yes — 40% = 40/100, and dividing top and bottom by 20 gives 2/5. Any percent becomes a fraction by writing it over 100 and simplifying.",
+              "on_wrong": "40% means 40 per hundred = 40/100. Divide top and bottom by 20: 40/100 = 2/5."
+            }
+          ],
+          "figure_spec": {
+            "type": "fdp_triple",
+            "shaded_fraction": "1/4",
+            "labels": [
+              "25%",
+              "1/4",
+              "0.25"
+            ],
+            "caption": "one number",
+            "color": "purple"
+          },
+          "color": "purple"
+        },
+        {
+          "id": "IL5",
+          "step": 5,
+          "type": "explain",
+          "section": "Percent of a quantity",
+          "section_title": "Forty percent of eighty",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-4/il-step-5.svg",
+          "figure_description": "A horizontal bar standing for 80, divided into ten equal blocks of 8. A bracket above spans the first four blocks and is labelled '40% of the bar'; the rest of the bar is left plain. No total is written on the marked region.",
+          "text": "We just saw 25% is 1/4 is 0.25 — one number, three outfits. Now let's use it. Here's a bar standing for 80, and 40% of it is marked off. What is 40% of 80?",
+          "questions": [
+            {
+              "prompt": "First write 40% as a decimal: {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.4"
+                ],
+                "accept": [
+                  "0.4",
+                  ".4",
+                  "0.40"
+                ]
+              },
+              "on_correct": "Right — 40% is 40 per hundred, so 40 ÷ 100 = 0.4.",
+              "on_wrong": "40% means 40 per hundred = 40/100 = 0.4. Move two places left to read a percent as a decimal."
+            },
+            {
+              "prompt": "Now 'of' means multiply. Find 0.4 × 80 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "32"
+                ]
+              },
+              "on_correct": "Yes — 0.4 × 80 = 32, so 40% of 80 is 32. 'Of' is still doing the work of multiplication.",
+              "on_wrong": "0.4 × 80 = 32. The word 'of' means multiply, so 40% of 80 = 0.4 × 80 = 32."
+            },
+            {
+              "prompt": "So in general, X% of N means: {blank}",
+              "type": "mcq",
+              "config": {
+                "options": [
+                  "(X ÷ 100) × N",
+                  "X × N",
+                  "(X ÷ N) × 100",
+                  "X + N"
+                ],
+                "answer": 0
+              },
+              "on_correct": "Right — turn the percent into a decimal by dividing by 100, then multiply by N. That's every 'X% of N'.",
+              "on_wrong": "It's (X ÷ 100) × N. Write the percent over 100 to get the decimal, then multiply by the quantity."
+            }
+          ],
+          "figure_spec": {
+            "type": "pct_of_bar",
+            "total": 80,
+            "blocks": 10,
+            "block_value": 8,
+            "marked_blocks": 4,
+            "bracket_label": "40% of the bar",
+            "show_marked_total": false,
+            "color": "blue"
+          },
+          "color": "blue"
+        },
+        {
+          "id": "IL6",
+          "step": 6,
+          "type": "apply",
+          "section": "What percent",
+          "section_title": "Flip the question",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-4/il-step-6.svg",
+          "figure_description": "A horizontal bar standing for 48, divided into four equal blocks of 12. The leftmost block is shaded green and labelled '12'; the other three blocks are plain. No percent is written anywhere.",
+          "text": "That was X% of a number. Now flip it. Here's a bar for 48, with 12 of it shaded. The question is the other way round: 12 is what percent of 48?",
+          "questions": [
+            {
+              "prompt": "Compare the part to the whole as a fraction, then simplify: 12/48 = {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "1",
+                  "4"
+                ]
+              },
+              "on_correct": "Right — 12 out of 48 is 12/48, and dividing top and bottom by 12 gives 1/4.",
+              "on_wrong": "Compare part to whole: 12/48. Divide top and bottom by 12 — 12 ÷ 12 = 1, 48 ÷ 12 = 4 — so 12/48 = 1/4."
+            },
+            {
+              "prompt": "Now write that fraction as a percent: 12 is {blank} of 48",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "25%"
+                ],
+                "accept": [
+                  "25%",
+                  "25"
+                ]
+              },
+              "on_correct": "Yes — 12 out of 48 is 1/4 = 25%. To ask 'what percent', compare the part to the whole, then read it as per hundred.",
+              "on_wrong": "1/4 = 25/100 = 25%. So 12 is 25% of 48. Compare the part to the whole, then write it over 100."
+            }
+          ],
+          "figure_spec": {
+            "type": "pct_from_bar",
+            "total": 48,
+            "blocks": 4,
+            "block_value": 12,
+            "shaded_blocks": 1,
+            "shaded_label": "12",
+            "show_percent": false,
+            "color": "green"
+          },
+          "color": "green"
+        },
+        {
+          "id": "IL7",
+          "step": 7,
+          "type": "explain",
+          "section": "Past one hundred",
+          "section_title": "One and a half lots",
+          "cpa_beat": "C",
+          "figure": "Figures/lesson-1-4/il-step-7.svg",
+          "figure_description": "Two stacked bars, each standing for $40. The top bar is shaded fully and labelled '$40 — one whole'. The bar below it is shaded only across its left half and labelled 'half again'. A brace down the side groups both shaded parts and reads '150%'. No total dollar amount is written next to the braces.",
+          "text": "A percent can climb past 100. Imagine a price that grows to 150% of $40. That's one whole $40 plus half of another $40 — one and a half lots. Let's find it.",
+          "questions": [
+            {
+              "prompt": "Write 150% as a decimal: {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "1.5"
+                ],
+                "accept": [
+                  "1.5",
+                  "1.50"
+                ]
+              },
+              "on_correct": "Right — 150% is 150 per hundred = 150/100 = 1.5. More than one whole, so the decimal is bigger than 1.",
+              "on_wrong": "150% means 150 per hundred = 150/100 = 1.5. Because it's past 100, the decimal lands above 1."
+            },
+            {
+              "prompt": "Now find 150% of $40: 1.5 × 40 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "60",
+                  "$60",
+                  "60.00"
+                ]
+              },
+              "on_correct": "Yes — 1.5 × 40 = 60, so 150% of $40 is $60. A whole $40 plus half again is $60. Percent is allowed past 100.",
+              "on_wrong": "1.5 × 40 = 60, so 150% of $40 is $60 — one whole $40 plus half of another. Percent can go above 100."
+            }
+          ],
+          "figure_spec": {
+            "type": "over_100_bar_pair",
+            "unit_value": 40,
+            "unit_label": "$40",
+            "full_bars": 1,
+            "extra_fraction": "1/2",
+            "brace_label": "150%",
+            "show_total": false,
+            "color": "blue"
+          },
+          "color": "blue"
+        },
+        {
+          "id": "IL8",
+          "step": 8,
+          "type": "apply",
+          "section": "True or false",
+          "section_title": "Spot the one that's true",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-4/il-step-8.svg",
+          "figure_description": "A small reference card titled 'two moves'. Line one reads 'X% of N = (X over 100) times N'. Line two reads 'A is what % of B = (A over B) as per hundred'. The fractions are drawn stacked. No worked numbers and no statements from the question appear on the card.",
+          "text": "You can now find a percent of a number, find what percent one number is of another, and go past 100. Time to use all three. Only one of these statements is true — which one?",
+          "action": {
+            "prompt": "Which statement is true?",
+            "type": "mcq",
+            "config": {
+              "options": [
+                "30% of 50 = 15",
+                "50 is 40% of 20",
+                "200% of 5 = 25",
+                "15% of 40 = 15",
+                "25% of 80 = 25"
+              ],
+              "answer": 0
+            },
+            "max_attempts": 2,
+            "proceed_regardless": false,
+            "on_correct": "Right — 0.30 × 50 = 15, so 30% of 50 = 15. That's the only true one.",
+            "on_wrong": "The true one is '30% of 50 = 15' (0.30 × 50 = 15). For the rest: 50 is 250% of 20, not 40%; 200% of 5 = 10, not 25; 15% of 40 = 6, not 15; and 25% of 80 = 20, not 25."
+          },
+          "figure_spec": {
+            "type": "pct_rule_card",
+            "title": "two moves",
+            "lines": [
+              "X% of N = (X/100) × N",
+              "A is what % of B = (A/B) per hundred"
+            ],
+            "stacked_fractions": true,
+            "color": "green"
+          },
+          "color": "green"
+        },
+        {
+          "id": "IL9",
+          "step": 9,
+          "type": "predict",
+          "section": "Hook",
+          "section_title": "A price goes up",
+          "cpa_beat": "C",
+          "figure": "Figures/lesson-1-4/il-step-9.svg",
+          "figure_description": "A bar standing for a $50 price tag, shaded fully and labelled '$50'. A small up-arrow sits at the right end with the label '+20%'. The space to the right of the bar, where the new price would go, is left empty with a question mark. No new dollar amount is shown.",
+          "text": "You can find a percent of any amount. Now what happens when a price itself goes up or down by a percent? Imagine a $50 game whose price rises by 20%. What's the new price?",
+          "action": {
+            "prompt": "A $50 game goes up 20%. New price = {blank}",
+            "max_attempts": 1,
+            "proceed_regardless": true,
+            "type": "mcq",
+            "config": {
+              "options": [
+                "$60",
+                "$52",
+                "$70",
+                "$40"
+              ],
+              "answer": 0
+            },
+            "on_correct": "Right — 20% of $50 is $10, and the price went up, so $50 + $10 = $60.",
+            "on_wrong": "It's $60. 20% of $50 is $10, and the price went up — so $50 + $10 = $60. The next step shows a cleaner way to do this in one move."
+          },
+          "color": "purple",
+          "figure_spec": {
+            "type": "price_step_bar",
+            "price": 50,
+            "price_label": "$50",
+            "change_label": "+20%",
+            "direction": "up",
+            "show_result": false,
+            "color": "purple"
+          }
+        },
+        {
+          "id": "IL10",
+          "step": 10,
+          "type": "explain",
+          "section": "What survives",
+          "section_title": "Off means keep the rest",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-4/il-step-10.svg",
+          "figure_description": "Two stacked bars, each standing for the original price. The top bar has its right 20% sliced off and shaded red, with the remaining left 80% shaded green and labelled 'kept'. The bottom bar is whole plus an extra 20% block added on the right, the whole part green and the added block in a lighter shade. No dollar amounts appear.",
+          "text": "There's a shortcut. Instead of finding the change and adding it on, ask what survives. Take 20% off a price — how much of it is left standing?",
+          "questions": [
+            {
+              "prompt": "If 20% is taken off, what percent of the price is left? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "80%"
+                ],
+                "accept": [
+                  "80%",
+                  "80"
+                ]
+              },
+              "on_correct": "Right — 20% off leaves 80%. '% off' means keep the rest.",
+              "on_wrong": "Take 20 away from the whole 100: 100 − 20 = 80. So 20% off leaves 80%."
+            },
+            {
+              "prompt": "So a price after 20% off is what fraction of the original, as a decimal? × {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.8"
+                ],
+                "accept": [
+                  "0.8",
+                  ".8",
+                  "0.80"
+                ]
+              },
+              "on_correct": "Yes — keeping 80% means multiplying by 0.8. One move: new price = 0.8 × original.",
+              "on_wrong": "80% means 80 per hundred = 0.8. So 20% off is just × 0.8 — one multiplication."
+            },
+            {
+              "prompt": "Now the other direction: a price that goes up 20% is the original times what? × {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "1.2"
+                ],
+                "accept": [
+                  "1.2",
+                  "1.20"
+                ]
+              },
+              "on_correct": "Right — up 20% means you keep all 100% plus 20% more, so 120% = 1.2. New price = 1.2 × original.",
+              "on_wrong": "Up 20% keeps the whole 100% and adds 20% more: 100 + 20 = 120% = 1.2. So × 1.2 in one move."
+            },
+            {
+              "prompt": "In general, after a price drops by X%, it is what percent of the original?",
+              "type": "mcq",
+              "config": {
+                "options": [
+                  "(100 − X)%",
+                  "X%",
+                  "(100 + X)%",
+                  "(X − 100)%"
+                ],
+                "answer": 0
+              },
+              "on_correct": "Right — X% off leaves (100 − X)% standing. That single survival multiplier does the whole change in one step.",
+              "on_wrong": "It's (100 − X)%. Taking X away from the whole 100 leaves (100 − X)% — the part that survives."
+            }
+          ],
+          "figure_spec": {
+            "type": "survival_translation_strip",
+            "off_percent": 20,
+            "kept_percent": 80,
+            "on_percent": 20,
+            "grown_percent": 120,
+            "kept_label": "kept",
+            "show_amounts": false,
+            "color": "blue"
+          },
+          "color": "blue"
+        },
+        {
+          "id": "IL11",
+          "step": 11,
+          "type": "apply",
+          "section": "Your turn",
+          "section_title": "Keep seventy-five percent",
+          "cpa_beat": "C",
+          "figure": "Figures/lesson-1-4/il-step-11.svg",
+          "figure_description": "A coat with a price tag reading '$80'. A small label on the tag says '25% off'. Below, a bar standing for $80 is divided into four equal quarters by faint ticks. Only the rightmost quarter is marked off as the discount — struck through and labelled '25% off'. The remaining part of the bar is left plain and unshaded, with no percent or dollar amount on it. No new price is shown.",
+          "text": "'25% off' means keep 75%. Try it on an $80 coat that's 25% off — find the new price.",
+          "questions": [
+            {
+              "prompt": "First: if 25% comes off, what percent does the coat keep? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "75%"
+                ],
+                "accept": [
+                  "75%",
+                  "75"
+                ]
+              },
+              "on_correct": "Right — 100 − 25 = 75, so 25% off keeps 75%.",
+              "on_wrong": "25% off means keep the rest: 100 − 25 = 75%."
+            },
+            {
+              "prompt": "Now find the new price: 0.75 × $80 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "60",
+                  "$60",
+                  "60.00"
+                ]
+              },
+              "on_correct": "Yes — 0.75 × 80 = 60, so the coat is $60. Keep 75%, multiply once — done.",
+              "on_wrong": "0.75 × 80 = 60. Keeping 75% of $80 gives $60 in one multiplication."
+            }
+          ],
+          "figure_spec": {
+            "type": "discount_bar",
+            "original_price": 80,
+            "original_label": "$80",
+            "off_percent": 25,
+            "off_label": "25% off",
+            "total_blocks": 4,
+            "marked_off_blocks": 1,
+            "mark_off_only": true,
+            "show_kept_shading": false,
+            "show_new_price": false,
+            "color": "green"
+          },
+          "color": "green"
+        },
+        {
+          "id": "IL12",
+          "step": 12,
+          "type": "predict",
+          "section": "Hook",
+          "section_title": "Up ten, then down ten",
+          "cpa_beat": "C",
+          "figure": "Figures/lesson-1-4/il-step-12.svg",
+          "figure_description": "Two stages laid left to right. A price card reads '$100'. A right-pointing arrow labelled '+10%' leads to a blank card with a question mark. A second right-pointing arrow labelled '−10%' leads from that blank card to a final blank card with a question mark. No dollar amount is filled in for either later stage.",
+          "text": "A single change was easy: keep 80% after 20% off. But suppose a price changes twice. Imagine a $100 jacket goes up 10%, then the new price goes down 10%. Back to $100?",
+          "action": {
+            "prompt": "$100 goes up 10%, then down 10%. Final price = {blank}",
+            "max_attempts": 1,
+            "proceed_regardless": true,
+            "type": "mcq",
+            "config": {
+              "options": [
+                "$100",
+                "$99",
+                "$101",
+                "$120"
+              ],
+              "answer": 1
+            },
+            "on_correct": "Nice read — the two 10%s don't cancel. The next step shows exactly where the dollar goes.",
+            "on_wrong": "That's a fair guess. It actually lands on $99, not $100 — the next step computes it step by step and shows why the two changes don't cancel."
+          },
+          "color": "purple",
+          "figure_spec": {
+            "type": "two_stage_price_cards",
+            "start": 100,
+            "start_label": "$100",
+            "stages": [
+              {
+                "label": "+10%"
+              },
+              {
+                "label": "−10%"
+              }
+            ],
+            "show_results": false,
+            "color": "purple"
+          }
+        },
+        {
+          "id": "IL13",
+          "step": 13,
+          "type": "explain",
+          "section": "Compute it",
+          "section_title": "The second ten percent is bigger",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-4/il-step-13.svg",
+          "figure_description": "Two stacked bars. The top bar stands for the price after going up 10%, drawn slightly longer than a reference $100 mark and labelled 'after +10%' (no dollar figure shown). The bottom bar is the same length with its right portion sliced off and shaded red, labelled '10% of the new price'. A faint dashed line shows where the original $100 mark sits, so the red slice clearly reaches below it. No computed dollar amounts are printed — not the new price after the rise, nor the amount removed, nor the final price.",
+          "text": "Let's follow the dollars. Up 10% first, then down 10% from the new amount.",
+          "questions": [
+            {
+              "prompt": "Start at $100, up 10%. The new price is 1.1 × 100 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "110",
+                  "$110",
+                  "110.00"
+                ]
+              },
+              "on_correct": "Right — up 10% means keep 110%, so 1.1 × 100 = $110.",
+              "on_wrong": "Up 10% keeps the whole 100% plus 10% more: 1.1 × 100 = $110."
+            },
+            {
+              "prompt": "Now down 10% — but 10% of what? Find 10% of the new price: 0.1 × $110 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "11",
+                  "$11",
+                  "11.00"
+                ]
+              },
+              "on_correct": "Yes — the second 10% is taken from $110, not $100. 0.1 × 110 = $11.",
+              "on_wrong": "The down-step works on the new price, $110: 0.1 × 110 = $11. That's more than the $10 you added."
+            },
+            {
+              "prompt": "So take that off: $110 − $11 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "99",
+                  "$99",
+                  "99.00"
+                ]
+              },
+              "on_correct": "Right — $110 − $11 = $99. You added $10 but took off $11, so it ends $1 short.",
+              "on_wrong": "110 − 11 = 99. You added $10 going up but removed $11 coming down, so the price lands at $99."
+            },
+            {
+              "prompt": "One survival multiplier for the whole chain: 1.1 × 0.9 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.99"
+                ],
+                "accept": [
+                  "0.99",
+                  ".99"
+                ]
+              },
+              "on_correct": "Yes — 1.1 × 0.9 = 0.99, so the price ends at 0.99 of where it started. Down 1%, not 0%.",
+              "on_wrong": "1.1 × 0.9 = 0.99. The whole chain is one multiply by 0.99 — the price keeps 99% of the original, a 1% drop."
+            }
+          ],
+          "figure_spec": {
+            "type": "additive_trap_bars",
+            "start_amount": 100,
+            "start_label": "$100",
+            "up_percent": 10,
+            "after_up_amount": 110,
+            "after_up_label": "after +10%",
+            "show_after_up_amount": false,
+            "down_percent": 10,
+            "down_amount": 11,
+            "down_label": "10% of the new price",
+            "show_down_amount": false,
+            "show_original_mark": true,
+            "show_final_amount": false,
+            "color": "blue"
+          },
+          "color": "blue"
+        },
+        {
+          "id": "IL14",
+          "step": 14,
+          "type": "applet",
+          "applet_type": "survival-fraction-tracker",
+          "section": "Practice",
+          "section_title": "Track what survives",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-4/il-step-14.svg",
+          "figure_description": "A row of empty stage boxes joined left to right by multiplication signs, with a blank running-product box at the far right. Each stage box has a small label slot above it (for example '−20%') and an empty slot below for the survival rate the student will enter. Nothing is filled in — the survival rates and the running product are all blank.",
+          "text": "Each change rides on what's left after the last one. Track the survivors across a few chains, and the whole thing collapses into one multiplication.",
+          "instruction": "Track what survives at each stage. Enter the survival rate for each change, and watch the running product build.",
+          "config": {
+            "rounds": [
+              {
+                "stages": [
+                  {
+                    "change_label": "−20%",
+                    "direction": "down",
+                    "percent": 20,
+                    "survival_rate": 0.8
+                  },
+                  {
+                    "change_label": "−50%",
+                    "direction": "down",
+                    "percent": 50,
+                    "survival_rate": 0.5
+                  }
+                ],
+                "running_products": [
+                  0.8,
+                  0.4
+                ],
+                "final_product": 0.4,
+                "final_percent": "40%"
+              },
+              {
+                "stages": [
+                  {
+                    "change_label": "+10%",
+                    "direction": "up",
+                    "percent": 10,
+                    "survival_rate": 1.1
+                  },
+                  {
+                    "change_label": "−10%",
+                    "direction": "down",
+                    "percent": 10,
+                    "survival_rate": 0.9
+                  }
+                ],
+                "running_products": [
+                  1.1,
+                  0.99
+                ],
+                "final_product": 0.99,
+                "final_percent": "99%"
+              },
+              {
+                "stages": [
+                  {
+                    "change_label": "−30%",
+                    "direction": "down",
+                    "percent": 30,
+                    "survival_rate": 0.7
+                  },
+                  {
+                    "change_label": "−40%",
+                    "direction": "down",
+                    "percent": 40,
+                    "survival_rate": 0.6
+                  },
+                  {
+                    "change_label": "−50%",
+                    "direction": "down",
+                    "percent": 50,
+                    "survival_rate": 0.5
+                  }
+                ],
+                "running_products": [
+                  0.7,
+                  0.42,
+                  0.21
+                ],
+                "final_product": 0.21,
+                "final_percent": "21%"
+              }
+            ],
+            "dynamic_question": {
+              "template": "After stage {{n}}, {{running_product}} of the original is left — what percent is that?",
+              "derives_from": "running_product",
+              "answer_field": "percent",
+              "no_leak": "No stage shows its survival rate or the running product pre-filled; the student enters each survival rate and the product updates from their input.",
+              "distractor_spec": {
+                "principal_1": "sum-the-removals value (R3) — e.g. for −30%/−40%/−50% offer 'subtracted to 0% / over-removed', the chained-as-additive miscount",
+                "principal_2": "additive-net value (R1) — the running net that treats the changes as cancelling/adding flat (e.g. 100% for the +10%/−10% round)",
+                "near_miss": "one arithmetic-slip product near the true running product"
+              }
+            },
+            "rounds_count": 3,
+            "round_badge": "Round N of 3"
+          },
+          "on_correct": "Right — each survival rate is what's left after that change, and multiplying them runs the whole chain in one move.",
+          "on_wrong": "Read each change as what survives: 20% off leaves 0.8, 50% off leaves 0.5. Multiply the survivors: 0.8 × 0.5 = 0.40, so 40% is left. Adding the percents would give a different, wrong answer.",
+          "discovery_message": "Each change acts on what the one before it left behind, so the survival rates multiply. Take 20% then 50% off and 0.8 × 0.5 = 0.40 survives — 40% left. Up 10% then down 10% gives 1.1 × 0.9 = 0.99 — a 1% drop, not zero. And three cuts of 30%, 40%, 50% leave 0.7 × 0.6 × 0.5 = 0.21 — 21% left. Multiply the survivors; don't add the percents.",
+          "figure_spec": {
+            "type": "survival_chain_tracker_static",
+            "stage_count": 3,
+            "show_change_labels": false,
+            "show_survival_rates": false,
+            "show_running_product": false,
+            "color": "green"
+          },
+          "color": "green"
+        },
+        {
+          "id": "IL15",
+          "step": 15,
+          "type": "reveal",
+          "section": "Closure",
+          "section_title": "Multiply what survives",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-4/il-step-15.svg",
+          "figure_description": "A short summary card with one line of working shown as a chain: '$100 → $110 → $99', and below it the same chain as a single multiplication '1.1 × 0.9 = 0.99'. A small purple caption reads 'multiply the survivors'. No new problem or its answer appears on the card.",
+          "text": "So here's the move. Each change rides on what's left after the last one, which is why the survival rates multiply instead of the percents adding. And if you know what survived, you can also work backwards to the start. Try one fresh chain.",
+          "questions": [
+            {
+              "prompt": "A $200 bike goes up 20%, then the new price goes down 50%. Survival multiplier: 1.2 × 0.5 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "0.6"
+                ],
+                "accept": [
+                  "0.6",
+                  ".6",
+                  "0.60"
+                ]
+              },
+              "on_correct": "Right — 1.2 × 0.5 = 0.6, so the price ends at 0.6 of the start.",
+              "on_wrong": "Up 20% leaves 1.2; down 50% leaves 0.5. Multiply the survivors: 1.2 × 0.5 = 0.6."
+            },
+            {
+              "prompt": "Now the final price: 0.6 × $200 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": [
+                  "120",
+                  "$120",
+                  "120.00"
+                ]
+              },
+              "on_correct": "Yes — 0.6 × 200 = $120. Two changes, one survival multiplier, done in a single multiply.",
+              "on_wrong": "0.6 × 200 = 120, so the bike ends at $120. The whole chain is one multiply by 0.6."
+            }
+          ],
+          "figure_spec": {
+            "type": "survival_chain_summary",
+            "chain_amounts": [
+              "$100",
+              "$110",
+              "$99"
+            ],
+            "survival_line": "1.1 × 0.9 = 0.99",
+            "caption": "multiply the survivors",
+            "color": "purple"
+          },
+          "color": "purple"
+        }
+      ]
+    },
+    {
+      "block_type": "key_insight",
+      "title": "The Big Ideas — Revision Cards",
+      "intro": "Four cards covering the lesson's two big ideas — keep them handy while you practice.",
+      "cards": [
+        {
+          "id": "percent-is-a-fraction-over-100",
+          "icon": "💯",
+          "title": "Percent is a fraction over 100",
+          "concept": "Percent means per hundred. So 25% is 25 per hundred — write it as 25/100, and that simplifies to 1/4. Put any percent over 100 to turn it into a fraction; write any fraction over 100 to turn it into a percent. It is one number wearing a percent label.",
+          "example_math": "25\\% = \\dfrac{25}{100} = \\dfrac{1}{4} = 0.25",
+          "example_text": "25% = 25/100 = 1/4 = 0.25 — one number, written four ways. (And 7/20 = 35/100 = 35%.)"
+        },
+        {
+          "id": "percent-decimal-fraction-triangle",
+          "icon": "🔺",
+          "title": "The percent ↔ decimal ↔ fraction triangle",
+          "concept": "The same number can wear three outfits: percent, decimal, fraction. To read a decimal as a percent, multiply by 100 (shift the point two places right). To go back from percent to decimal, divide by 100. A percent above 100 just means more than one whole, so 150% = 1.5.",
+          "example_math": "0.4 \\times 100 = 40\\%, \\quad 40\\% \\div 100 = 0.4, \\quad 150\\% = \\dfrac{150}{100} = 1.5",
+          "example_text": "0.4 = 40% (×100 to read it as a percent); 40% = 0.4 (÷100 to go back). 150% = 150/100 = 1.5 — more than one whole."
+        },
+        {
+          "id": "percent-off-means-keep-the-rest",
+          "icon": "🏷️",
+          "title": "'X% off' means keep (100 − X)%",
+          "concept": "A single percent change is one multiplication by what survives. 25% off leaves 75%, so the new price is 0.75 of the old. Up 20% keeps the whole 100% plus 20% more, so multiply by 1.2. Read every change as the fraction that stays, and apply it once.",
+          "example_math": "25\\% \\text{ off} \\to \\times 0.75, \\quad \\text{up } 20\\% \\to \\times 1.2",
+          "example_text": "25% off → multiply by 0.75 (keep 75%). Up 20% → multiply by 1.2 (keep 100% and add 20%). An $80 coat 25% off: 0.75 × 80 = $60."
+        },
+        {
+          "id": "chained-percents-multiply-survivors",
+          "icon": "⛓️",
+          "title": "Chained percents multiply the survivors",
+          "concept": "When changes happen one after another, each one acts on what the last one left — not on the original. So multiply the survival fractions; don't add the percents. Up 10% then down 10% is 1.1 × 0.9 = 0.99, a 1% drop, not zero. Three cuts of 30%, 40%, 50% leave 0.7 × 0.6 × 0.5 = 0.21.",
+          "example_math": "1.1 \\times 0.9 = 0.99, \\quad 0.7 \\times 0.6 \\times 0.5 = 0.21",
+          "example_text": "Up 10% then down 10%: 1.1 × 0.9 = 0.99 → ends 1% smaller. Drained 30%, then 40%, then 50%: 0.7 × 0.6 × 0.5 = 0.21 → 21% left."
+        }
+      ]
+    },
+    {
+      "block_type": "worked_examples",
+      "title": "Worked Examples",
+      "examples": [
+        {
+          "id": "WE1",
+          "source": "pyq",
+          "pyq": {
+            "year": 2000,
+            "question": "Q23",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2000 Q23 (rectangle: one side +10%, the other -10%). Surface re-skinned to Anna resizing a photo on screen (10% wider, 10% shorter) per we-surface-picks.md candidate 1. Math invariant held verbatim: two INDEPENDENT dimensions, width x1.10, height x0.90, combined 1.10 x 0.90 = 0.99 -> area decreased by 1%. All 5 options' misconception logic preserved (PYQ A->D1 'unchanged' additive trap, B = correct '1% decrease', C = 'increased 1%' sign-flip, D 'increased 20%' sum-the-percents, E 'depends on the side lengths' scale-invariance miss). 5pt held: 2-stage compound + additive trap.",
+          "narration_mode": "scaffolded",
+          "question_text": "Anna resizes a photo on her screen. She makes it 10% wider and, at the same time, 10% shorter. By how much does the photo's area change?",
+          "options": [
+            "(A) it stays the same",
+            "(B) it decreases by 1%",
+            "(C) it increases by 1%",
+            "(D) it increases by 20%",
+            "(E) it depends on the photo's side lengths"
+          ],
+          "answer_text": "(B) it decreases by 1%",
+          "answer_index": 1,
+          "difficulty": 5,
+          "skills": [
+            "pct-change-multiplier",
+            "pct-chained-compounding",
+            "pct-of-quantity"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "pyq-2000-q23",
+            "mode-b-reskin",
+            "additive-trap"
+          ],
+          "steps": [
+            {
+              "step": 1,
+              "note": "Turn '10% wider' into a multiplier on the width.",
+              "segments": [
+                {
+                  "narration": "Don't add and subtract percents yet — turn each change into a multiplier. 10% wider means the width keeps all of itself plus a tenth more: width × 1.10.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "10% wider means the width is multiplied by {blank}",
+                    "config": {
+                      "answers": [
+                        "1.1"
+                      ],
+                      "accept": [
+                        "1.1",
+                        "1.10",
+                        "110%",
+                        "11/10"
+                      ]
+                    },
+                    "hint": "Keep the whole width (1.00) and add a tenth (0.10).",
+                    "explanation": "10% wider = 1.00 + 0.10 = 1.10. The width becomes 1.10 of itself."
+                  },
+                  "figure_ref": "Figures/lesson-1-4/we1-step1.svg",
+                  "figure_spec": {
+                    "type": "pct_rectangle_resize",
+                    "stage": 1,
+                    "color": "blue"
+                  },
+                  "figure_description": "The photo rectangle with its original outline shown dashed and the new outline stretched 10% wider, the extra width strip marked plus 10%."
+                }
+              ]
+            },
+            {
+              "step": 2,
+              "note": "Turn '10% shorter' into a multiplier on the height.",
+              "segments": [
+                {
+                  "narration": "Now the other side. 10% shorter means the height loses a tenth of itself: height × 0.90. Notice these are two different sides — the width change and the height change act on separate dimensions.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "10% shorter means the height is multiplied by {blank}",
+                    "config": {
+                      "answers": [
+                        "0.9"
+                      ],
+                      "accept": [
+                        "0.9",
+                        "0.90",
+                        "90%",
+                        "9/10"
+                      ]
+                    },
+                    "hint": "Take the whole height (1.00) and remove a tenth (0.10).",
+                    "explanation": "10% shorter = 1.00 - 0.10 = 0.90. The height becomes 0.90 of itself."
+                  },
+                  "figure_ref": "Figures/lesson-1-4/we1-step2.svg",
+                  "figure_spec": {
+                    "type": "pct_rectangle_resize",
+                    "stage": 2,
+                    "color": "blue"
+                  },
+                  "figure_description": "The same photo rectangle now also pulled 10% shorter on the height, the trimmed strip marked minus 10%; width still shown 10% wider from step 1."
+                }
+              ]
+            },
+            {
+              "step": 3,
+              "note": "Multiply the two multipliers — area is width times height.",
+              "segments": [
+                {
+                  "narration": "Area is width × height, so the area's multiplier is the two side multipliers multiplied together: 1.10 × 0.90. It is tempting to say +10% and −10% cancel to 0% — but the changes are on different sides, so they don't add. Multiply them.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "1.10 × 0.90 = {blank}",
+                    "config": {
+                      "answers": [
+                        "0.99"
+                      ],
+                      "accept": [
+                        "0.99",
+                        ".99",
+                        "99/100"
+                      ]
+                    },
+                    "hint": "1.1 × 0.9: think 11 × 9 = 99, then place the decimal — 0.99.",
+                    "explanation": "1.10 × 0.90 = 0.99. The new area is 0.99 of the old area, not 1.00."
+                  },
+                  "figure_ref": "Figures/lesson-1-4/we1-step3.svg",
+                  "figure_spec": {
+                    "type": "pct_rectangle_resize",
+                    "stage": 3,
+                    "color": "blue"
+                  },
+                  "figure_description": "The new wider-and-shorter rectangle overlaid on the original outline, labelled area = 1.10 × 0.90."
+                }
+              ]
+            },
+            {
+              "step": 4,
+              "note": "Read 0.99 as a percent change and pick the answer.",
+              "segments": [
+                {
+                  "narration": "The area is 0.99 of the original — one hundredth less. That is a 1% decrease. Pick that option.",
+                  "checkpoint": {
+                    "type": "mcq",
+                    "prompt": "By how much does the photo's area change?",
+                    "config": {
+                      "options": [
+                        "(A) it stays the same",
+                        "(B) it decreases by 1%",
+                        "(C) it increases by 1%",
+                        "(D) it increases by 20%",
+                        "(E) it depends on the photo's side lengths"
+                      ],
+                      "answer": 1,
+                      "shuffle": false
+                    },
+                    "hint": "0.99 is 0.01 below 1.00, so the area dropped by 1%.",
+                    "explanation": "New area = 0.99 × old area, so it decreased by 1%. Option B. (Notice the start size never mattered — the multiplier is always 0.99.)"
+                  },
+                  "figure_ref": "Figures/lesson-1-4/we1-step4.svg",
+                  "figure_spec": {
+                    "type": "pct_rectangle_resize",
+                    "stage": 4,
+                    "color": "blue"
+                  },
+                  "figure_description": "The final rectangle inside the original outline with the thin uncovered sliver marked, labelled new area = 0.99 of the old (1% smaller)."
+                }
+              ]
+            }
+          ],
+          "on_correct": "Nice read — up 10% on one side and down 10% on the other doesn't cancel. 1.10 × 0.90 = 0.99, so the area ends 1% smaller.",
+          "on_wrong": "The area decreases by 1%. The changes are on two different sides, so +10% and −10% don't add to 0%. Turn each into a multiplier and multiply: 1.10 × 0.90 = 0.99, which is 1% below 1.",
+          "figure": "Figures/lesson-1-4/we1-stem.svg",
+          "figure_spec": {
+            "type": "pct_rectangle_resize",
+            "stage": 0,
+            "color": "blue"
+          },
+          "figure_description": "A photo shown as a plain rectangle at its original size, before any resizing, with its width and height edges labelled."
+        },
+        {
+          "id": "WE2",
+          "source": "pyq",
+          "pyq": {
+            "year": 2004,
+            "question": "Q25",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2004 Q25 (two equal-priced CDs, one -5%, one +15%, new prices differ by $6). Surface re-skinned to Anna and Tom buying the same game at the same original price per we-surface-picks.md candidate 1. Math invariant held verbatim: same original x; Anna x0.95, Tom x1.15; difference 1.15x - 0.95x = 0.20x = 6 -> x = $30 (INTERMEDIATE); ASKED value = Anna's -5% price = 0.95 x 30 = $28.50. Answer kept as $28.50, NOT the $30 original. All 5 options PYQ-native (MK 2004 Q25: A $1.50, B $6.00, C $28.50 correct, D $30.00, E $34.50). 5pt held: 2-stage change + difference equation, algebra-lite.",
+          "narration_mode": "scaffolded",
+          "question_text": "Anna and Tom each buy the same game, which started at the same price for both. In a sale, Anna's price drops by 5%. The next week, Tom's price rises by 15%. Their two prices now differ by $6. What does Anna pay?",
+          "options": [
+            "(A) $1.50",
+            "(B) $6.00",
+            "(C) $28.50",
+            "(D) $30.00",
+            "(E) $34.50"
+          ],
+          "answer_text": "(C) $28.50",
+          "answer_index": 2,
+          "difficulty": 5,
+          "skills": [
+            "pct-change-multiplier",
+            "pct-difference-equation",
+            "pct-of-quantity"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "pyq-2004-q25",
+            "mode-b-reskin",
+            "difference-equation"
+          ],
+          "steps": [
+            {
+              "step": 1,
+              "note": "Write both new prices as multipliers of the same start.",
+              "segments": [
+                {
+                  "narration": "Call the starting price x — it's the same for both. Anna's drops 5%, so she pays 0.95 × x. Tom's rises 15%, so he pays 1.15 × x. Same x, two different multipliers.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "Tom's price rose 15%, so Tom pays {blank} × x",
+                    "config": {
+                      "answers": [
+                        "1.15"
+                      ],
+                      "accept": [
+                        "1.15",
+                        "115%",
+                        "23/20"
+                      ]
+                    },
+                    "hint": "Keep the whole price (1.00) and add 15% (0.15).",
+                    "explanation": "Up 15% = 1.00 + 0.15 = 1.15, so Tom pays 1.15x. (Anna pays 0.95x.)"
+                  },
+                  "figure_ref": "Figures/lesson-1-4/we2-step1.svg",
+                  "figure_spec": {
+                    "type": "pct_two_price_bars",
+                    "stage": 1,
+                    "color": "blue"
+                  },
+                  "figure_description": "Two equal starting price bars labelled x, with arrows showing Anna's bar shrinking to 0.95x and Tom's bar growing to 1.15x."
+                }
+              ]
+            },
+            {
+              "step": 2,
+              "note": "The gap between the two prices is $6 — build and solve the equation.",
+              "segments": [
+                {
+                  "narration": "Tom's price is higher, so the gap between them is 1.15x − 0.95x. The question says that gap is $6. Subtract the multipliers first: 1.15 − 0.95 = 0.20, so 0.20x = 6.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "0.20 × x = 6, so x = {blank}",
+                    "config": {
+                      "answers": [
+                        "30"
+                      ],
+                      "accept": [
+                        "30",
+                        "$30",
+                        "30.00",
+                        "$30.00"
+                      ]
+                    },
+                    "hint": "Divide both sides by 0.20: x = 6 ÷ 0.20.",
+                    "explanation": "0.20x = 6, so x = 6 ÷ 0.20 = 30. The starting price was $30. (This is the price they began with — not yet what Anna pays.)"
+                  },
+                  "figure_ref": "Figures/lesson-1-4/we2-step2.svg",
+                  "figure_spec": {
+                    "type": "pct_two_price_bars",
+                    "stage": 2,
+                    "color": "blue"
+                  },
+                  "figure_description": "The 0.95x and 1.15x bars side by side with the difference between their lengths bracketed and labelled $6 = 0.20x."
+                }
+              ]
+            },
+            {
+              "step": 3,
+              "note": "Use x to find what Anna actually pays.",
+              "segments": [
+                {
+                  "narration": "The $30 is the starting price, but the question asks what Anna pays — her price after the 5% drop. So take 0.95 × 30.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "Anna pays 0.95 × 30 = {blank}",
+                    "config": {
+                      "answers": [
+                        "28.5"
+                      ],
+                      "accept": [
+                        "28.5",
+                        "28.50",
+                        "$28.50",
+                        "$28.5"
+                      ]
+                    },
+                    "hint": "0.95 × 30 = 30 − (5% of 30) = 30 − 1.50.",
+                    "explanation": "0.95 × 30 = 28.50. Anna pays $28.50. (5% of $30 is $1.50, so $30 − $1.50 = $28.50.)"
+                  },
+                  "figure_ref": "Figures/lesson-1-4/we2-step3.svg",
+                  "figure_spec": {
+                    "type": "pct_two_price_bars",
+                    "stage": 3,
+                    "color": "blue"
+                  },
+                  "figure_description": "Anna's bar highlighted with x replaced by 30, labelled 0.95 × $30 = $28.50."
+                }
+              ]
+            },
+            {
+              "step": 4,
+              "note": "Pick the answer — what Anna pays, not the starting price.",
+              "segments": [
+                {
+                  "narration": "Anna pays $28.50. The $30 was just the starting price we needed along the way. Pick what Anna pays.",
+                  "checkpoint": {
+                    "type": "mcq",
+                    "prompt": "What does Anna pay?",
+                    "config": {
+                      "options": [
+                        "(A) $1.50",
+                        "(B) $6.00",
+                        "(C) $28.50",
+                        "(D) $30.00",
+                        "(E) $34.50"
+                      ],
+                      "answer": 2,
+                      "shuffle": false
+                    },
+                    "hint": "Anna's price is 0.95 × $30, which we found to be $28.50.",
+                    "explanation": "Anna pays 0.95 × $30 = $28.50. Option C. ($30 is the starting price, $34.50 is Tom's price, $6 is the gap — none of those is the question.)"
+                  },
+                  "figure_ref": "Figures/lesson-1-4/we2-step4.svg",
+                  "figure_spec": {
+                    "type": "pct_two_price_bars",
+                    "stage": 4,
+                    "color": "blue"
+                  },
+                  "figure_description": "Both final bars labelled Anna $28.50 and Tom $34.50, with Anna's bar circled as the asked answer."
+                }
+              ]
+            }
+          ],
+          "on_correct": "Yes — same start x, Anna 0.95x and Tom 1.15x, so the gap is 0.20x = 6, giving x = $30. Anna pays 0.95 × 30 = $28.50.",
+          "on_wrong": "Anna pays $28.50. Both start at x: Anna 0.95x, Tom 1.15x, so the gap 1.15x − 0.95x = 0.20x = 6 gives x = $30. That $30 is the start — Anna's price is 0.95 × 30 = $28.50.",
+          "figure": "Figures/lesson-1-4/we2-stem.svg",
+          "figure_spec": {
+            "type": "pct_two_price_bars",
+            "stage": 0,
+            "color": "blue"
+          },
+          "figure_description": "Two equal-length price bars side by side, both labelled x, showing Anna's and Tom's identical starting price before any change."
+        }
+      ]
+    },
+    {
+      "block_type": "practice_lab",
+      "title": "Practice Lab",
+      "description": "Four percent problems, building from reading a percent to tracking a multi-stage spend. Two attempts per question, then the solution is revealed.",
+      "_authoring_meta": {
+        "lesson": "1-4-percentages",
+        "block": "P",
+        "item_count": 4,
+        "coverage": "2 MC-A (P1, P2) + 2 MC-B (P3, P4)",
+        "palette": "blue",
+        "difficulty_ramp": "P1 3pt -> P2 3pt -> P3 4pt -> P4 5pt",
+        "mode_c_originals_pending_approval": [
+          "P1",
+          "P3"
+        ],
+        "mode_b_reskins": [
+          "P2",
+          "P4"
+        ],
+        "figure_quota": {
+          "stem_figure_items": [
+            "P1",
+            "P2",
+            "P3"
+          ],
+          "stem_figure_count": 3,
+          "stem_figure_pct": "75% (>= 50% required)",
+          "figure_in_options_items": [
+            "P1"
+          ],
+          "figure_in_options_count": 1,
+          "figure_in_options_pct_of_figured": "33% (>= 25% of figured items required)"
+        },
+        "new_figure_spec_types": [
+          "pct_bar_label_match"
+        ]
+      },
+      "questions": [
+        {
+          "id": "P1",
+          "type": "mcq",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "3pt",
+            "fingerprint_pool": [
+              "pyq-2007-q2"
+            ],
+            "step_count": 2,
+            "twist_pattern": "read_shaded_amount_then_match_the_per_hundred_label",
+            "sub_skill": "pct-frac-dec-conversion",
+            "llm_consensus": [],
+            "audit_log_path": "audits/L1-4-P1.json"
+          },
+          "calibration_note": "Mode C original (MC-A conversion / pct-meaning, entry P item). RE-SKIN ATTEMPT FAILED, confirmed by surface-picker (p-mc-surface-picks.md P1) and already documented for CF1: the only L1.3-lineage conversion PYQ available for cross-lesson re-skin is MK 2002 Q07, a 'rank five arithmetic expressions, pick the greatest' item. Re-skinning it with structure intact tests x/div-by-10 arithmetic ranking, not %<->frac<->dec equivalence (wrong cognition); gutting it to a single conversion erodes difficulty (the banned L1.2 CF1 pattern). No clean re-skin lands, so P1 stays Mode C, exactly as pyq-allocations.md (P1 = re-skin-OR-original) anticipates. CALIBRATION ANCHOR: MK 2007 Q2 (3pt, fraction-of-day with clean percent-convertible bases). Twist-density parity: 2007 Q2 is a 2-move 3pt (read a clean base, then convert/apply a multiplier); P1 is also 2-move (read the shaded amount on the bar as a number, then reject four labels that each fail the per-hundred shift). It is NOT a 1-step recall of '0.6 = 60%' alone -- all five bars are shaded identically (6 of 10), so the student cannot pattern-match a 'bigger' bar to the answer; they must judge which label correctly names the shaded amount as a percent, defeating R5 (the per-hundred shift direction). DISTINCT from CF1 (CF1 = 'Anna writes 0.4 three ways', a row-of-three-forms text item; P1 is a label-matching item on a shaded bar, target 60% not 0.4, and uses figures-in-options). Multi-form-correct conversion -> MCQ per the Percentages chapter rule. Distractor values + R5 tags taken from distractor-plan.md P1 (adapted to the bar-label surface: each wrong label is a distinct per-hundred mis-shift of the same shaded 6/10).",
+          "figure_spec": {
+            "type": "pct_bar_label_match",
+            "color": "blue",
+            "blocks": 10,
+            "shaded_blocks": 6,
+            "bars": [
+              {
+                "id": "A",
+                "label": "60%"
+              },
+              {
+                "id": "B",
+                "label": "6%"
+              },
+              {
+                "id": "C",
+                "label": "0.6%"
+              },
+              {
+                "id": "D",
+                "label": "6.0"
+              },
+              {
+                "id": "E",
+                "label": "0.06"
+              }
+            ],
+            "show_label_under_each_bar": true,
+            "show_block_value": false
+          },
+          "figures_in_options": true,
+          "figure_description": "Five identical horizontal bars labelled A to E. Each bar is split into ten equal blocks, and the same six of the ten blocks are shaded blue on every bar. Under each bar is a different label: bar A says '60%', bar B says '6%', bar C says '0.6%', bar D says '6.0', bar E says '0.06'. The bars all show the same shaded amount; only the labels differ.",
+          "question_text": "Each bar below has the same six of its ten blocks shaded, but a different label. On which bar does the label correctly name the shaded amount?\n\n{figure}",
+          "config": {
+            "options": [
+              "(A) Bar A",
+              "(B) Bar B",
+              "(C) Bar C",
+              "(D) Bar D",
+              "(E) Bar E"
+            ],
+            "answer": 0,
+            "shuffle": false
+          },
+          "explanation": "Six of ten blocks are shaded, so each bar shows 6/10 of itself. As a decimal that is 0.6, and percent means per hundred, so 0.6 x 100 = 60: the shaded amount is 60%. Bar A's label '60%' is the one that matches. The other labels each slip on the per-hundred move: '6%' shifts only one place (that would be 0.06 of the bar, far less shading), '0.6%' just sticks a percent sign on the decimal without converting, '6.0' is six whole bars, and '0.06' is the decimal for 6%, not 60%.",
+          "difficulty": 3,
+          "skills": [
+            "pct-frac-dec-conversion",
+            "pct-meaning"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "original-calibrated-2007-q2",
+            "mc-a"
+          ],
+          "hints": [
+            "Count the shaded blocks out of ten, then write that as a fraction of the whole bar.",
+            "Turn the fraction into a decimal: six out of ten is 0.6. Now read what each label claims and compare.",
+            "To make a percent from a decimal, multiply by 100 (move two places): 0.6 x 100 = 60. Which label says 60%?"
+          ],
+          "on_correct": "Right -- 6 of 10 shaded is 6/10 = 0.6 = 60%, so bar A's label is the match. One amount, written three ways.",
+          "on_wrong": "Bar A is correct. Six of ten blocks shaded is 6/10 = 0.6, and 0.6 x 100 = 60, so the shaded amount is 60%. '6%' moves the point only one place and '0.6%' doesn't convert at all -- both name far less than what is shaded.",
+          "figure": "Figures/lesson-1-4/p1.svg"
+        },
+        {
+          "id": "P2",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2007,
+            "question": "Q2",
+            "difficulty": "3pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2007 Q2 (Donald's-sleep). Surface from p-mc-surface-picks.md P2 (Candidate A): Tom & Lara naps, dropping Anna to honour the <=60% Anna cap (Anna is already on CF1/WE1/WE2/IL S1). Math invariant: base 1/4 = 25% (Lara, the reference person), multiplier x1.5 ('one and a half times as long'), result 3/8 = 37.5% (Tom). Operation (1/4) x 1.5 = 3/8 -> x100 = 37.5%, identical to the canonical D answer (3/8). P2 STOPS at the percent (no convert-back) -- the convert-back synthesis is MC1's bump, keeping P2 a clean 3pt. Distinct surface and ask from MC1 (MC1 = Anna screen-time, returns the fraction/decimal). Stem figure: a day-bar marking Lara's 25%; Tom's amount is NOT shown (no answer leak). Distractor values + R-tags from distractor-plan.md P2.",
+          "figure_spec": {
+            "type": "pct_of_bar",
+            "color": "blue",
+            "total": 100,
+            "blocks": 10,
+            "block_value": 10,
+            "marked_blocks": 2.5,
+            "bracket_label": "Lara naps 25% of the day",
+            "show_marked_total": false,
+            "caption": "Tom naps one and a half times as long as Lara."
+          },
+          "figure_description": "A horizontal bar standing for one whole day. A bracket spans the first quarter of the bar and is labelled 'Lara naps 25% of the day'; the rest of the bar is left plain. A caption underneath reads 'Tom naps one and a half times as long as Lara.' Tom's portion is not marked on the bar.",
+          "question_text": "Lara naps for 25% of the day. Tom naps one and a half times as long as Lara.\n\nWhat percent of the day does Tom nap?\n\n{figure}",
+          "config": {
+            "options": [
+              "(A) 26.5%",
+              "(B) 50%",
+              "(C) 12.5%",
+              "(D) 37.5%",
+              "(E) 40%"
+            ],
+            "answer": 3,
+            "shuffle": false
+          },
+          "explanation": "'One and a half times as long' means multiply Lara's share by 1.5, not add 1.5 to it. Lara naps 25% of the day, so Tom naps 1.5 x 25% = 37.5% of the day. You can also split it: 25% plus half of 25% (12.5%) is 25% + 12.5% = 37.5%. Adding the multiplier as a percent (25% + 1.5% = 26.5%) or rounding 1.5 up to 2 (giving 50%) both miss the actual product.",
+          "difficulty": 3,
+          "skills": [
+            "pct-of-quantity",
+            "pct-greater-than-100"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "pyq-2007-q2",
+            "mc-a"
+          ],
+          "hints": [
+            "'One and a half times as long' is a multiplier: it means 1.5 times Lara's nap, not Lara's nap plus 1.5.",
+            "Tom's nap is 1.5 x Lara's 25%. You can also think of it as 25% plus half of 25%.",
+            "Half of 25% is 12.5%, so 1.5 x 25% = 25% + 12.5%."
+          ],
+          "on_correct": "Right -- 1.5 x 25% = 37.5%. 'One and a half times' multiplies the share; it's 25% plus another half of 25%.",
+          "on_wrong": "Tom naps 37.5% of the day. 'One and a half times as long' means 1.5 x 25%, which is 25% plus half of 25% (12.5%), so 25% + 12.5% = 37.5%. Adding 1.5 as '+1.5%' gives 26.5%, but the 1.5 is a multiplier, not a percent to add.",
+          "figure": "Figures/lesson-1-4/p2.svg"
+        },
+        {
+          "id": "P3",
+          "type": "mcq",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "4pt",
+            "fingerprint_pool": [
+              "pyq-2007-q2",
+              "pyq-2000-q23"
+            ],
+            "step_count": 2,
+            "twist_pattern": "off_percent_to_kept_percent_then_apply_non_clean_rate",
+            "sub_skill": "pct-increase-decrease",
+            "llm_consensus": [],
+            "audit_log_path": "audits/L1-4-P3.json"
+          },
+          "calibration_note": "Mode C original (MC-B single-step % off, in context). No 4pt single-step percent-change PYQ exists corpus-wide (pyq-allocations.md P3, scanner verdict). CALIBRATION ANCHOR: 4pt twist density. Twist-density parity: a 4pt single-step percent item is a 2-move (translate '% off' into the kept percent, then apply it) but pitched ABOVE the 3pt CF2 by using a NON-CLEAN rate -- 35% off -> keep 65%, applied to $120 -> $78, where neither the rate nor the answer is a clean half/quarter/tenth, so the student cannot shortcut with mental halving (the 3pt giveaway). It is NOT collapsed to triviality (avoids the L1.2 CF1 erosion incident): a student who keeps 35% (the '% off' = '% of' slip, R2) or who adds instead of subtracting lands wrong. DISTINCT from CF2 (CF2 = $40 board game UP 15%, an INCREASE, FIB, 3pt) -- P3 is a DECREASE, MCQ, 4pt, different base/rate. DISTINCT from the IL Pass 3 discovery demo ('$80 coat 25% off -> $60', clean quarter) -- P3 uses $120/35% (non-clean) so it does not rehearse the IL number. DISTINCT from its MC twin MC3 ($60 after 25% off -> original $80, a REVERSE problem) -- P3 is the FORWARD single-step. Tests R2. Distractor values + R-tags from distractor-plan.md P3 (renumbered from old P4 per the REVISION header).",
+          "figure_spec": {
+            "type": "discount_bar",
+            "color": "blue",
+            "original_price": 120,
+            "original_label": "$120",
+            "off_percent": 35,
+            "off_label": "35% off",
+            "total_blocks": 20,
+            "marked_off_blocks": 7,
+            "mark_off_only": true,
+            "show_kept_shading": false,
+            "show_new_price": false
+          },
+          "figure_description": "A jacket with a price tag reading '$120'. A label on the tag says '35% off'. Below, a bar standing for $120 is split into twenty equal parts by faint ticks. Seven of the parts at one end are marked off as the discount and labelled '35% off'; the rest of the bar is left plain and unshaded, with no dollar amount on it. No new price is shown.",
+          "question_text": "A $120 jacket is marked 35% off.\n\nWhat is the sale price?\n\n{figure}",
+          "config": {
+            "options": [
+              "(A) $42",
+              "(B) $162",
+              "(C) $85",
+              "(D) $78",
+              "(E) $72"
+            ],
+            "answer": 3,
+            "shuffle": false
+          },
+          "explanation": "'35% off' means you take 35% away, so what you pay is the rest: 100% - 35% = 65% of the price. As a multiplier, 65% = 0.65, so the sale price is 0.65 x 120 = $78. You can also find the discount first -- 35% of 120 is 0.35 x 120 = $42 off -- and subtract: $120 - $42 = $78. Keeping 35% ($42) answers 'how much off', not 'what you pay', and adding 35% ($162) goes the wrong direction. Rounding 35% off up to a 40%-off estimate keeps 60% and gives 0.6 x 120 = $72 -- close, but the exact rate keeps 65%.",
+          "difficulty": 4,
+          "skills": [
+            "pct-increase-decrease",
+            "pct-in-context"
+          ],
+          "tags": [
+            "foundations",
+            "mk-4pt",
+            "original-calibrated-4pt-twist",
+            "mc-b"
+          ],
+          "hints": [
+            "'35% off' tells you what is taken away. The question asks what you actually pay -- that's the part that stays.",
+            "If 35% comes off, the part that stays is 100% - 35% = 65% of the price.",
+            "Multiply the price by the kept percent: 0.65 x 120. (Or find 35% of 120 = $42 off, then subtract from $120.)"
+          ],
+          "on_correct": "Right -- 35% off leaves 65%, so 0.65 x 120 = $78. Read '% off' as 'keep the rest'.",
+          "on_wrong": "The sale price is $78. 35% off means 65% stays, so 0.65 x 120 = $78. Finding 35% of 120 = $42 is only the amount taken off, not what you pay -- subtract it from $120 to get $78.",
+          "figure": "Figures/lesson-1-4/p3.svg"
+        },
+        {
+          "id": "P4",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2015,
+            "question": "Q22",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2015 Q22 (Jane's-books). Surface from p-mc-surface-picks.md P4 (Candidate A): Tom buys three books, near-verbatim re-skin (Jane -> Tom). Math invariant, preserved exactly: 'half of the remaining money + a constant', repeated three times, spending everything; constants +$1, +$2, +$3 in order; closure 'spends all his money'. Re-solved backwards: before book 3, R/2 + 3 = R -> R = 6; before book 2, leaves 6 so R/2 - 2 = 6 -> R = 16; before book 1, leaves 16 so R/2 - 1 = 16 -> R = 34. Total spent = total money = $34 = corpus answer C. Canonical options confirmed from pyq-extracted-odd-2011-2015.json (2015 Q22): (A) 36, (B) 45, (C) 34, (D) 65, (E) 100 -- PRESERVED VERBATIM (Mode B keeps numbers + options + answer). Answer index 2. DISTINCT from MC twin MC4 (uneven 2-stage +20%/-25% chain) -- P4 is the 'half of remaining + constant' survival chain. Band 5pt held (three-stage chain, no step removed). Distractor R-tags from distractor-plan.md P4 (renumbered from old P5), mapped onto the corpus options.",
+          "figure_spec": {
+            "type": "book_spend_chain",
+            "color": "blue",
+            "currency": "$",
+            "stages": [
+              {
+                "book": 1,
+                "rule": "half of his money + $1 more"
+              },
+              {
+                "book": 2,
+                "rule": "half of what was left + $2 more"
+              },
+              {
+                "book": 3,
+                "rule": "half of what was left + $3 more"
+              }
+            ],
+            "closure": "spends everything",
+            "show_amounts": false,
+            "show_total": false
+          },
+          "figure_description": "Three book covers in a row labelled 'Book 1', 'Book 2', 'Book 3'. Under each book is the rule for what Tom paid: book 1 reads 'half of his money + $1 more', book 2 reads 'half of what was left + $2 more', book 3 reads 'half of what was left + $3 more'. A note at the end says he spent everything. No dollar amounts and no total are shown.",
+          "question_text": "Tom spent all his money on three books. For the first book he paid half of his money and $1 more. For the second he paid half of the money he had left and $2 more. For the third he paid half of the money he had left and $3 more, spending everything.\n\nHow much did the three books cost altogether?\n\n{figure}",
+          "config": {
+            "options": [
+              "(A) $36",
+              "(B) $45",
+              "(C) $34",
+              "(D) $65",
+              "(E) $100"
+            ],
+            "answer": 2,
+            "shuffle": false
+          },
+          "explanation": "Work backwards from 'spent everything'. After the third book his money is gone, and he paid half of what was left plus $3 -- so half of what was left equalled $3, meaning he had $6 before book 3. Before book 2 he paid half plus $2 and was left with $6, so half of that money was $6 + $2 = $8, meaning he had $16. Before book 1 he paid half plus $1 and was left with $16, so half was $16 + $1 = $17, meaning he started with $34. He spent all $34, so the three books cost $34 altogether.",
+          "difficulty": 5,
+          "skills": [
+            "pct-chained-compounding",
+            "pct-in-context"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "pyq-2015-q22",
+            "mc-b"
+          ],
+          "hints": [
+            "Each book takes half of what Tom has left plus a fixed extra, and at the end his money is gone. Try working backwards from the last book.",
+            "After book 3 he has $0, and he paid 'half of what was left + $3'. So half of what he had before book 3 was $3 -- find how much he had then.",
+            "Before book 3 he had $6. Step back the same way through book 2 (leaves $6) and book 1 (leaves $16) to find what he started with."
+          ],
+          "on_correct": "Right -- working backwards, $6 before book 3, $16 before book 2, $34 to start. He spent it all, so the books cost $34.",
+          "on_wrong": "The books cost $34. Work backwards from empty: book 3 took half plus $3 and left $0, so he had $6 before it; book 2 left $6, so he had $16 before it; book 1 left $16, so he started with $34 -- all of which he spent.",
+          "figure": "Figures/lesson-1-4/p4.svg"
+        }
+      ]
+    },
+    {
+      "block_type": "mastery_check",
+      "title": "Mastery Check",
+      "description": "Four checks before Unit 1 is yours. Each one is a step up from Practice — the kind of percent problem you'd meet on a real Math Kangaroo paper.",
+      "pass_threshold": 3,
+      "_authoring_meta": {
+        "lesson": "1-4-percentages",
+        "block": "MC",
+        "item_count": 4,
+        "coverage": "2 MC-A (MC1, MC2) + 2 MC-B (MC3, MC4)",
+        "palette": "blue",
+        "difficulty_ramp": "MC1 4pt -> MC2 4pt -> MC3 4pt -> MC4 5pt",
+        "pass_threshold_basis": "3 of 4 (mirrors L1.3 MC; >=80% gate adapts to count per block-design Block 6 Rule #1)",
+        "mode_b_reskins": [
+          "MC1"
+        ],
+        "mode_c_originals_pending_approval": [
+          "MC2",
+          "MC3",
+          "MC4"
+        ],
+        "synthesis_bump_map": {
+          "MC1": "over P2 (P2 stops at 37.5%; MC1 adds convert-back to 3/8 = 0.375)",
+          "MC2": "over P3 (P3 sub-100% clean pct-from-quantity; MC2 crosses 100% -> 125%, R4)",
+          "MC3": "over P3/P4 (P3 forward % off; MC3 reverses it -> divide by 0.75)",
+          "MC4": "over P4 (P4 'half of remaining' single-direction chain; MC4 uneven 2-stage up-then-down net)"
+        },
+        "figure_quota": {
+          "stem_figure_items": [
+            "MC1",
+            "MC2",
+            "MC4"
+          ],
+          "stem_figure_count": 3,
+          "stem_figure_pct": "75% (>= 50% required)",
+          "figure_in_options_items": [
+            "MC1"
+          ],
+          "figure_in_options_count": 1,
+          "figure_in_options_pct_of_figured": "33% (>= 25% of figured items required)"
+        },
+        "p_mc_distinctness": {
+          "MC1_vs_P2": "different surface (Anna screen-time vs Tom/Lara naps) + different ask (fraction/decimal bundle vs bare percent)",
+          "MC2_vs_P3": "crosses 100% (125%) vs sub-100% clean",
+          "MC3_vs_P3": "reverse (find original) vs forward (find sale price); distinct surface (coat vs jacket)",
+          "MC4_vs_P4": "uneven up-then-down 2-stage net vs 'half of remaining + constant' survival chain; distinct surface; distinct from CE 3-stage tanker"
+        },
+        "new_figure_spec_types": [
+          "pct_multiform_bar_options",
+          "pct_overshoot_bars",
+          "pct_chain_two_stage"
+        ]
+      },
+      "questions": [
+        {
+          "id": "MC1",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2007,
+            "question": "Q2",
+            "difficulty": "3pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2007 Q2 (Donald's-sleep), second surface of the lesson's two (P2 is the first). Surface from p-mc-surface-picks.md MC1 (Candidate A): Anna screen-time, the one place Anna lands among P/MC (Anna budget: CF1/IL-S1/WE1/WE2 + MC1 only). DISTINCT from P2 (P2 = Tom & Lara naps): different domain (screen-time vs sleep), different actor mix (Anna + brother vs Tom + Lara), different ask. Math invariant, preserved exactly: base 1/4 = 25% (Anna, the reference), multiplier x1.5 ('one and a half times as much'), result 3/8 = 37.5% = 0.375 (her brother). Operation (1/4) x 1.5 = 3/8 -> x100 = 37.5%, identical to canonical D answer (3/8). SYNTHESIS BUMP over P2 (3pt->4pt feel): P2 stops at the bare percent; MC1 adds the convert-BACK step -- the answer is requested in fraction AND decimal form (3/8 = 0.375), not as the bare 37.5%. This is a notation move, not a numbers change. Multi-form-correct -> MCQ per the Percentages chapter rule. Figure-in-options: each option pairs a three-form bundle (percent / fraction / decimal) so the student must recognise the matching set. Stem figure marks only Anna's 25% (the reference); the brother's amount is NOT shown (no answer leak). Distractor values + R5 tags from distractor-plan.md MC1.",
+          "figure_spec": {
+            "type": "pct_of_bar",
+            "color": "blue",
+            "total": 100,
+            "blocks": 10,
+            "block_value": 10,
+            "marked_blocks": 2.5,
+            "bracket_label": "Anna: 25% of her free time",
+            "show_marked_total": false,
+            "caption": "Her brother gets one and a half times as much."
+          },
+          "figure_description": "A horizontal bar standing for all of Anna's free time. A bracket spans the first quarter of the bar and is labelled 'Anna: 25% of her free time'; the rest of the bar is left plain. A caption underneath reads 'Her brother gets one and a half times as much.' The brother's portion is not marked on the bar.",
+          "figures_in_options": true,
+          "question_text": "Anna is allowed screen time worth 25% of her free time. Her brother is allowed one and a half times as much.\n\nWhich row correctly names the share of free time her brother gets — as a percent, a fraction, and a decimal?\n\n{figure}",
+          "config": {
+            "options": [
+              "(A) 37.5% = 3/8 = 0.375",
+              "(B) 37.5% = 1/3 = 0.333",
+              "(C) 26.5% = 53/200 = 0.265",
+              "(D) 37.5% = 3/8 = 0.0375",
+              "(E) 50% = 1/2 = 0.5"
+            ],
+            "answer": 0,
+            "shuffle": false
+          },
+          "explanation": "'One and a half times as much' multiplies Anna's share by 1.5, so her brother gets 1.5 x 25% = 37.5% of his free time (you can split it as 25% + half of 25% = 25% + 12.5%). Now write 37.5% three ways: as a fraction it is 37.5/100 = 375/1000 = 3/8, and as a decimal 37.5% = 37.5 / 100 = 0.375. Row A is the only set where all three forms name the same amount. Row B mis-converts 37.5% to 1/3, row C adds the 1.5 as '+1.5%' (giving 26.5%), row D shifts the decimal one place too far (0.0375 is 3.75%), and row E rounds the multiplier up to x2 (50%).",
+          "difficulty": 4,
+          "skills": [
+            "pct-of-quantity",
+            "pct-frac-dec-conversion",
+            "pct-greater-than-100"
+          ],
+          "tags": [
+            "foundations",
+            "mk-4pt",
+            "pyq-2007-q2",
+            "mode-b-reskin",
+            "mc-a"
+          ],
+          "hints": [
+            "'One and a half times as much' is a multiplier: 1.5 x Anna's 25%, not 25% plus 1.5.",
+            "1.5 x 25% = 25% + half of 25% = 25% + 12.5% = 37.5%. Now you need that same amount written three ways.",
+            "To make 37.5% a decimal, divide by 100: 0.375. As a fraction, 37.5/100 simplifies to 3/8. Find the row where all three match."
+          ],
+          "on_correct": "Right — 1.5 x 25% = 37.5%, and that one amount is 3/8 = 0.375. Same value, three notations.",
+          "on_wrong": "Row A is the match. Her brother's share is 1.5 x 25% = 37.5%, which is 37.5/100 = 3/8 = 0.375. Row D has the right percent but slides the decimal one place too far (0.0375 is 3.75%), and row B turns 37.5% into 1/3, which is about 33%, not the same amount.",
+          "figure": "Figures/lesson-1-4/mc1.svg"
+        },
+        {
+          "id": "MC2",
+          "type": "mcq",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "4pt",
+            "fingerprint_pool": [
+              "pyq-2007-q2",
+              "pyq-2000-q23"
+            ],
+            "step_count": 2,
+            "twist_pattern": "pct_from_quantity_where_part_exceeds_whole_crossing_100",
+            "sub_skill": "pct-from-quantity",
+            "llm_consensus": [],
+            "audit_log_path": "audits/L1-4-MC2.json"
+          },
+          "calibration_note": "Mode C original (MC-A pct-from-quantity, >100% synthesis). No percent PYQ for the inverse move exists at any band (pyq-allocations.md MC2 / scanner verdict). CALIBRATION ANCHOR: 4pt twist density. Twist-density parity: a 4pt pct-from-quantity item is a 2-move (form the part/whole ratio, then convert to a percent across the per-hundred shift) but pitched ABOVE the 3pt entry by forcing the answer to CROSS 100% (30 of 24 -> 30/24 = 1.25 = 125%), which trips R4 ('a percent can't be more than 100'). The ratio 30/24 is deliberately non-clean (not 1/2, 1/4, 1/10) so the student cannot mental-shortcut. It is NOT collapsed to triviality (avoids the L1.2 CF1 erosion incident): a student who refuses to exceed 100% inverts to 24/30 = 80% (D1) and lands wrong. SYNTHESIS BUMP over P3 (P3 = sub-100% clean pct-from-quantity, e.g. 15 of 60 = 25%; MC2 crosses 100% and adds the R4 hurdle). DISTINCT from P3 (sub-100% vs >100%, different numbers). Tom is the actor (Anna is at cap; respects the ~60% Anna ceiling). A stem figure shows two bars -- the 24-bar as the whole and the 30-bar overshooting past it -- so the >100% reading is concrete (no answer leak: the bars are unlabelled with the percent). Distractor values + R4/PWI tags from distractor-plan.md MC2.",
+          "figure_spec": {
+            "type": "pct_overshoot_bars",
+            "color": "blue",
+            "whole_bar": {
+              "label": "Last week: 24 books",
+              "value": 24
+            },
+            "compare_bar": {
+              "label": "This week: 30 books",
+              "value": 30
+            },
+            "scale_max": 30,
+            "show_hundred_mark": true,
+            "hundred_mark_label": "100% line",
+            "show_percent": false
+          },
+          "figure_description": "Two horizontal bars drawn to the same scale. The top bar, labelled 'Last week: 24 books', is the shorter reference bar; a dashed vertical line is drawn at its right end and labelled '100% line'. The bottom bar, labelled 'This week: 30 books', is longer and extends past the dashed line. Neither bar carries a percent value.",
+          "question_text": "Last week Tom's class read 24 books. This week they read 30 books.\n\nThis week's total is what percent of last week's?\n\n{figure}",
+          "config": {
+            "options": [
+              "(A) 80%",
+              "(B) 75%",
+              "(C) 6%",
+              "(D) 25%",
+              "(E) 125%"
+            ],
+            "answer": 4,
+            "shuffle": false
+          },
+          "explanation": "'What percent of last week's' makes last week (24) the whole and this week (30) the part you compare. So you want 30 out of 24: 30 / 24 = 1.25, and 1.25 x 100 = 125%. This week is 125% of last week — more than the whole, which is fine, because the new amount is bigger than the one you're comparing to. Flipping it to 24 / 30 = 80% answers the wrong question (last week as a percent of this week), and 30 - 24 = 6 is the difference, not the percent.",
+          "difficulty": 4,
+          "skills": [
+            "pct-from-quantity",
+            "pct-greater-than-100"
+          ],
+          "tags": [
+            "foundations",
+            "mk-4pt",
+            "original-calibrated-4pt-twist",
+            "mc-a"
+          ],
+          "hints": [
+            "'What percent of last week's' tells you the whole: last week's 24 books. This week's 30 is what you measure against it.",
+            "Write it as a fraction of the whole: 30 / 24. Since 30 is more than 24, the answer will be more than 100% — that's allowed.",
+            "30 / 24 = 1.25. To turn a decimal into a percent, multiply by 100: 1.25 x 100 = 125%."
+          ],
+          "on_correct": "Right — 30 / 24 = 1.25 = 125%. When the new amount beats the whole, the percent goes past 100.",
+          "on_wrong": "It is 125%. Last week (24) is the whole, so you want 30 / 24 = 1.25 = 125%. Flipping to 24 / 30 = 80% measures last week against this week instead — the wrong way round. A percent can go above 100 whenever the part is bigger than the whole.",
+          "figure": "Figures/lesson-1-4/mc2.svg"
+        },
+        {
+          "id": "MC3",
+          "type": "mcq",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "4pt",
+            "fingerprint_pool": [
+              "pyq-2000-q23",
+              "pyq-2004-q25"
+            ],
+            "step_count": 2,
+            "twist_pattern": "reverse_percent_recover_original_from_discounted_price",
+            "sub_skill": "pct-increase-decrease",
+            "llm_consensus": [],
+            "audit_log_path": "audits/L1-4-MC3.json"
+          },
+          "calibration_note": "Mode C original (MC-B reverse-percent, R6). No reverse-percent PYQ exists at any band (pyq-allocations.md MC3 / scanner verdict). CALIBRATION ANCHOR: 4pt twist density. Twist-density parity: a 4pt reverse item is a 2-move (recognise that the $60 IS the kept 75%, then undo the multiplier by DIVIDING) pitched above the 3pt forward items by inverting the direction -- the natural-but-wrong move is to multiply (0.75 x 60 = 45, R6) instead of divide (60 / 0.75 = 80). The kept rate 75% and the $60 are chosen so 60 / 0.75 = 80 is clean while the wrong-direction 0.75 x 60 = 45 is also clean and seductive. It is NOT collapsed to triviality: every distractor is reachable by a specific reverse-percent slip. SYNTHESIS BUMP over P3/P4 (the P-block forward single-step % off): P3 goes price -> sale price; MC3 goes sale price -> original price (runs the same machine backwards). DISTINCT from P3 (forward, jacket, $120/35%): MC3 is reverse, coat, $60/25%, MCQ. DISTINCT from CF2 (forward increase, board game). Bridges to the CE survival logic (undoing a chain). Lara is the actor (Anna at cap). No figure: a reverse word problem reads cleanest as text, and a bar would risk leaking the original (the unknown whole). Distractor values + R6 tags from distractor-plan.md MC3.",
+          "question_text": "Lara bought a coat in a sale. It was marked 25% off, and she paid $60 for it.\n\nWhat was the coat's original price, before the discount?",
+          "config": {
+            "options": [
+              "(A) $45",
+              "(B) $75",
+              "(C) $85",
+              "(D) $80",
+              "(E) $48"
+            ],
+            "answer": 3,
+            "shuffle": false
+          },
+          "explanation": "After 25% off, the price Lara paid is what's left: 100% - 25% = 75% of the original. So $60 is 75% of the original price, which means original x 0.75 = 60. To undo a multiply you divide, so original = 60 / 0.75 = $80. Check: 25% off $80 is $20 off, leaving $60. The common slip is to multiply ($0.75 x 60 = $45), but that takes another 25% off the already-discounted price instead of building back up to the original.",
+          "difficulty": 4,
+          "skills": [
+            "pct-increase-decrease",
+            "pct-reverse",
+            "pct-in-context"
+          ],
+          "tags": [
+            "foundations",
+            "mk-4pt",
+            "original-calibrated-4pt-twist",
+            "mc-b"
+          ],
+          "hints": [
+            "After 25% off, the $60 Lara paid is the part that stayed. What percent of the original is that?",
+            "25% came off, so $60 is the remaining 75% of the original price. So 0.75 x (original) = 60.",
+            "To get back the original from 0.75 x (original) = 60, divide instead of multiply: 60 / 0.75. (Check your answer by taking 25% off it.)"
+          ],
+          "on_correct": "Right — $60 is the 75% that stayed, so original = 60 / 0.75 = $80. Going backwards, you divide.",
+          "on_wrong": "The original price was $80. The $60 Lara paid is the 75% left after a 25% discount, so 0.75 x (original) = 60, which means original = 60 / 0.75 = $80. Multiplying 0.75 x 60 = $45 takes 25% off again instead of undoing it — to reverse a discount you divide, not multiply."
+        },
+        {
+          "id": "MC4",
+          "type": "mcq",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "5pt",
+            "fingerprint_pool": [
+              "pyq-2000-q23",
+              "pyq-2004-q25"
+            ],
+            "step_count": 3,
+            "twist_pattern": "uneven_two_stage_chain_increase_then_decrease_net_change",
+            "sub_skill": "pct-chained-compounding",
+            "llm_consensus": [],
+            "audit_log_path": "audits/L1-4-MC4.json"
+          },
+          "calibration_note": "Mode C original (MC-B chained-compounding, uneven 2-stage). No 5pt 2-stage non-tanker percent PYQ is free (2000 Q23 = WE1, 2004 Q25 = WE2, 2015 Q22 = P4, 2006 Q27 = CE; all consumed). CALIBRATION ANCHOR: MK 2000 Q23 / MK 2004 Q25 (the two locked 5pt 2-stage compound PYQs). Twist-density parity: MC4 is a 3-move 5pt (translate +20% into x1.20, translate -25% into x0.75, multiply the two survival factors, then read the net) matching the 2000 Q23 'two changes multiply, not add' fingerprint -- but UNEVEN (different magnitudes, up then down) so it is harder than the symmetric +10%/-10% of WE1 (the answer 0.90 is not the near-cancel 0.99). Order-independence is real here (1.20 x 0.75 = 0.90 either way), removing the 'which order' crutch. It is NOT collapsed to triviality: R1 (the two cancel) and R3 (+20 - 25 = -5%) are both live and seductive. SYNTHESIS BUMP over P4 (P4 = MK 2015 Q22 'half of remaining + constant' single-direction survival chain; MC4 = uneven up-THEN-down compound, net survival). DISTINCT from P4 (different structure: multiplicative two-factor vs half-plus-constant) AND from CE (CE = 3-stage gas/fluid tanker; MC4 is 2-stage, neutral price surface). A stem figure shows the two-stage chain (x1.20 then x0.75) with the net box blank (no answer leak). Distractor values + R1/R3 tags from distractor-plan.md MC4.",
+          "figure_spec": {
+            "type": "pct_chain_two_stage",
+            "color": "blue",
+            "start_label": "Original price",
+            "stages": [
+              {
+                "change": "up 20%",
+                "factor": "x 1.20"
+              },
+              {
+                "change": "down 25%",
+                "factor": "x 0.75"
+              }
+            ],
+            "result_label": "Net change?",
+            "show_result": false
+          },
+          "figure_description": "A two-step flow diagram. A box on the left reads 'Original price'. An arrow labelled 'up 20% (x 1.20)' leads to a middle box, and a second arrow labelled 'down 25% (x 0.75)' leads to a final box labelled 'Net change?'. The final box is left blank — no number or net percent is shown.",
+          "question_text": "A shop raises the price of a jacket by 20%. The next week, it puts the new price down by 25%.\n\nCompared with the very first price, how has the jacket's price changed overall?\n\n{figure}",
+          "config": {
+            "options": [
+              "(A) no change",
+              "(B) down 5%",
+              "(C) up 5%",
+              "(D) down 15%",
+              "(E) down 10%"
+            ],
+            "answer": 4,
+            "shuffle": false
+          },
+          "explanation": "Two percent changes multiply, they don't add. Up 20% means multiply by 1.20; down 25% means multiply by 0.75. So the final price is 1.20 x 0.75 = 0.90 of the first price — that's 90%, a 10% drop overall. (You can test it: $100 up 20% is $120, then down 25% of $120 is $120 - $30 = $90.) Adding the percents (+20 - 25 = -5%) ignores that the second change acts on the bigger price, and 'they cancel' (no change) is the additive trap — equal-looking percents on different bases don't undo each other.",
+          "difficulty": 5,
+          "skills": [
+            "pct-chained-compounding",
+            "pct-increase-decrease",
+            "pct-in-context"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "original-calibrated-5pt-chained",
+            "mc-b"
+          ],
+          "hints": [
+            "Two percent changes don't add — they multiply. Turn each one into a multiplier first.",
+            "Up 20% is x 1.20; down 25% is x 0.75. The overall effect is 1.20 x 0.75.",
+            "1.20 x 0.75 = 0.90, which is 90% of the first price. Try it on $100 if you want to be sure: $100 -> $120 -> $90."
+          ],
+          "on_correct": "Right — 1.20 x 0.75 = 0.90, so the price ends up 10% below where it started. The 25% bites a bigger number than the 20% added.",
+          "on_wrong": "The price ends up down 10%. Changes multiply: up 20% is x 1.20, down 25% is x 0.75, and 1.20 x 0.75 = 0.90 — 90% of the first price. Adding +20 - 25 to get 5% misses that the 25% comes off the raised price ($120), not the original — try $100 -> $120 -> $90 to see the real 10% drop.",
+          "figure": "Figures/lesson-1-4/mc4.svg"
+        }
+      ]
+    },
+    {
+      "block_type": "challenge_extension",
+      "title": "Challenge Extension",
+      "description": "Optional 5pt stretch — the same survival trick, three stages deep. A tanker is drained three times; track what survives. The hardest item in the lesson.",
+      "questions": [
+        {
+          "id": "CE1",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2006,
+            "question": "Q27",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "MK 2006 Q27 (gas tanker, 5pt). Mode B re-skin: math, options, and answer preserved verbatim from the canonical. Surface kept as the gas tanker (the curriculum hook; iconic and distinct from the L1.2 CE virus surface and the L1.3 CE reverse-chain). Light scenario polish only — a tanker fills three stations, draining 30%, then 40% of the remainder, then half of what is left. Survival fractions 0.7 × 0.6 × 0.5 = 0.21, so 21% is left → answer (A). Three-stage chained reduction; the survival-fraction-arc capstone the IL Pass 4 reveal foreshadowed (the gas tanker, three stages deep). Distinct from MC4 (two-stage jacket price change) and from the IL Pass 4 applet (generic −30%/−40%/−50% chain, no tanker surface).",
+          "question_text": "A tanker arrives full and fills three gas stations in turn. At the first station 30% of the gas is drained. At the second station 40% of the gas still in the tank is drained. At the third station half of what is then left is drained. What percent of the tanker's starting amount is still in the tank?",
+          "config": {
+            "options": [
+              "(A) 21%",
+              "(B) 10%",
+              "(C) 12%",
+              "(D) 14%",
+              "(E) 15%"
+            ],
+            "answer": 0,
+            "shuffle": false
+          },
+          "explanation": "Track what survives at each stage instead of adding the percents. Start with the full tank, 1. First station: 30% drained leaves 0.70. Second station: 40% of the rest drained leaves 0.60 of that. Third station: half drained leaves 0.50 of that. Multiply the survivors: 0.70 × 0.60 × 0.50 = 0.21, so 21% of the starting amount is still in the tank — answer (A). Adding 30 + 40 + 50 = 120 is the trap, because each draining acts on what the last one left, not on the original full tank.",
+          "difficulty": 5,
+          "skills": [
+            "pct-chained-compounding",
+            "pct-increase-decrease",
+            "pct-in-context",
+            "pct-frac-dec-conversion"
+          ],
+          "tags": [
+            "foundations",
+            "mk-5pt",
+            "pyq-2006",
+            "pyq-2006-q27",
+            "adapted",
+            "chained-survival",
+            "lesson-pinnacle"
+          ],
+          "hints": [
+            "Don't add the three percentages — each draining happens on the gas that is left after the one before it, not on the full tank.",
+            "After 30% out, 70% is left. The next station drains 40% of that smaller amount, leaving 60% of it. The third drains half of what is then left, leaving 50% of it.",
+            "Multiply the survival fractions for the whole trip: 0.70 × 0.60 × 0.50. Work it out and read the result as a percent."
+          ],
+          "on_correct": "Right — 30% out leaves 0.70, then 0.60 of that, then 0.50 of that. The chain becomes one multiplication: 0.70 × 0.60 × 0.50 = 0.21, so 21% is still in the tank.",
+          "on_wrong": "It is 21%, answer (A). Track what survives, not what leaves: 0.70 × 0.60 × 0.50 = 0.21. Adding 30 + 40 + 50 = 120 is the slip — each draining acts on what the last one left, so the percents multiply as survival fractions instead of adding.",
+          "figure": "Figures/lesson-1-4/MK_G56_L14_CE1_tanker_three_stages.svg",
+          "figure_spec": {
+            "type": "tanker_drain_stages",
+            "color": "blue",
+            "start_label": "full tank",
+            "stages": [
+              {
+                "label": "Station 1",
+                "drain": "30% drained"
+              },
+              {
+                "label": "Station 2",
+                "drain": "40% of what remains drained"
+              },
+              {
+                "label": "Station 3",
+                "drain": "half of what remains drained"
+              }
+            ],
+            "end_label": "? left"
+          },
+          "figure_description": "A gas tanker followed by three stations. Each station is labelled with the gas drained there — 30% at the first, 40% of what remains at the second, half of what remains at the third — and the tank at the end is marked with a question mark for the amount still inside."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1370 @@
+{
+  "unit": 1,
+  "lesson_number": 2,
+  "title": "Fraction Multiplication and Division",
+  "slug": "l1-2-fraction-mult-div",
+  "technique": "Multiplying fractions (multiply tops, multiply bottoms); dividing fractions (multiply by reciprocal); fraction of a quantity; chained 'fraction of the rest' reductions composed by multiplication.",
+  "skills": [
+    "frac-mult-fraction",
+    "frac-of-quantity",
+    "frac-chained-reduction",
+    "frac-div-fraction"
+  ],
+  "estimated_minutes": 32,
+  "difficulty_range": "3pt-5pt",
+  "narrative_thread": "None. Each PYQ keeps its own original context; chained-reduction items thread through a 'fraction of the rest' lens.",
+  "prior_lesson_hook": "L1.1's IL Step 11 left a 'fraction of the rest' cliffhanger (1/4 then 1/3 of what remains). L1.2 cracks the pattern with fresh surfaces (paper folding for area-model, chocolate bar for chained reduction) — no pizza re-use.",
+  "pyq_sources": [
+    "pyq-1999-q03",
+    "pyq-2011-q06",
+    "pyq-1998-q21",
+    "pyq-2008-q15",
+    "pyq-2005-q07",
+    "pyq-2001-q12",
+    "pyq-2001-q17",
+    "pyq-2021-q22",
+    "pyq-2006-q08",
+    "pyq-2017-q08",
+    "pyq-2002-q27"
+  ],
+  "mode_c_originals": [
+    {
+      "slot": "P5",
+      "skill": "frac-div-fraction",
+      "rationale": "Pool has zero S4 (fraction ÷ fraction) PYQs at any tier; S4 is a stated curriculum objective and the gate must touch it. User-approved 2026-06-08."
+    },
+    {
+      "slot": "MC3",
+      "skill": "frac-div-fraction",
+      "rationale": "Same pool gap; MC3 paired with figure-in-options to satisfy 25% quota."
+    }
+  ],
+  "non_negotiables_applied": [
+    "§1 no answer-leak",
+    "§2 PYQ-first; Mode B context-tweak default; Mode C user-gated for S4 only (P5, MC3)",
+    "§3 WE/P/MC = 5-option MCQ; CF = FIB only (MCQ ≤ 30%)",
+    "§4 applet titles match interaction",
+    "§5 sentence case (no ALL-CAPS emphasis)",
+    "§6 no authoring metadata in student copy",
+    "§7 difficulty preservation for PYQ items (WE1 upgraded 3pt → 5pt to match MK 1998 Q21)",
+    "§8 human voice (principle-based; voice-samples.md is the reference)",
+    "§9 lesson-wide color policy",
+    "§10 lesson-topic alignment (S1/S2/S3/S4 only; no add/sub/mixed/decimals/ratios)",
+    "Block 1 no-hint rule",
+    "Block 2 #9 IL text density ≤60 words/step",
+    "Block 2 #11 IL every step is a reasoning checkpoint",
+    "Block 3 KC = 4-6 cards + downloadable PDF",
+    "Block 4 #10 figure-per-step in Worked Examples",
+    "Blocks 4-6 50% figure-stem quota + 25% figure-in-options quota"
+  ],
+  "items_pending_user_confirmation": [],
+  "items_pending_figure_extraction": [],
+  "blocks": [
+    {
+      "block_type": "challenge_first",
+      "title": "Challenge First",
+      "note": "2 cold problems. The player auto-reveals the answer after 2 wrong attempts. No hints.",
+      "questions": [
+        {
+          "id": "CF1",
+          "type": "fill_in_blank",
+          "source": "pyq",
+          "pyq": {
+            "year": 1999,
+            "question": "Q03",
+            "difficulty": "3pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 1999 Q03. The canonical abstract arithmetic ('one quarter of one half of double 32') is wrapped in a Maya's-stickers cover story to align with the lesson's recurring narrative thread (Maya is used in P2/P4/P7/MC2). Math chain preserved: double 32 = 64, half of 64 = 32, one quarter of 32 = 8. Format also shifted from booklet MCQ to FIB per Cross-cutting §3 + course CLAUDE.md (single-integer answer → FIB).",
+          "question_text": "Maya has 32 stickers. After doubling her collection, she gives one quarter of one half of all her stickers to her sister. How many stickers does she give? {blank}",
+          "config": {
+            "answers": ["8"]
+          },
+          "explanation": "Walk the chain. Maya starts with 32, doubles to 64 (so 'all her stickers' = 64). Half of 64 = 32. One quarter of 32 = 8. The word 'of' is doing the work of multiplication at every step.",
+          "difficulty": 3,
+          "skills": [
+            "frac-mult-fraction",
+            "frac-of-quantity"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "pyq-1999-q03"
+          ],
+          "on_correct": "Right — doubled to 64, half is 32, a quarter of that is 8. Each 'of' is a fraction taken of what Maya just had.",
+          "on_wrong": "The answer is 8. Step through it: 32 doubled = 64. Half of 64 = 32. Quarter of 32 = 8. The trap is reading 'double 32' as 32 + 2, or skipping straight to '32 ÷ 4'. Each 'of' acts on the previous answer."
+        },
+        {
+          "id": "CF2",
+          "type": "fill_in_blank",
+          "source": "pyq",
+          "pyq": {
+            "year": 2011,
+            "question": "Q06",
+            "difficulty": "3pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2011 Q06. Surface re-wrapped from 'water through pipes' to 'marbles through chutes' — concrete and countable for grade 5-6. Numbers (1000 total), figure structure (asymmetric two-level network Z → {X, Y, Y, Y}), the 3/4 fraction reaching Y, and the answer (750) are all preserved per Cross-cutting §7. Stem also re-framed around counting the final paths so the solution lives in 'fraction of a quantity' (3/4 × 1000), avoiding fraction addition (out of L1.2 scope).",
+          "question_text": "A system of chutes carries marbles from bin Z down to bins X and Y. At every fork, the marbles split into two equal streams. 1000 marbles are dropped into Z. How many marbles reach bin Y?",
+          "config": {
+            "answers": ["750"]
+          },
+          "explanation": "Read the diagram by counting the final paths (the endpoints below the lowest fork). There are 4 equal final paths: 1 reaches X, 3 reach Y. So Y receives 3/4 of the marbles dropped in. 3/4 of 1000 = 750 marbles.",
+          "difficulty": 3,
+          "skills": [
+            "frac-of-quantity",
+            "frac-mult-fraction"
+          ],
+          "tags": [
+            "foundations",
+            "mk-3pt",
+            "pyq-2011-q06"
+          ],
+          "figure": "Figures/lesson-1-2/CF2.svg",
+          "figure_description": "An asymmetric chute network: bin Z at the top branches once. The right branch leads straight down to bin Y. The left branch leads to a second fork, whose left side ends at bin X and whose right side also ends at bin Y. Four final endpoints total; one labels X, three label Y.",
+          "on_correct": "Yes — 3 of the 4 final paths end at Y, so Y receives 3/4 of 1000 marbles. 3/4 of 1000 = 750.",
+          "on_wrong": "The answer is 750. Count the final endpoints (the bottom of each chute). There are 4 of them. One reaches X; three reach Y. So Y gets 3 out of 4 of the marbles — 3/4 of 1000 = 750. The trap is halving once (500) or halving twice (250) without tracing where the marbles actually end up.",
+          "figure_spec": {
+            "type": "pipe_network",
+            "endpoints": [
+              {"label": "X", "share": "1/4"},
+              {"label": "Y", "share": "1/4"},
+              {"label": "Y", "share": "1/4"},
+              {"label": "Y", "share": "1/4"}
+            ],
+            "structure": "asymmetric_two_level",
+            "source_label": "Z",
+            "source_volume": "1000 marbles",
+            "color": "blue"
+          }
+        }
+      ]
+    },
+    {
+      "block_type": "interactive_lesson",
+      "title": "Interactive Lesson",
+      "design_principles": [
+        "predict → explain/apply → reveal",
+        "visual-first",
+        "text density ≤ 60 words per step",
+        "every step is a reasoning checkpoint",
+        "sub-concept passes: × fractions → fraction of quantity → chained reductions → ÷ fractions"
+      ],
+      "estimated_minutes": 14,
+      "steps": [
+        {
+          "step": 1,
+          "type": "predict",
+          "section": "Hook",
+          "section_title": "Fraction of a fraction",
+          "cpa_beat": "C",
+          "figure": "Figures/lesson-1-2/il-step-1.svg",
+          "figure_description": "An empty rectangular sheet of paper, lying flat, with no fold marks.",
+          "text": "To see what 'a fraction of a fraction' looks like, fold a sheet of paper.",
+          "action": {
+            "prompt": "You fold the sheet in half. Then you fold that half into 3 equal strips. What fraction of the whole sheet is one of those small strips?",
+            "max_attempts": 1,
+            "proceed_regardless": true,
+            "type": "mcq",
+            "config": {
+              "options": [
+                "1/2",
+                "1/3",
+                "1/5",
+                "2/3",
+                "1/6"
+              ],
+              "answer": 4
+            },
+            "on_correct": "Nice read — that's exactly what the folds make. The next steps will show why.",
+            "on_wrong": "That's a fair guess. The next steps will show how to picture 'fraction of a fraction' — no worries here."
+          },
+          "figure_spec": {
+            "type": "blank_sheet",
+            "color": "purple"
+          }
+        },
+        {
+          "step": 2,
+          "type": "explain",
+          "section": "Picture",
+          "section_title": "Two folds, six pieces",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-2/il-step-2.svg",
+          "figure_description": "A 2-by-3 grid of six equal small pieces, with a thicker horizontal line across the middle marking the first fold. The top-left small piece is filled blue.",
+          "text": "Fold the sheet in half — that's 2 equal halves, separated by the thick line. Now imagine folding each half into 3 strips. Count what you see.",
+          "questions": [
+            {
+              "prompt": "How many small pieces does the folded sheet have in total? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["6"]
+              },
+              "on_correct": "Yes — 2 halves, each split into 3 strips, makes 6 small pieces.",
+              "on_wrong": "Count from the picture: 2 rows, 3 strips in each row, so 2 × 3 = 6 small pieces in all."
+            },
+            {
+              "prompt": "The highlighted strip is 1 of those 6 small pieces. What fraction of the whole sheet is it? {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["1", "6"]
+              },
+              "on_correct": "Right — 1 out of 6 equal pieces = 1/6 of the whole sheet. That's the area-model picture of 'half of one-third', or equally 'one-third of one-half'.",
+              "on_wrong": "The strip is 1 piece out of 6 equal pieces, so the fraction is 1/6."
+            }
+          ],
+          "figure_spec": {
+            "type": "area_model_grid",
+            "rows": 2,
+            "cols": 3,
+            "highlight_cell": {"row": 0, "col": 0},
+            "show_fold_axis": "horizontal",
+            "color": "blue"
+          }
+        },
+        {
+          "step": 3,
+          "type": "apply",
+          "section": "Apply",
+          "section_title": "Build 2/3 × 3/4 from the grid",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-2/il-step-3.svg",
+          "figure_description": "A 3-by-4 grid of 12 equal small pieces. A solid green block in the upper-left, bounded by a thick green outline, covers the area where 2 of 3 columns intersect 3 of 4 rows. Three faint blue pieces extend the top rows to the right of the green block. Two faint purple pieces extend the left columns below the green block. The bottom-right piece is unshaded.",
+          "text": "Multiplying two fractions = finding an area on a grid. The grid below is set up for 2/3 × 3/4 — let's count.",
+          "questions": [
+            {
+              "prompt": "Count the green block. It is {blank} columns wide and {blank} rows tall.",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["2", "3"]
+              },
+              "on_correct": "The green block is 2 columns × 3 rows.",
+              "on_wrong": "Count from the figure: green spans 2 columns and 3 rows."
+            },
+            {
+              "prompt": "Count the whole grid. It has {blank} columns and {blank} rows.",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["3", "4"]
+              },
+              "on_correct": "The whole grid is 3 columns × 4 rows.",
+              "on_wrong": "Count from the figure: 3 columns across, 4 rows down."
+            },
+            {
+              "prompt": "The green covers 2 of 3 columns. As a fraction of the columns: {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["2", "3"]
+              },
+              "on_correct": "2/3 — the first fraction in 2/3 × 3/4.",
+              "on_wrong": "2 of 3 columns is the fraction 2/3."
+            },
+            {
+              "prompt": "The green covers 3 of 4 rows. As a fraction of the rows: {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["3", "4"]
+              },
+              "on_correct": "3/4 — the second fraction.",
+              "on_wrong": "3 of 4 rows is the fraction 3/4."
+            },
+            {
+              "prompt": "Multiply the numerators of 2/3 and 3/4: 2 × 3 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["6"]
+              },
+              "on_correct": "6 — and notice, that's also the count of green pieces!",
+              "on_wrong": "2 × 3 = 6 — the same as the green pieces count."
+            },
+            {
+              "prompt": "Multiply the denominators: 3 × 4 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["12"]
+              },
+              "on_correct": "12 — and that's the count of pieces in the whole grid.",
+              "on_wrong": "3 × 4 = 12 — the total number of small pieces."
+            },
+            {
+              "prompt": "So 2/3 × 3/4 = {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["6", "12"]
+              },
+              "on_correct": "Yes — 6/12. The grid shows it (6 green of 12 total) and the multiplication confirms it. The next screen lets you try the rule on any pair.",
+              "on_wrong": "6 green pieces out of 12 in the whole grid — so 2/3 × 3/4 = 6/12."
+            }
+          ],
+          "figure_spec": {
+            "type": "area_model_grid",
+            "rows": 4,
+            "cols": 3,
+            "shade_cols_count": 2,
+            "shade_rows_count": 3,
+            "highlight_overlap": true,
+            "color": "blue"
+          }
+        },
+        {
+          "step": 4,
+          "type": "applet",
+          "section": "Rule",
+          "section_title": "Multiply numerators, multiply denominators",
+          "cpa_beat": "A",
+          "applet_type": "fraction-multiplier-grid",
+          "figure": "Figures/lesson-1-2/il-step-4.svg",
+          "figure_description": "A 2-column-by-3-row grid of 6 equal small pieces. A solid green block in the top-left, bounded by a thick green outline, marks the 1 piece where 1 of 2 columns intersects 1 of 3 rows. The piece to the right of the green block is faintly blue. The two pieces below the green block (down the left column) are faintly purple. The two pieces in the right column below the top row are unshaded.",
+          "text": "You just used the rule on the grid: multiply numerators, multiply denominators. Try it on three more pairs.",
+          "instruction": "Predict each pair's product, then click Check.",
+          "config": {
+            "rounds": [
+              {"a": "1/2", "b": "1/3"},
+              {"a": "2/3", "b": "3/4"},
+              {"a": "1/4", "b": "2/5"}
+            ]
+          },
+          "on_correct": "Right — multiply the numerators (top × top), multiply the denominators (bottom × bottom). The grid agrees every time.",
+          "on_wrong": "Multiply the numerators for the top of your answer, and the denominators for the bottom.",
+          "discovery_message": "Notice the pattern: no matter what pair you pick, the green cells = (numerator of A) × (numerator of B), and the total cells = (denominator of A) × (denominator of B). That's the rule — always.",
+          "figure_spec": {
+            "type": "area_model_grid",
+            "rows": 3,
+            "cols": 2,
+            "shade_cols_count": 1,
+            "shade_rows_count": 1,
+            "highlight_overlap": true,
+            "color": "blue"
+          }
+        },
+        {
+          "step": 5,
+          "type": "explain",
+          "section": "Quantity",
+          "section_title": "Fraction of a number",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-2/il-step-5.svg",
+          "figure_description": "A horizontal row of 20 marbles, evenly spaced. No visible dividers — the splitting is for the student to work out from the fraction.",
+          "text": "You multiplied two fractions. Now let's find 1/4 of 20 — a 'fraction of a quantity'.",
+          "questions": [
+            {
+              "prompt": "1/4 means '1 of 4 equal parts'. So we split 20 into how many equal groups? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["4"]
+              },
+              "on_correct": "Right — 4 equal groups, because 1/4 is '1 of 4 parts'.",
+              "on_wrong": "1/4 = 1 of 4 equal parts. So split 20 into 4 equal groups."
+            },
+            {
+              "prompt": "20 split equally into 4 groups → how many in each group? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["5"]
+              },
+              "on_correct": "Right — 20 ÷ 4 = 5 marbles in each group.",
+              "on_wrong": "20 ÷ 4 = 5 marbles per group. (Imagine splitting the row into 4 equal parts.)"
+            },
+            {
+              "prompt": "1/4 says take 1 of those 4 groups. So 1/4 of 20 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["5"]
+              },
+              "on_correct": "Yes — 1/4 of 20 = 5. The fraction's bottom number says how many parts to split into; its top number says how many parts to take.",
+              "on_wrong": "Take 1 group of 5 marbles. So 1/4 of 20 = 5."
+            }
+          ],
+          "figure_spec": {
+            "type": "marble_row",
+            "total": 20,
+            "groups": 1,
+            "highlight_group": null,
+            "color": "blue"
+          }
+        },
+        {
+          "step": 6,
+          "type": "apply",
+          "section": "Apply",
+          "section_title": "Take more than one group",
+          "cpa_beat": "P",
+          "figure": "Figures/lesson-1-2/il-step-6.svg",
+          "figure_description": "A horizontal row of 12 cookies, evenly spaced. No visible dividers — the student works out the split from the fraction.",
+          "text": "We've seen 1/4 of 20. Now let's see how we find 2/3 of 12 — where the numerator is greater than 1.",
+          "questions": [
+            {
+              "prompt": "2/3 means '2 of 3 equal parts'. So we split 12 into how many equal groups? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["3"]
+              },
+              "on_correct": "Right — 3 equal groups, because 2/3 is '2 of 3 parts'.",
+              "on_wrong": "2/3 = 2 of 3 equal parts. So split 12 into 3 equal groups."
+            },
+            {
+              "prompt": "12 split equally into 3 groups → how many in each group? {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["4"]
+              },
+              "on_correct": "Right — 12 ÷ 3 = 4 cookies in each group. (That's 1/3 of 12.)",
+              "on_wrong": "12 ÷ 3 = 4 cookies per group. (Imagine splitting the row into 3 equal parts.)"
+            },
+            {
+              "prompt": "2/3 says take 2 of those 3 groups. So 2/3 of 12 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["8"]
+              },
+              "on_correct": "Yes — 2 × 4 = 8. Same rule as Step 5: bottom = parts to split into, top = parts to take.",
+              "on_wrong": "Take 2 groups of 4 cookies = 8. So 2/3 of 12 = 8."
+            }
+          ],
+          "figure_spec": {
+            "type": "cookie_row",
+            "total": 12,
+            "groups": 1,
+            "highlight_groups": null,
+            "color": "blue"
+          }
+        },
+        {
+          "step": 7,
+          "type": "applet",
+          "section": "Practice",
+          "section_title": "Try a fraction of any quantity",
+          "cpa_beat": "P",
+          "applet_type": "fraction-of-quantity",
+          "figure_description": "Interactive applet — circles showing the chosen total, with the chosen fraction-many shaded.",
+          "text": "We've seen 1/4 of 20 and 2/3 of 12. Now let's try many — pick a total and a fraction, then predict the count.",
+          "instruction": "Tap a total and a fraction, predict how many items the fraction covers, then click Check. Try a few different combinations.",
+          "config": {
+            "totals": [6, 12, 18, 24],
+            "fractions": ["1/4", "1/3", "1/2", "2/3", "3/4", "5/6"],
+            "initial_total": 12,
+            "initial_fraction": "1/4"
+          },
+          "on_correct": "Right — split into bottom number, take top number.",
+          "on_wrong": "Use the fraction: split the total into bottom-number parts, then take top-number parts.",
+          "discovery_message": "Same rule for any pair: bottom = parts to split into, top = parts to take."
+        },
+        {
+          "step": 8,
+          "type": "explain",
+          "section": "Chained",
+          "section_title": "Fraction of the rest",
+          "cpa_beat": "C",
+          "figure": "Figures/lesson-1-2/il-step-7.svg",
+          "figure_description": "Side-by-side comparison. Left: a whole chocolate bar shown as 4 purple strips together, labelled 'Whole bar' with caption '= 1 whole'. An arrow points right. Right: the same bar after 1/4 is eaten — the leftmost strip is faded with 'eaten' label, then a small gap, then 3 purple strips remaining, labelled with a stacked '3/4' fraction and 'left'.",
+          "text": "A chocolate bar has 4 equal pieces. You ate 1 piece, and your friend ate 1/3 of the remaining.",
+          "questions": [
+            {
+              "prompt": "You ate 1 of 4 pieces, which is {blank}/{blank} of the total bar.",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["1", "4"]
+              },
+              "on_correct": "Right — you ate 1/4 of the bar.",
+              "on_wrong": "1 piece out of 4 equal pieces = 1/4."
+            },
+            {
+              "prompt": "3 pieces are still on the bar, which is {blank}/{blank} of the total bar.",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["3", "4"]
+              },
+              "on_correct": "Yes — 3 of 4 pieces = 3/4 of the bar.",
+              "on_wrong": "3 pieces out of 4 equal pieces = 3/4."
+            },
+            {
+              "prompt": "Friend's take = 1/3 of the remaining 3 pieces. 1/3 of 3 = {blank} piece",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["1"]
+              },
+              "on_correct": "Yes — 1 piece. Friend's 1/3 acts on the 3 remaining, not on the whole bar.",
+              "on_wrong": "Friend's 1/3 acts on the 3 REMAINING pieces (not the whole bar). Split 3 into 3 equal groups: 1 piece each. So 1/3 of 3 = 1 piece."
+            },
+            {
+              "prompt": "1 piece out of the bar's 4 pieces = 1/{blank} of the whole bar.",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["4"]
+              },
+              "on_correct": "Right — 1/4. So friend's 1/3 of the remaining = 1/4 of the whole bar.",
+              "on_wrong": "The bar has 4 equal pieces, friend ate 1. So friend ate 1/4 of the bar."
+            }
+          ],
+          "figure_spec": {
+            "type": "chocolate_bar_broken",
+            "total_strips": 4,
+            "broken_off_strips": 1,
+            "color": "purple"
+          }
+        },
+        {
+          "step": 9,
+          "type": "apply",
+          "section": "Apply",
+          "section_title": "Another fraction of a fraction",
+          "cpa_beat": "A",
+          "text": "A bottle was 1/2 full of water. Then 1/3 of that water was poured out. Let's find what fraction of the whole bottle was poured.",
+          "questions": [
+            {
+              "prompt": "'1/3 of 1/2' is the same as:",
+              "type": "mcq",
+              "config": {
+                "options": ["1/3 + 1/2", "1/3 − 1/2", "1/3 × 1/2", "1/3 ÷ 1/2"],
+                "answer": 2
+              },
+              "on_correct": "Right — 'of' between fractions means multiply, so it becomes 1/3 × 1/2.",
+              "on_wrong": "Between two fractions, 'of' means multiply. So 1/3 of 1/2 = 1/3 × 1/2."
+            },
+            {
+              "lead_in": "To find 1/3 × 1/2, multiply the numerators first, then the denominators.",
+              "prompt": "Multiply the numerators (top numbers): 1 × 1 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["1"]
+              },
+              "on_correct": "Right — top of the answer = 1.",
+              "on_wrong": "Multiply the top numbers: 1 × 1 = 1."
+            },
+            {
+              "prompt": "Multiply the denominators (bottom numbers): 3 × 2 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["6"]
+              },
+              "on_correct": "Yes — bottom of the answer = 6.",
+              "on_wrong": "Multiply the bottom numbers: 3 × 2 = 6."
+            },
+            {
+              "prompt": "So 1/3 × 1/2 = {blank}/{blank} of the whole bottle was poured out.",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["1", "6"]
+              },
+              "on_correct": "Right — 1/6 of the bottle was poured. Same idea as the chocolate bar: 'fraction of a fraction' = multiply.",
+              "on_wrong": "Top × top = 1, bottom × bottom = 6. So 1/3 × 1/2 = 1/6."
+            }
+          ]
+        },
+        {
+          "step": 10,
+          "type": "predict",
+          "section": "Reverse",
+          "section_title": "How many fit?",
+          "cpa_beat": "C",
+          "figure": "Figures/lesson-1-2/il-step-10.svg",
+          "figure_description": "A horizontal bar split into 4 equal segments by 3 faint vertical tick marks. The leftmost 3 segments are shaded blue (showing 3/4); the rightmost segment is unshaded.",
+          "text": "Now let's go the other way: how many small fractions fit inside a bigger one? The shaded bar shows 3/4 of the whole.",
+          "action": {
+            "prompt": "How many 1/4 pieces fit inside the shaded 3/4?",
+            "max_attempts": 1,
+            "proceed_regardless": true,
+            "type": "mcq",
+            "config": {
+              "options": [
+                "4",
+                "1/3",
+                "3",
+                "12",
+                "3/16"
+              ],
+              "answer": 2
+            },
+            "on_correct": "Right — 3 quarter-pieces fit in 3/4. That's what 3/4 ÷ 1/4 means: how many 1/4s fit in 3/4.",
+            "on_wrong": "Look at the shaded bar — it's exactly 3 of the 1/4 segments. So 3/4 ÷ 1/4 = 3."
+          },
+          "figure_spec": {
+            "type": "bar_with_ticks",
+            "segments": 4,
+            "shaded_segments": 3,
+            "color": "purple"
+          }
+        },
+        {
+          "step": 11,
+          "type": "explain",
+          "section": "Rule",
+          "section_title": "Flip and multiply",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-2/il-step-10.svg",
+          "figure_description": "Same bar as Step 10 — a horizontal bar split into 4 equal segments, the leftmost 3 shaded purple, with the caption 'Shaded = 3/4' below.",
+          "text": "Counting how many small fractions fit inside a bigger one is what we call division. So 3/4 ÷ 1/4 = 3. Now let's find a shortcut.",
+          "questions": [
+            {
+              "lead_in": "Build the shortcut on the same example: 3/4 ÷ 1/4.",
+              "prompt": "Reciprocal of 1/4 (flip top and bottom) = {blank}/{blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["4", "1"]
+              },
+              "on_correct": "Right — flipping 1/4 gives 4/1. That's its reciprocal.",
+              "on_wrong": "Swap top and bottom: 1/4 becomes 4/1."
+            },
+            {
+              "prompt": "Now multiply the first fraction by that reciprocal: 3/4 × 4/1 = {blank} (simplest form)",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["3"]
+              },
+              "on_correct": "Yes — 3/4 × 4/1 = 12/4 = 3. Same answer as counting. That's the shortcut: flip the second fraction, then multiply.",
+              "on_wrong": "Multiply tops (3 × 4 = 12), then bottoms (4 × 1 = 4). So 12/4 = 3."
+            },
+            {
+              "lead_in": "Now use the shortcut on a new pair.",
+              "prompt": "1/2 ÷ 1/4 = {blank} (simplest form)",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["2"]
+              },
+              "on_correct": "Right — flip 1/4 to 4/1, then 1/2 × 4/1 = 4/2 = 2. Two 1/4 pieces fit in 1/2. (Watch out: flip the second fraction only, never the first.)",
+              "on_wrong": "Flip the second fraction: 1/4 → 4/1. Then 1/2 × 4/1 = 4/2 = 2."
+            }
+          ],
+          "figure_spec": {
+            "type": "bar_with_ticks",
+            "segments": 4,
+            "shaded_segments": 3,
+            "color": "purple"
+          }
+        },
+        {
+          "step": 12,
+          "type": "apply",
+          "section": "Closure",
+          "section_title": "Four quick checks",
+          "cpa_beat": "A",
+          "figure": "Figures/lesson-1-2/il-step-12.svg",
+          "figure_description": "A 2-column reference table — columns: Operation, Rule. Row 1: Multiply two fractions / Tops × tops, bottoms × bottoms. Row 2: Fraction of a number / 'Of' means ×. Row 3: Fraction of the rest / Multiply the leftover fractions. Row 4: Divide two fractions / Flip the second, then ×. (Examples for each rule are demonstrated by the four follow-up questions below.)",
+          "text": "Four quick checks — one per move. Use the card above as your reference.",
+          "questions": [
+            {
+              "prompt": "3/5 × 1/2 = ?",
+              "type": "mcq",
+              "config": {
+                "options": ["3/10", "1/5", "5/12", "3/2"],
+                "answer": 0
+              },
+              "on_correct": "Yes — multiply tops (3 × 1 = 3), multiply bottoms (5 × 2 = 10).",
+              "on_wrong": "Multiply tops together: 3 × 1 = 3. Multiply bottoms together: 5 × 2 = 10. So 3/5 × 1/2 = 3/10."
+            },
+            {
+              "prompt": "3/4 of 16 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["12"]
+              },
+              "on_correct": "Right — 'of' means ×, so 3/4 × 16 = 48/4 = 12.",
+              "on_wrong": "'Of' means multiply. 3/4 × 16 = 48/4 = 12. (Or: split 16 into 4 groups of 4, take 3 of them.)"
+            },
+            {
+              "prompt": "Take 1/5 of a bar, then 1/2 of what's left. Fraction of bar still left = ?",
+              "type": "mcq",
+              "config": {
+                "options": ["2/5", "3/5", "1/2", "1/5"],
+                "answer": 0
+              },
+              "on_correct": "Yes — leftover after 1/5 is 4/5, then 1/2 of that leaves 1/2. So 4/5 × 1/2 = 4/10 = 2/5 left.",
+              "on_wrong": "After 1/5 taken, 4/5 is left. Then 1/2 of that is taken, leaving 1/2 of 4/5 = 4/5 × 1/2 = 2/5."
+            },
+            {
+              "prompt": "2/3 ÷ 1/6 = {blank}",
+              "type": "fill_in_blank",
+              "config": {
+                "answers": ["4"]
+              },
+              "on_correct": "Yes — flip 1/6 to 6/1, then 2/3 × 6/1 = 12/3 = 4.",
+              "on_wrong": "Flip the second fraction: 1/6 → 6/1. Then 2/3 × 6/1 = 12/3 = 4."
+            }
+          ],
+          "curiosity_question": {
+            "type": "fill_in_blank",
+            "lead_in": "One more on your own.",
+            "prompt": "5/6 ÷ 5/12 = {blank}",
+            "config": {
+              "answers": ["2"]
+            },
+            "reveal_message": "All four moves locked in. Next lesson — fractions written a different way: decimals."
+          },
+          "figure_spec": {
+            "type": "summary_table",
+            "color": "purple",
+            "rows": [
+              { "op": "Multiply two fractions",  "rule": "Tops × tops, bottoms × bottoms" },
+              { "op": "Fraction of a number",    "rule": "'Of' means ×" },
+              { "op": "Fraction of the rest",    "rule": "Multiply the leftover fractions" },
+              { "op": "Divide two fractions",    "rule": "Flip the second, then ×" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "block_type": "key_insight",
+      "title": "The Technique — Revision Cards",
+      "intro": "4 quick cards covering everything you just learned. Flip through to revise, then grab the cheat sheet to keep nearby while you practice.",
+      "cheat_sheet_url": "../Figures/lesson-1-2/MK_G56_L12_revision_cheatsheet.html",
+      "cheat_sheet_pdf_url": "../Figures/lesson-1-2/MK_G56_L12_revision_cheatsheet.pdf",
+      "cards": [
+        {
+          "id": "multiply",
+          "icon": "✖️",
+          "title": "Multiply fractions",
+          "concept": "Multiply the tops together. Multiply the bottoms together. That's the whole rule.",
+          "example_math": "\\dfrac{1}{2} \\times \\dfrac{1}{3} = \\dfrac{1 \\times 1}{2 \\times 3} = \\dfrac{1}{6}",
+          "example_text": "1/2 × 1/3 = 1/6 (tops together, bottoms together)"
+        },
+        {
+          "id": "of-quantity",
+          "icon": "🧮",
+          "title": "Fraction of a quantity",
+          "concept": "'Of' means multiply. Split the quantity into equal groups using the bottom number, then take as many groups as the top number says.",
+          "example_math": "\\dfrac{3}{4} \\text{ of } 20 = \\dfrac{3 \\times 20}{4} = 15",
+          "example_text": "3/4 of 20 = 15 (split 20 into 4 groups of 5, take 3 of those groups)"
+        },
+        {
+          "id": "chained",
+          "icon": "🔁",
+          "title": "Fraction of the rest",
+          "concept": "When the chain says 'of the rest,' multiply the leftover fractions together — don't add the bites.",
+          "example_math": "\\dfrac{1}{4} \\text{ then } \\dfrac{1}{3} \\text{ of rest} \\Rightarrow \\dfrac{3}{4} \\times \\dfrac{2}{3} = \\dfrac{1}{2} \\text{ left}",
+          "example_text": "1/4 broken off, then 1/3 of the rest eaten → 1/2 of the bar still left (multiply the leftover fractions 3/4 × 2/3)"
+        },
+        {
+          "id": "divide",
+          "icon": "➗",
+          "title": "Divide fractions",
+          "concept": "Flip the divisor (the second fraction), then multiply. Never flip the first.",
+          "example_math": "\\dfrac{3}{4} \\div \\dfrac{1}{4} = \\dfrac{3}{4} \\times \\dfrac{4}{1} = 3",
+          "example_text": "3/4 ÷ 1/4 = 3 (how many 1/4 pieces fit in 3/4? Three)"
+        }
+      ]
+    },
+    {
+      "block_type": "worked_examples",
+      "title": "Worked Examples",
+      "examples": [
+        {
+          "id": "WE1",
+          "source": "pyq",
+          "pyq": {
+            "year": 1998,
+            "question": "Q21",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 1998 Q21. Surface re-wrapped from 'juice cartons & glasses' to 'batteries & robot run-time' — gives a fresh time-based surface, distinct from the bottle/liquid imagery used in IL Pass 3 and WE2. Figure removed (text-only worded problem). Numbers (3/4, 1 1/2, 5), options (A–E), and the answer (10) preserved per Cross-cutting §7.",
+          "narration_mode": "scaffolded",
+          "question_text": "A battery that is 3/4 charged powers a robot for 1 1/2 hours. How many hours can a robot run on 5 fully-charged batteries?",
+          "options": [
+            "(A) 7 1/2",
+            "(B) 3 3/4",
+            "(C) 8",
+            "(D) 10",
+            "(E) 8 1/4"
+          ],
+          "answer_text": "(D) 10",
+          "answer_index": 3,
+          "difficulty": 5,
+          "skills": ["frac-mult-fraction", "frac-of-quantity", "frac-div-fraction"],
+          "tags": ["foundations", "mk-5pt", "pyq-1998-q21"],
+          "steps": [
+            {
+              "step": 1,
+              "note": "Read 1 1/2 as a single fraction.",
+              "segments": [
+                {
+                  "narration": "Mixed numbers can be rewritten as a single fraction. One whole hour plus half an hour = 3 halves of an hour. So '1 1/2 hours' is the same as '3/2 hours'.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "Rewrite 1 1/2 as a single fraction: {blank}/{blank}",
+                    "config": {
+                      "answers": ["3", "2"]
+                    },
+                    "hint": "1 whole = 2/2. Add 1/2 more to make 3/2.",
+                    "explanation": "1 = 2/2, and 1/2 stays as 1/2. Two halves plus one half makes three halves = 3/2."
+                  }
+                }
+              ]
+            },
+            {
+              "step": 2,
+              "note": "Find what 1/4 of a battery powers.",
+              "segments": [
+                {
+                  "narration": "3/4 of a battery powers the robot for 3/2 hours. 1/4 of a battery is one-third as much as 3/4 of a battery, so it powers the robot for one-third as many hours. Use the multiply-fractions rule: 3/2 × 1/3.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "1/4 of a battery powers the robot for how many hours? {blank}/{blank}",
+                    "config": {
+                      "answers": ["1", "2"],
+                      "accept": [["1", "2"], ["3", "6"]]
+                    },
+                    "hint": "3/2 × 1/3 = (3 × 1) / (2 × 3) = 3/6 = 1/2.",
+                    "explanation": "Multiply tops: 3 × 1 = 3. Multiply bottoms: 2 × 3 = 6. So 3/2 × 1/3 = 3/6, which simplifies to 1/2. A quarter-battery powers the robot for half an hour."
+                  }
+                }
+              ]
+            },
+            {
+              "step": 3,
+              "note": "Scale up to a fully-charged battery.",
+              "segments": [
+                {
+                  "narration": "A fully-charged battery is 4 quarter-batteries. Each quarter powers the robot for 1/2 an hour. Multiply 1/2 × 4 to find what a full battery powers (treat 4 as 4/1 and use the rule).",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "One fully-charged battery powers the robot for how many hours? {blank}",
+                    "config": {
+                      "answers": ["2"]
+                    },
+                    "hint": "1/2 × 4/1 = 4/2 = 2.",
+                    "explanation": "1/2 × 4/1 = (1×4)/(2×1) = 4/2 = 2. One fully-charged battery powers the robot for 2 hours."
+                  }
+                }
+              ]
+            },
+            {
+              "step": 4,
+              "note": "Five batteries — pick the answer.",
+              "segments": [
+                {
+                  "narration": "Each fully-charged battery powers the robot for 2 hours. Five batteries power it for 5 × 2 hours. Pick the answer from the options.",
+                  "checkpoint": {
+                    "type": "mcq",
+                    "prompt": "How many hours can a robot run on 5 fully-charged batteries?",
+                    "config": {
+                      "options": [
+                        "(A) 7 1/2",
+                        "(B) 3 3/4",
+                        "(C) 8",
+                        "(D) 10",
+                        "(E) 8 1/4"
+                      ],
+                      "answer": 3,
+                      "shuffle": false
+                    },
+                    "hint": "1 battery = 2 hours (from Step 3). Multiply by 5.",
+                    "explanation": "5 batteries × 2 hours per battery = 10 hours. Option D."
+                  }
+                }
+              ]
+            }
+          ],
+          "on_correct": "Nice — 3/4 of a battery powers the robot for 3/2 hours, so 1 full battery gives 2 hours (scale up by 4/3), and 5 batteries give 10 hours.",
+          "on_wrong": "The answer is 10. The trick: 3/4 of a battery powers the robot for 1 1/2 hours, so 1 full battery powers it for 2 hours (multiply both sides by 4/3). Then 5 × 2 = 10 hours."
+        },
+        {
+          "id": "WE2",
+          "source": "pyq",
+          "pyq": {
+            "year": 2008,
+            "question": "Q15",
+            "difficulty": "4pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2008 Q15. Surface re-wrapped from 'bottle of juice with two pours' to 'library shelf with two classes borrowing books' — fresh discrete-objects surface, distinct from the bottle imagery used in IL Pass 3 and from WE1's new battery scenario. Figure removed (text-only worded problem). Numbers (1/3, 3/4 of rest), options (A–E), and the answer (1/6) preserved per Cross-cutting §7.",
+          "narration_mode": "scaffolded",
+          "question_text": "A library shelf was full of books. Students borrowed 1/3 of the shelf for one class, and then 3/4 of what remained for a second class. What fraction of the original books is still on the shelf?",
+          "options": [
+            "(A) 1/4",
+            "(B) 2/3",
+            "(C) 11/12",
+            "(D) 1/6",
+            "(E) This cannot be determined."
+          ],
+          "answer_text": "(D) 1/6",
+          "answer_index": 3,
+          "difficulty": 4,
+          "skills": ["frac-chained-reduction", "frac-mult-fraction"],
+          "tags": ["foundations", "mk-4pt", "pyq-2008-q15"],
+          "steps": [
+            {
+              "step": 1,
+              "note": "After the first class — what survives.",
+              "segments": [
+                {
+                  "narration": "Students borrowed 1/3 of the shelf for the first class. So 1 of every 3 books left the shelf, and 2 of every 3 stayed. The 'leftover' fraction is what stays put.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "After the first class, what fraction of the original books is still on the shelf? {blank}/{blank}",
+                    "config": {
+                      "answers": ["2", "3"]
+                    },
+                    "hint": "1/3 left the shelf, so 2/3 stayed.",
+                    "explanation": "The books were split into 3 equal groups. 1 group was borrowed, so 2 groups remained — that's 2/3 of the original."
+                  }
+                }
+              ]
+            },
+            {
+              "step": 2,
+              "note": "After the second class — what survives, as a fraction of what was there.",
+              "segments": [
+                {
+                  "narration": "Now students borrowed 3/4 of what was left for a second class. So 3 of every 4 remaining books left the shelf this time, and only 1 of every 4 stayed. This 'leftover' is the survival fraction for the second class.",
+                  "checkpoint": {
+                    "type": "fill_in_blank",
+                    "prompt": "Of the books on the shelf just before the second class, what fraction stayed on the shelf? {blank}/{blank}",
+                    "config": {
+                      "answers": ["1", "4"]
+                    },
+                    "hint": "3/4 was borrowed, so 1/4 stayed.",
+                    "explanation": "The remaining books were split into 4 equal groups before the second class. 3 groups were borrowed; 1 group stayed. That's 1/4 of what was there."
+                  }
+                }
+              ]
+            },
+            {
+              "step": 3,
+              "note": "Multiply the survival fractions — and pick the answer.",
+              "segments": [
+                {
+                  "narration": "The shortcut: when 'of the rest' chains, multiply the survival fractions together. After the first class, 2/3 of the original is still on the shelf. After the second class, only 1/4 of that 2/3 stays. So 1/4 × 2/3 is the fraction of the original still on the shelf.",
+                  "checkpoint": {
+                    "type": "mcq",
+                    "prompt": "What fraction of the original books is still on the shelf?",
+                    "config": {
+                      "options": [
+                        "(A) 1/4",
+                        "(B) 2/3",
+                        "(C) 11/12",
+                        "(D) 1/6",
+                        "(E) This cannot be determined."
+                      ],
+                      "answer": 3,
+                      "shuffle": false
+                    },
+                    "hint": "1/4 × 2/3 = (1 × 2) / (4 × 3) = 2/12 = 1/6.",
+                    "explanation": "Multiply the leftover fractions: 1/4 × 2/3 = 2/12 = 1/6. Option D. The trap: adding the borrowed fractions (1/3 + 3/4 = 13/12, impossible) or thinking 'cannot be determined' because the exact number of books isn't given — it doesn't need to be."
+                  }
+                }
+              ]
+            }
+          ],
+          "on_correct": "Got it — the survival fractions multiply: 2/3 (after class 1) × 1/4 (after class 2) = 2/12 = 1/6. That's the canonical 'of the rest' shortcut at work.",
+          "on_wrong": "The answer is 1/6. Use the leftover-fractions shortcut: after class 1, 2/3 stays. After class 2, 1/4 of that 2/3 stays. Multiply: 1/4 × 2/3 = 2/12 = 1/6 of the original is still on the shelf."
+        }
+      ]
+    },
+    {
+      "block_type": "practice_lab",
+      "title": "Practice Lab",
+      "description": "Five practice problems, ramped 3pt → 5pt. Hints available.",
+      "questions": [
+        {
+          "id": "P1",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2005,
+            "question": "Q07",
+            "difficulty": "3pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2005 Q07. Surface re-wrapped from 'marbles on a shelf' to 'buttons on a tray' to give the lesson a fresh surface (marbles were used heavily in IL Pass 2). Numbers (24 total, 1/8, 2/3 of rest), options (4–8), and the answer (7) preserved per Cross-cutting §7.",
+          "question_text": "On a tray, there are 24 buttons in three colors: white, red, and brown. 1/8 of the buttons are white and 2/3 of the rest of the buttons are red. How many of the buttons are brown?",
+          "config": {
+            "options": [
+              "(A) 7",
+              "(B) 4",
+              "(C) 5",
+              "(D) 6",
+              "(E) 8"
+            ],
+            "answer": 0,
+            "shuffle": false
+          },
+          "explanation": "Start with the white buttons: 1/8 of 24 = 3 white. The rest is 24 − 3 = 21. Red is 2/3 of those: 2/3 × 21 = 14 red. Brown is what remains: 21 − 14 = 7 brown.",
+          "difficulty": 3,
+          "skills": ["frac-of-quantity", "frac-chained-reduction"],
+          "tags": ["foundations", "mk-3pt", "pyq-2005-q07"],
+          "hints": [
+            "Start with the white buttons. 1/8 of 24 = ?",
+            "After removing the white ones, 21 buttons remain. 2/3 of 21 are red — find that count.",
+            "Brown = 24 − white − red. Subtract step by step."
+          ],
+          "on_correct": "Got it — 3 white, then 2/3 of 21 = 14 red, then 21 − 14 = 7 brown. Two 'of' steps stacked.",
+          "on_wrong": "The answer is 7. Walk the chain: 1/8 of 24 = 3 white. Rest = 21. 2/3 of 21 = 14 red. Brown = 21 − 14 = 7. The trap: taking 2/3 of 24 (= 16) instead of 2/3 of what's left after the whites (= 14)."
+        },
+        {
+          "id": "P2",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2001,
+            "question": "Q12",
+            "difficulty": "4pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2001 Q12. Surface re-wrapped from 'Anya's 201 coins of $1/$2/$5 denominations' to 'Maya's 201 arcade tokens worth 1, 2, 5 points'. The 1/3 + 1/3 + 1/3 split, the 1/2/5 values, the factoring shortcut (67 × 8), the option values (536, 201, 516, 1020, 2001), and the answer position (A) are all preserved per Cross-cutting §7.",
+          "question_text": "Maya has 201 arcade tokens. One third of her tokens are bronze (worth 1 point each). The same number are silver (worth 2 points each). The rest are gold (worth 5 points each). How many points are Maya's tokens worth in total?",
+          "config": {
+            "options": [
+              "(A) 536 points",
+              "(B) 201 points",
+              "(C) 516 points",
+              "(D) 1020 points",
+              "(E) 2001 points"
+            ],
+            "answer": 0,
+            "shuffle": false
+          },
+          "explanation": "1/3 of 201 = 67. So 67 tokens are bronze (1 pt), 67 silver (2 pt), and the rest (201 − 67 − 67 = 67) are gold (5 pt). Total points: 67×1 + 67×2 + 67×5 = 67 × (1+2+5) = 67 × 8 = 536 points.",
+          "difficulty": 4,
+          "skills": ["frac-of-quantity", "frac-chained-reduction"],
+          "tags": ["foundations", "mk-4pt", "pyq-2001-q12"],
+          "hints": [
+            "One third of 201 = 67. That tells you how many of each colour Maya has for the first two types.",
+            "Bronze and silver together: 67 + 67 = 134. The rest are gold. 201 − 134 = how many gold?",
+            "Each colour has 67 tokens. Sum the values: 67×1 + 67×2 + 67×5. Factor out the 67: 67 × (1+2+5) = 67 × 8."
+          ],
+          "on_correct": "Right — 67 of each colour, summed via 67 × (1+2+5) = 67 × 8 = 536 points. The shortcut: factor out 67 once you spot the same count appears for each type.",
+          "on_wrong": "The answer is 536 points. 1/3 of 201 = 67 tokens of each colour. Sum: 67×1 + 67×2 + 67×5 = 67 × 8 = 536. Trap: treating all 201 tokens as 1 point each (= 201, option B), or forgetting to multiply each count by its point value."
+        },
+        {
+          "id": "P4",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2001,
+            "question": "Q17",
+            "difficulty": "4pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2001 Q17. Surface re-wrapped from 'Zosia's school homework (math + geography)' to 'Maya practicing music (scales + sight-reading + repertoire)'. Numbers (60 min total, 1/3, 2/5 of rest), options (12, 20, 24, 36, 40 min), and the answer (24 min) preserved per Cross-cutting §7.",
+          "question_text": "Maya practices music for 1 hour. She spends one third of this time on scales, and she spends two fifths of the remaining time on sight-reading. How many minutes does she spend playing through her repertoire (the rest of her practice)?",
+          "config": {
+            "options": [
+              "(A) 12",
+              "(B) 20",
+              "(C) 24",
+              "(D) 36",
+              "(E) 40"
+            ],
+            "answer": 2,
+            "shuffle": false
+          },
+          "explanation": "1 hour = 60 minutes. Scales = 1/3 × 60 = 20 min. Remaining = 60 − 20 = 40 min. Sight-reading = 2/5 × 40 = 16 min. Repertoire = 40 − 16 = 24 min.",
+          "difficulty": 4,
+          "skills": ["frac-of-quantity", "frac-chained-reduction"],
+          "tags": ["foundations", "mk-4pt", "pyq-2001-q17"],
+          "hints": [
+            "Convert the total to minutes: 1 hour = 60 min. Scales takes 1/3 of that. Compute that first.",
+            "After scales, how much time is left? Sight-reading takes 2/5 of that remaining time.",
+            "Repertoire = time after scales − sight-reading time. Subtract step by step."
+          ],
+          "figure": "Figures/lesson-1-2/P4.png",
+          "figure_description": "A horizontal bar with a '1 hour' bracket above spanning its full width. The bar is divided into three colored sections with verbal labels (no minute counts shown). Left section (green, ~1/3 of the bar width): labeled 'Scales' with the stacked fraction '1/3' below. Middle section (blue): labeled 'Sight-reading' with '2/5 of the remaining time' below. Right section (purple): labeled 'Repertoire' with 'the rest of her practice (unknown)' below. The figure shows the three-part structure of the practice hour but does not pre-compute any minute totals — the student derives those from the stem.",
+          "on_correct": "Yes — scales 20 min, sight-reading 16 min, repertoire = 60 − 20 − 16 = 24 min. The chain: 1/3, then 2/5 of the remaining.",
+          "on_wrong": "The answer is 24 min. 1/3 of 60 = 20 (scales). Remaining = 40 min. 2/5 of 40 = 16 (sight-reading). Repertoire = 40 − 16 = 24. Trap: taking 2/5 of 60 (= 24, off the wrong base) — the 2/5 is of the time left after scales, not the whole hour."
+        },
+        {
+          "id": "P5",
+          "type": "mcq",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "4pt",
+            "fingerprint_pool": ["pyq-2008-q15", "pyq-2001-q17"],
+            "step_count": 3,
+            "twist_pattern": "of_the_rest_then_division",
+            "rationale": "S4 (fraction ÷ fraction) has zero PYQs in the FDP pool at any tier. User explicitly approved Mode C for P5 and MC3 on 2026-06-08 to gate-test the curriculum objective. Question chains two L1.2 skills (frac-of-the-rest + frac-div-fraction) with a classic trap distractor (9 pieces if the student forgets the bow and divides the whole 9/10). User confirmed 4pt tier on 2026-06-10."
+          },
+          "question_text": "A ribbon is 9/10 m long. Tia first uses 1/3 of it for a bow. Then she cuts the remaining ribbon into pieces, each 1/10 m long. Which picture shows the correct number of pieces?",
+          "config": {
+            "options": [
+              {"image": "Figures/lesson-1-2/P5-opt-a.svg"},
+              {"image": "Figures/lesson-1-2/P5-opt-b.svg"},
+              {"image": "Figures/lesson-1-2/P5-opt-c.svg"},
+              {"image": "Figures/lesson-1-2/P5-opt-d.svg"},
+              {"image": "Figures/lesson-1-2/P5-opt-e.svg"}
+            ],
+            "answer": 1,
+            "shuffle": false
+          },
+          "explanation": "Two steps. Step 1: 1/3 of 9/10 = 3/10 used for the bow, so the leftover is 9/10 − 3/10 = 6/10 m (or directly: 2/3 × 9/10 = 18/30 = 6/10 m). Step 2: 6/10 ÷ 1/10 = 6/10 × 10/1 = 60/10 = 6 pieces.",
+          "difficulty": 4,
+          "skills": ["frac-chained-reduction", "frac-of-quantity", "frac-div-fraction"],
+          "tags": ["foundations", "mk-4pt", "mode-c-original", "s4-division", "of-the-rest"],
+          "hints": [
+            "Two steps. First, find how much ribbon is left after Tia uses 1/3 for the bow.",
+            "Leftover = 2/3 of 9/10 (since 1/3 is used, 2/3 remains) = 6/10 m. Then divide.",
+            "6/10 ÷ 1/10 = 6/10 × 10/1 = 6 pieces."
+          ],
+          "on_correct": "Got it — 1/3 of the ribbon (3/10 m) goes to the bow, leaving 6/10 m. Then 6/10 ÷ 1/10 = 6 pieces. Two L1.2 moves chained.",
+          "on_wrong": "The answer is 6 pieces. Step 1: 1/3 of 9/10 = 3/10 used → 6/10 m left. Step 2: 6/10 ÷ 1/10 = 6. Common trap: skipping step 1 and just doing 9/10 ÷ 1/10 = 9 (treats the bow as if it never happened).",
+          "option_figure_specs": [
+            {"type": "ribbon_pieces", "ribbon_total": [6, 10], "piece": [1, 10], "pieces_shown": 3, "color": "blue"},
+            {"type": "ribbon_pieces", "ribbon_total": [6, 10], "piece": [1, 10], "pieces_shown": 6, "color": "blue"},
+            {"type": "ribbon_pieces", "ribbon_total": [6, 10], "piece": [1, 10], "pieces_shown": 9, "color": "blue"},
+            {"type": "ribbon_pieces", "ribbon_total": [6, 10], "piece": [1, 10], "pieces_shown": 12, "color": "blue"},
+            {"type": "ribbon_pieces", "ribbon_total": [6, 10], "piece": [1, 10], "pieces_shown": 18, "color": "blue"}
+          ]
+        },
+        {
+          "id": "P7",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2021,
+            "question": "Q22",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2021 Q22. Surface re-wrapped from 'Maurice's pancake recipe' to 'Maya's cookie recipe' (close cousin in the cooking family). Number of items per full recipe (100), all ingredient ratios (25 eggs, 5 kg flour, 4 L milk, 1 kg butter), the cook's stash (6 / 400 g / 0.5 L / 200 g), the bottleneck (flour), and the answer (8) are all preserved per Cross-cutting §7. Option order reshuffled to place the correct answer (8) at position E instead of B for lesson-wide letter balance.",
+          "question_text": "Maya wants to bake cookies. She has 6 eggs, 400 g of flour, 0.5 liters of milk, and 200 g of butter. What is the largest number of cookies she can bake using only the ingredients she has? (Recipe for 100 cookies: 25 eggs, 4 L milk, 5 kg flour, 1 kg butter.)",
+          "config": {
+            "options": [
+              "(A) 6",
+              "(B) 10",
+              "(C) 12",
+              "(D) 15",
+              "(E) 8"
+            ],
+            "answer": 4,
+            "shuffle": false
+          },
+          "explanation": "For each ingredient, find what fraction of the 100-cookie recipe Maya has. The smallest fraction is the bottleneck. Eggs: 6 of 25 → 6/25 of recipe → 24 cookies. Flour: 400 g of 5000 g → 8/100 of recipe → 8 cookies. Milk: 0.5 L of 4 L → 1/8 of recipe → 12.5, so 12 whole. Butter: 200 g of 1000 g → 1/5 of recipe → 20 cookies. Smallest: 8 cookies — flour is the bottleneck.",
+          "difficulty": 5,
+          "skills": ["frac-of-quantity", "frac-div-fraction"],
+          "tags": ["foundations", "mk-5pt", "pyq-2021-q22"],
+          "hints": [
+            "For each ingredient, ask 'how many cookies can I make from that ingredient alone?' Then pick the smallest — that's the bottleneck.",
+            "Eggs: 6/25 of recipe → 24 cookies. Compute the same way for flour (400 g vs. 5000 g), milk (0.5 L vs. 4 L), butter (200 g vs. 1000 g).",
+            "Flour: 400/5000 = 2/25 of the recipe → 2/25 × 100 = 8 cookies. That's the smallest, so 8."
+          ],
+          "figure": "Figures/lesson-1-2/P7.svg",
+          "figure_description": "A reference card titled 'Recipe for 100 cookies' listing four ingredients in a single centered column: 25 eggs, 5 kg flour, 4 L milk, 1 kg butter. Maya's actual ingredient quantities are stated in the question text and are not duplicated in the figure.",
+          "on_correct": "Right — flour is the bottleneck (400 g vs. 5000 g for the full recipe = 8/100 = 8 cookies). Eggs, milk, and butter would let her bake more, but the recipe is gated by what she has least of.",
+          "on_wrong": "The answer is 8. Test each ingredient: eggs let her bake 24, flour 8, milk 12, butter 20. The smallest wins — flour limits her to 8 cookies.",
+          "figure_spec": {
+            "type": "recipe_card",
+            "title": "Cookies",
+            "recipe_per_100": {"eggs": 25, "flour_kg": 5, "milk_L": 4, "butter_kg": 1},
+            "color": "blue"
+          }
+        }
+      ]
+    },
+    {
+      "block_type": "mastery_check",
+      "title": "Mastery Check",
+      "description": "Need a refresher? Open your L1.2 cheat sheet (linked above the first question).",
+      "cheat_sheet_pdf_url": "../Figures/lesson-1-2/MK_G56_L12_revision_cheatsheet.pdf",
+      "pass_threshold": "3/4",
+      "questions": [
+        {
+          "id": "MC1",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2006,
+            "question": "Q08",
+            "difficulty": "3pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B (light) adaptation of MK 2006 Q08. Question stem PRESERVED verbatim ('One half of one hundredth is:') because the 3pt difficulty rests on the verbal-to-math parse ('one hundredth' → 1/100, 'of' → ×) — concretizing to 'a piggy bank with 100 coins' would pre-parse 1/100 for the student and soften the question to ~2pt. ONLY the options were converted from decimals to their fraction equivalents to keep L1.2 strictly in scope (decimals are introduced in L1.3). All five values preserved per Cross-cutting §7: 1/200 = 0.005, 1/500 = 0.002, 1/20 = 0.05, 1/50 = 0.02, 1/2 = 0.5.",
+          "question_text": "One half of one hundredth is:",
+          "config": {
+            "options": [
+              "(A) 1/200",
+              "(B) 1/500",
+              "(C) 1/20",
+              "(D) 1/50",
+              "(E) 1/2"
+            ],
+            "answer": 0,
+            "shuffle": false
+          },
+          "explanation": "Read 'of' as multiply. 'One half of one hundredth' = 1/2 × 1/100 = (1 × 1)/(2 × 100) = 1/200.",
+          "difficulty": 3,
+          "skills": ["frac-mult-fraction"],
+          "tags": ["foundations", "mk-3pt", "pyq-2006-q08"],
+          "hints": [
+            "'One half' = 1/2. 'One hundredth' = 1/100. 'Of' between fractions means multiply.",
+            "Multiply tops: 1 × 1 = 1. Multiply bottoms: 2 × 100 = 200. So 1/2 × 1/100 = 1/200.",
+            "Reduce if needed — 1/200 is already in simplest form."
+          ],
+          "on_correct": "Right — 1/2 × 1/100 = 1/200. 'Of' between two fractions is multiplication.",
+          "on_wrong": "The answer is 1/200. Read 'of' as multiply: 1/2 × 1/100 = 1/200. Common traps — 1/20 (multiplied bottoms as 2 × 10), 1/50 (place-value slip), 1/2 (forgot the 1/100 entirely)."
+        },
+        {
+          "id": "MC2",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2017,
+            "question": "Q08",
+            "difficulty": "3pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2017 Q08. Surface re-wrapped from 'Martin colours a rectangle's squares' to 'Maya sews a quilt panel of squares'. Grid size (2×3 = 6), the 1/3 + 1/2 split, the option values (1–5), and the answer (1) are preserved per Cross-cutting §7. Option order reshuffled to place the correct answer (1) at position C instead of A for lesson-wide letter balance. (Original data-file stem 'Rectangle is 3×4 = 12 squares' contradicts the canonical answer; the actual MK problem uses a 2×3 = 6-square rectangle.)",
+          "question_text": "Maya is sewing a quilt panel made of 6 small squares arranged in 2 rows of 3. She wants 1/3 of the squares to be patterned, half of the squares to be plain, and the rest to be patchwork. How many patchwork squares will the panel have?",
+          "config": {
+            "options": [
+              "(A) 2",
+              "(B) 3",
+              "(C) 1",
+              "(D) 4",
+              "(E) 5"
+            ],
+            "answer": 2,
+            "shuffle": false
+          },
+          "explanation": "Total = 6 squares (2 × 3). Patterned = 1/3 × 6 = 2. Plain = 1/2 × 6 = 3. Patchwork = 6 − 2 − 3 = 1.",
+          "difficulty": 3,
+          "skills": ["frac-of-quantity"],
+          "tags": ["foundations", "mk-3pt", "pyq-2017-q08"],
+          "hints": [
+            "Total squares = 2 × 3 = 6. Compute 1/3 of 6 (patterned) and 1/2 of 6 (plain).",
+            "Patterned = 2 squares. Plain = 3 squares. Together that's 5 squares.",
+            "Patchwork = total − patterned − plain = 6 − 5 = 1."
+          ],
+          "figure": "Figures/lesson-1-2/MC2.svg",
+          "figure_description": "A 2-by-3 grid of 6 equal squares forming a quilt panel, all unshaded (the three fabric types described in the question are not pre-shown in the figure).",
+          "on_correct": "Yes — 6 squares total: 2 patterned (1/3), 3 plain (1/2), and just 1 patchwork. The two fraction-of-quantity slices add up to 5, leaving 1 for patchwork.",
+          "on_wrong": "The answer is 1. Compute each: 1/3 of 6 = 2 patterned, 1/2 of 6 = 3 plain. That's 2 + 3 = 5 squares accounted for. Patchwork = 6 − 5 = 1. Trap: forgetting to subtract from the total and writing the count of patterned (2) or plain (3) as the answer.",
+          "figure_spec": {
+            "type": "quilt_panel_grid",
+            "rows": 2,
+            "cols": 3,
+            "shaded_cells": [],
+            "color": "blue"
+          }
+        },
+        {
+          "id": "MC3",
+          "type": "mcq",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "4pt",
+            "fingerprint_pool": ["pyq-2001-q17", "pyq-2008-q15"],
+            "step_count": 4,
+            "twist_pattern": "of_the_rest_then_division_visual",
+            "rationale": "S4 (fraction ÷ fraction) has zero PYQs in the FDP pool; user explicitly approved Mode C for P5 + MC3 on 2026-06-08. Bumped to genuine 4pt on 2026-06-10 by adding an 'of the rest' prefix: garden is 3/4 acre, 1/6 used for pond, leaving 5/8 acre for plots (because 5/6 × 3/4 = 5/8). Then 5/8 ÷ 1/16 = 10 plots. Tests S3 (of-the-rest) + S2 (fraction of a quantity) + S4 (division). Same canonical answer (10 plots) preserves the existing option figures + answer position (B)."
+          },
+          "question_text": "A square garden has an area of 3/4 of an acre. 1/6 of the garden is used for a pond. The remaining area is divided into identical small square plots, each with an area of 1/16 of an acre. Which arrangement shows the correct number of plots in the divided section?",
+          "config": {
+            "options": [
+              {"image": "Figures/lesson-1-2/MC3-opt-a.svg"},
+              {"image": "Figures/lesson-1-2/MC3-opt-b.svg"},
+              {"image": "Figures/lesson-1-2/MC3-opt-c.svg"},
+              {"image": "Figures/lesson-1-2/MC3-opt-d.svg"},
+              {"image": "Figures/lesson-1-2/MC3-opt-e.svg"}
+            ],
+            "answer": 1,
+            "shuffle": false
+          },
+          "explanation": "Three moves chained. Step 1 — pond area: 1/6 of 3/4 = 1/8 acre. Step 2 — planting area (using 'of the rest'): leftover after pond is 5/6 of 3/4 = 5/8 acre. Step 3 — number of plots: 5/8 ÷ 1/16 = 5/8 × 16/1 = 80/8 = 10 plots.",
+          "difficulty": 4,
+          "skills": ["frac-chained-reduction", "frac-of-quantity", "frac-div-fraction"],
+          "tags": ["foundations", "mk-4pt", "mode-c-original", "s4-division", "of-the-rest"],
+          "hints": [
+            "Three steps. First find the planting area after the pond. Use 'of the rest' — 1/6 used means 5/6 stays.",
+            "Step 2: planting area = 5/6 of 3/4 = 5/6 × 3/4 = 15/24 = 5/8 acre.",
+            "Step 3: plots = 5/8 ÷ 1/16 = 5/8 × 16/1 = 80/8 = 10. Pick the picture with 10 plots."
+          ],
+          "figure": "Figures/lesson-1-2/MC3.svg",
+          "figure_description": "A large square outline (the 3/4-acre garden) with the stacked fraction '3/4' followed by 'acre' centered inside it, captioned 'Garden' below. To the right, a much smaller reference square (about 1/3 the side length of the garden, reflecting the area ratio) with '1/16 acre' shown above it as a stacked fraction, captioned 'Each plot' below. The garden interior is left unmarked — the pond and the plots aren't pre-drawn; the student picks the right tiling from the option figures.",
+          "on_correct": "Got it — pond = 1/6 of 3/4 = 1/8 acre, so planting area = 3/4 − 1/8 = 5/8 acre. Then 5/8 ÷ 1/16 = 10 plots. Three L1.2 skills chained: of-the-rest, fraction of a quantity, fraction division.",
+          "on_wrong": "The answer is 10 plots (option B — the 2×5 tiling). Three steps: (1) pond = 1/6 × 3/4 = 1/8 acre. (2) planting area = 3/4 − 1/8 = 5/8 acre (or directly 5/6 × 3/4 = 5/8). (3) plots = 5/8 ÷ 1/16 = 10. Common trap: skipping the pond step and dividing the whole 3/4 ÷ 1/16 = 12 plots — that's the whole garden, not the planting area.",
+          "figure_spec": {
+            "type": "garden_reference",
+            "garden_label": "3/4 acre",
+            "plot_label": "1/16 acre",
+            "color": "blue"
+          },
+          "option_figure_specs": [
+            {"type": "garden_tiling", "plots": 4, "arrangement": "2x2", "color": "blue"},
+            {"type": "garden_tiling", "plots": 10, "arrangement": "2x5", "color": "blue"},
+            {"type": "garden_tiling", "plots": 8, "arrangement": "2x4", "color": "blue"},
+            {"type": "garden_tiling", "plots": 16, "arrangement": "4x4", "color": "blue"},
+            {"type": "garden_tiling", "plots": 20, "arrangement": "4x5", "color": "blue"}
+          ]
+        },
+        {
+          "id": "MC5",
+          "type": "mcq",
+          "source": "pyq",
+          "pyq": {
+            "year": 2002,
+            "question": "Q27",
+            "difficulty": "5pt",
+            "adapted": true
+          },
+          "adaptation_note": "Mode B re-skin of MK 2002 Q27. Surface re-wrapped from 'computer virus destroying memory' to 'phone battery being used over 4 days' — phone-battery is a more relatable everyday surface for grade 5-6 and avoids the abstract 'computer memory' framing. The 4-day chain structure (1/2, then 1/3 of rest, then 1/4 of rest, then 1/5 of rest), telescoping math (1/2 × 2/3 × 3/4 × 4/5 = 1/5), options, and answer (A = 1/5) are preserved per Cross-cutting §7. Figure removed (text-only worded problem). Prior mode_a_justification rested on preserving the canonical 'virus' framing, which is not a structural Mode A reason per the PYQ context-tweak workflow.",
+          "question_text": "A phone starts with a full battery charge. On Day 1, 1/2 of the charge is used. On Day 2, 1/3 of the charge remaining after Day 1 is used. On Day 3, 1/4 of the charge remaining after Day 2 is used. On Day 4, 1/5 of the charge remaining after Day 3 is used. What fraction of the original charge is still in the battery after Day 4?",
+          "config": {
+            "options": [
+              "(A) 1/5",
+              "(B) 1/6",
+              "(C) 1/10",
+              "(D) 1/12",
+              "(E) 1/24"
+            ],
+            "answer": 0,
+            "shuffle": false
+          },
+          "explanation": "Use the 'fraction of the rest' shortcut: multiply the survival fractions, not the used ones. After Day 1: 1/2 of the charge survives (1/2 was used). After Day 2: 2/3 of the previous survives. After Day 3: 3/4 survives. After Day 4: 4/5 survives. Chain: 1/2 × 2/3 × 3/4 × 4/5 = (1×2×3×4)/(2×3×4×5) = 24/120 = 1/5. The fractions telescope — the 2, 3, 4 in the numerator cancel with the 2, 3, 4 in the denominator.",
+          "difficulty": 5,
+          "skills": ["frac-chained-reduction", "frac-mult-fraction"],
+          "tags": ["foundations", "mk-5pt", "pyq-2002-q27"],
+          "hints": [
+            "Each day, the phone uses a fraction of the charge that's left. The 'survival fractions' (what stays) are 1/2, 2/3, 3/4, 4/5 (one per day).",
+            "When 'fraction of the rest' chains, multiply the survival fractions together: 1/2 × 2/3 × 3/4 × 4/5.",
+            "The chain telescopes: 1×2×3×4 on top, 2×3×4×5 on bottom. Cancel the 2, 3, 4 — what's left is 1/5."
+          ],
+          "on_correct": "Got it — the chain telescopes: 1/2 × 2/3 × 3/4 × 4/5 = 1/5. The canonical 'fraction of the rest' problem, four levels deep.",
+          "on_wrong": "The answer is 1/5. Multiply the survival fractions, not the used fractions. Each day's survival fraction: 1/2, 2/3, 3/4, 4/5. Chain: 1/2 × 2/3 × 3/4 × 4/5 = 24/120 = 1/5. The trap: adding the used fractions (1/2 + 1/3 + 1/4 + 1/5 is more than 1, so impossible) or multiplying them (1/2 × 1/3 × 1/4 × 1/5 = 1/120, which doesn't appear on the option list — that's the hint that it's not the right move)."
+        }
+      ]
+    },
+    {
+      "block_type": "challenge_extension",
+      "title": "Challenge Extension",
+      "description": "Optional 5pt stretch — synthesizes 'fraction of a quantity' with a 3-stage 'fraction of the rest' chain. Ungated.",
+      "questions": [
+        {
+          "id": "CE1",
+          "type": "mcq",
+          "source": "original",
+          "difficulty_match": {
+            "tier": "5pt",
+            "fingerprint_pool": ["pyq-2002-q27", "pyq-2021-q22", "pyq-2008-q15"],
+            "sub_skill": "frac-chained-reduction",
+            "step_count": 5,
+            "twist_pattern": "reverse_chained_reduction",
+            "rationale": "Brief §7 originally skipped CE; added 2026-06-08 per user request. Mode C synthesizing S2 (fraction of a quantity) + S3 (chained 'of the rest', 3 stages). Bumped to genuine 5pt difficulty on 2026-06-10 by reversing the problem direction: the final coin count is given (60), and the student must reverse the survival chain to recover the original (240). Reverse-thinking is a canonical MK 5pt fingerprint that pushes beyond MC5 (which is the forward version of a similar chain). All-integer arithmetic throughout; within L1.2 scope (frac-of-quantity + chained reduction + multiplication)."
+          },
+          "question_text": "After three days of spending, Tia has 60 game coins left. On day 1 she spent 1/4 of her coins. On day 2 she spent 1/3 of what remained. On day 3 she spent 1/2 of what remained. How many coins did Tia have at the start?",
+          "config": {
+            "options": [
+              "(A) 80",
+              "(B) 120",
+              "(C) 180",
+              "(D) 240",
+              "(E) 360"
+            ],
+            "answer": 3,
+            "shuffle": false
+          },
+          "explanation": "Use the survival-fraction shortcut, then reverse. After day 1, 3/4 of the start remains. After day 2, 2/3 of that remains. After day 3, 1/2 of that remains. Chain: 3/4 × 2/3 × 1/2 = 6/24 = 1/4. So the 60 coins left are 1/4 of the original. Therefore start = 60 × 4 = 240 coins. (Stage-by-stage reverse: 60 → 120 → 180 → 240.)",
+          "difficulty": 5,
+          "skills": ["frac-of-quantity", "frac-chained-reduction", "frac-mult-fraction"],
+          "tags": ["foundations", "mk-5pt", "mode-c-original", "extension", "reverse-problem"],
+          "hints": [
+            "Track what stays each day. After day 1, 3/4 stays. After day 2, 2/3 of those stays. After day 3, 1/2 of those stays.",
+            "Multiply the survival fractions: 3/4 × 2/3 × 1/2 = 1/4. So 60 (what's left) is 1/4 of the original.",
+            "If 60 = 1/4 × original, then original = 60 × 4 = 240 coins."
+          ],
+          "on_correct": "Got it — survival chain is 3/4 × 2/3 × 1/2 = 1/4, so 60 is 1/4 of the start. Start = 60 × 4 = 240. The 5pt move was running the chain backwards.",
+          "on_wrong": "The answer is 240. Forward chain: 240 → 180 → 120 → 60. To reverse from 60: survival fractions multiply to 1/4, so 60 is 1/4 of the original. Start = 60 × 4 = 240. Traps: 120 (only reversed day 3), 180 (only reversed days 2 and 3 — skipped day 1)."
+        }
+      ]
+    }
+  ]
+}
