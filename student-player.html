@@ -752,6 +752,12 @@ const CATALOG = {
 };
 const SLUG = (new URLSearchParams(location.search).get('lesson') || '1-1').trim();
 const CFG = CATALOG[SLUG] || CATALOG['1-1'];
+// Focus mode: ?ilstep=N renders ONLY interactive-lesson step N (no chrome, no
+// nav, no auto-advance) — used to embed one IL step per Learnosity item.
+const FOCUS_STEP = (() => {
+  const v = new URLSearchParams(location.search).get('ilstep');
+  return v != null && v !== '' ? parseInt(v, 10) : null;
+})();
 
 // ─── State ─────────────────────────────────────────────────────────
 const state = {
@@ -813,6 +819,7 @@ function cancelAutoAdvance() {
   }
 }
 function scheduleAutoAdvance(ms) {
+  if (FOCUS_STEP != null) return;   // single-step embed: never advance
   cancelAutoAdvance();
   state.pendingAdvance = {
     deadline: Date.now() + ms,
@@ -3947,6 +3954,7 @@ function maybeScheduleAutoAdvance(it) {
 }
 
 function nextItem() {
+  if (FOCUS_STEP != null) return;   // single-step embed: no navigation
   cancelAutoAdvance();
   if (state.cursor < state.items.length - 1) {
     state.cursor += 1;
@@ -3976,9 +3984,22 @@ async function init() {
     return;
   }
   state.items = buildItems(state.lesson);
+  // Focus mode: show only interactive-lesson step N, stripped of all chrome.
+  if (FOCUS_STEP != null) {
+    const idx = state.items.findIndex(x => x.kind === 'il-step' && x.id === 'S' + FOCUS_STEP);
+    if (idx >= 0) state.cursor = idx;
+    document.body.classList.add('focus-step');
+    const fs = document.createElement('style');
+    fs.textContent =
+      'body.focus-step header.app,body.focus-step aside.sidebar{display:none!important}' +
+      'body.focus-step main.player{width:100%!important;max-width:none!important;margin:0!important;padding:16px!important}' +
+      'body.focus-step .actions,body.focus-step .breadcrumb,body.focus-step .item-counter{display:none!important}' +
+      'body.focus-step{background:#fff!important}';
+    document.head.appendChild(fs);
+  }
   // Read cursor from URL hash if present
   const hashIdx = parseInt(location.hash.replace('#', ''), 10);
-  if (Number.isFinite(hashIdx) && hashIdx >= 0 && hashIdx < state.items.length) {
+  if (FOCUS_STEP == null && Number.isFinite(hashIdx) && hashIdx >= 0 && hashIdx < state.items.length) {
     state.cursor = hashIdx;
   }
   $('#lesson-title').textContent = `Lesson ${state.lesson.lesson_number} — ${state.lesson.title}`;
