@@ -3992,7 +3992,10 @@ async function init() {
     const fs = document.createElement('style');
     fs.textContent =
       'body.focus-step header.app,body.focus-step aside.sidebar{display:none!important}' +
+      // collapse the sidebar grid track so content uses the FULL iframe width
+      'body.focus-step .shell{display:block!important;grid-template-columns:1fr!important;min-height:0!important}' +
       'body.focus-step main.player{width:100%!important;max-width:none!important;margin:0!important;padding:16px!important}' +
+      'body.focus-step .panel{max-width:none!important}' +
       'body.focus-step .actions,body.focus-step .breadcrumb,body.focus-step .item-counter{display:none!important}' +
       'body.focus-step{background:#fff!important}';
     document.head.appendChild(fs);
